@@ -1,0 +1,125 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\about.png" />
+    <None Remove="Images\BlogAuthor.png" />
+    <None Remove="Images\BlogCategory.png" />
+    <None Remove="Images\GroupCollapse.png" />
+    <None Remove="Images\GroupExpand.png" />
+    <None Remove="Images\People\Image0.png" />
+    <None Remove="Images\People\Image1.png" />
+    <None Remove="Images\People\Image10.png" />
+    <None Remove="Images\People\Image11.png" />
+    <None Remove="Images\People\Image12.png" />
+    <None Remove="Images\People\Image13.png" />
+    <None Remove="Images\People\Image14.png" />
+    <None Remove="Images\People\Image15.png" />
+    <None Remove="Images\People\Image16.png" />
+    <None Remove="Images\People\Image17.png" />
+    <None Remove="Images\People\Image18.png" />
+    <None Remove="Images\People\Image19.png" />
+    <None Remove="Images\People\Image2.png" />
+    <None Remove="Images\People\Image20.png" />
+    <None Remove="Images\People\Image21.png" />
+    <None Remove="Images\People\Image22.png" />
+    <None Remove="Images\People\Image23.png" />
+    <None Remove="Images\People\Image24.png" />
+    <None Remove="Images\People\Image25.png" />
+    <None Remove="Images\People\Image26.png" />
+    <None Remove="Images\People\Image27.png" />
+    <None Remove="Images\People\Image28.png" />
+    <None Remove="Images\People\Image3.png" />
+    <None Remove="Images\People\Image4.png" />
+    <None Remove="Images\People\Image5.png" />
+    <None Remove="Images\People\Image6.png" />
+    <None Remove="Images\People\Image7.png" />
+    <None Remove="Images\People\Image8.png" />
+    <None Remove="Images\People\Image9.png" />
+    <None Remove="Images\PlaceHolder\error.png" />
+    <None Remove="Images\PlaceHolder\error.svg" />
+    <None Remove="Images\PlaceHolder\loader.gif" />
+    <None Remove="Images\PlaceHolder\loading.gif" />
+    <None Remove="Images\PlaceHolder\loading.svg" />
+    <None Remove="Images\SocialNetwork\Blog_Facebook.png" />
+    <None Remove="Images\SocialNetwork\Blog_Google_Plus.png" />
+    <None Remove="Images\SocialNetwork\Blog_LinkedIn.png" />
+    <None Remove="Images\SocialNetwork\Blog_Soundcloud.png" />
+    <None Remove="Images\SocialNetwork\Blog_Soundsgood.png" />
+    <None Remove="Images\SocialNetwork\Blog_Spotify.png" />
+    <None Remove="Images\SocialNetwork\Blog_Twitter.png" />
+    <None Remove="Images\SocialNetwork\Blog_Youtube.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\about.png" />
+    <EmbeddedResource Include="Images\BlogAuthor.png" />
+    <EmbeddedResource Include="Images\BlogCategory.png" />
+    <EmbeddedResource Include="Images\GroupCollapse.png" />
+    <EmbeddedResource Include="Images\GroupExpand.png" />
+    <EmbeddedResource Include="Images\People\Image0.png" />
+    <EmbeddedResource Include="Images\People\Image1.png" />
+    <EmbeddedResource Include="Images\People\Image10.png" />
+    <EmbeddedResource Include="Images\People\Image11.png" />
+    <EmbeddedResource Include="Images\People\Image12.png" />
+    <EmbeddedResource Include="Images\People\Image13.png" />
+    <EmbeddedResource Include="Images\People\Image14.png" />
+    <EmbeddedResource Include="Images\People\Image15.png" />
+    <EmbeddedResource Include="Images\People\Image16.png" />
+    <EmbeddedResource Include="Images\People\Image17.png" />
+    <EmbeddedResource Include="Images\People\Image18.png" />
+    <EmbeddedResource Include="Images\People\Image19.png" />
+    <EmbeddedResource Include="Images\People\Image2.png" />
+    <EmbeddedResource Include="Images\People\Image20.png" />
+    <EmbeddedResource Include="Images\People\Image21.png" />
+    <EmbeddedResource Include="Images\People\Image22.png" />
+    <EmbeddedResource Include="Images\People\Image23.png" />
+    <EmbeddedResource Include="Images\People\Image24.png" />
+    <EmbeddedResource Include="Images\People\Image25.png" />
+    <EmbeddedResource Include="Images\People\Image26.png" />
+    <EmbeddedResource Include="Images\People\Image27.png" />
+    <EmbeddedResource Include="Images\People\Image28.png" />
+    <EmbeddedResource Include="Images\People\Image3.png" />
+    <EmbeddedResource Include="Images\People\Image4.png" />
+    <EmbeddedResource Include="Images\People\Image5.png" />
+    <EmbeddedResource Include="Images\People\Image6.png" />
+    <EmbeddedResource Include="Images\People\Image7.png" />
+    <EmbeddedResource Include="Images\People\Image8.png" />
+    <EmbeddedResource Include="Images\People\Image9.png" />
+    <EmbeddedResource Include="Images\PlaceHolder\error.png" />
+    <EmbeddedResource Include="Images\PlaceHolder\error.svg" />
+    <EmbeddedResource Include="Images\PlaceHolder\loader.gif" />
+    <EmbeddedResource Include="Images\PlaceHolder\loading.gif" />
+    <EmbeddedResource Include="Images\PlaceHolder\loading.svg" />
+    <EmbeddedResource Include="Images\SocialNetwork\Blog_Facebook.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\Blog_Google_Plus.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\Blog_LinkedIn.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\Blog_Soundcloud.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\Blog_Soundsgood.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\Blog_Spotify.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\Blog_Twitter.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\Blog_Youtube.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AppCenter" Version="1.9.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.9.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.9.0" />
+    <PackageReference Include="Microsoft.AppCenter.Distribute" Version="1.9.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Refit" Version="4.6.30" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="16.2.0.50" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="16.2.0.50" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="16.2.0.50" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="16.2.0.50" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="16.2.0.50" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="16.2.0.50" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.3.840" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.3.840" />
+    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />  
+  </ItemGroup>
+</Project>

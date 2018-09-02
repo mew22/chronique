@@ -1,0 +1,77 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using FFImageLoading.Forms;
+using Xamarin.Forms;
+
+namespace Chronique
+{
+    public class Artiste : BaseModel, INotifyPropertyChanged
+    {
+
+        public Artiste(string pseudo, string name = null, string otherName = null, string birthDate = null, int age = 0, string birthPlace = null, string job = null, 
+            string activityDates = null, string webSite = null, string musicKind = null, List<string> instruments = null, List<string> labels = null, List<string> projects = null, 
+            List<string> futursProject = null, string description = null, string photo_uri = null)
+        {
+            Pseudo = pseudo;
+            Name = name;
+            OtherName = otherName;
+            BirthDate = birthDate;
+            Age = age;
+            BirthPlace = birthPlace;
+            Job = job;
+            ActivityDates = activityDates;
+            WebSite = webSite;
+            MusicKind = musicKind;
+            Instruments = instruments;
+            Labels = labels;
+            Projects = projects;
+            FutursProject = futursProject;
+            Description = description;
+            Photo_uri = photo_uri;
+        }
+
+        public string Pseudo { get { return pseudo; } set{ pseudo = value; this.OnPropertyChanged("Pseudo"); } }
+        public string Name { get { return name; } set { name = value; this.OnPropertyChanged("Name"); } }
+        public string OtherName { get { return otherName; } set { otherName = value; this.OnPropertyChanged("OtherName"); } }
+        public string BirthDate { get { return birthDate; } set { birthDate = value; this.OnPropertyChanged("BirthDate"); } }
+        public int Age { get { return age; } set { age = value; this.OnPropertyChanged("Age"); } }
+        public string BirthPlace { get { return birthPlace; } set { birthPlace = value; this.OnPropertyChanged("BirthPlace"); } }
+        public string Job { get { return job; } set { job = value; this.OnPropertyChanged("Job"); } }
+        public string ActivityDates { get { return activityDates; } set { activityDates = value; this.OnPropertyChanged("ActivityDates"); } }
+        public string WebSite { get { return webSite; } set { webSite = value; this.OnPropertyChanged("WebSite"); } }
+        public string MusicKind { get { return musicKind; } set { musicKind = value; this.OnPropertyChanged("MusicKind"); } }
+        public List<string> Instruments { get { return instruments; } set { instruments = value; this.OnPropertyChanged("Instruments"); } }
+        public List<string> Labels { get { return labels; } set { labels = value; this.OnPropertyChanged("Labels"); } }
+        public List<string> Projects { get { return projects; } set { projects = value; this.OnPropertyChanged("Projects"); } }
+        public List<string> FutursProject { get { return futursProject; } set { futursProject = value; this.OnPropertyChanged("FutursProject"); } }
+        public string Description { get { return description; } set { description = value; this.OnPropertyChanged("Description"); } }
+        public string Photo_uri { get { return photo_uri; } set { photo_uri = value; this.OnPropertyChanged("Photo_uri"); } }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private string pseudo;
+        private string name;
+        private string otherName;
+        private string birthDate;
+        private int age;
+        private string birthPlace;
+        private string job;
+        private string activityDates;
+        private string webSite;
+        private string musicKind;
+        private List<string> instruments;
+        private List<string> labels;
+        private List<string> projects;
+        private List<string> futursProject;
+        private string description;
+        private string photo_uri;
+    }
+}

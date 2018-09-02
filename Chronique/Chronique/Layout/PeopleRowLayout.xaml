@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+              x:Class="Chronique.Layout.PeopleRowLayout" x:Name="grid" RowSpacing="1">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="1" />
+    </Grid.RowDefinitions>
+    <Grid RowSpacing="1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="70" />
+        </Grid.ColumnDefinitions>
+
+<!--        <Image Source="{Binding Photo}"-->
+<!--                       VerticalOptions="Center"-->
+<!--                       HorizontalOptions="Center"-->
+<!--                       HeightRequest="50"/>-->
+        <forms:CachedImage HorizontalOptions="Center" VerticalOptions="Center"
+                           HeightRequest="50" CacheDuration="30" RetryCount="3" RetryDelay="250"
+                           DownsampleToViewSize="true"
+                           LoadingPlaceholder = "loading.png"
+                           ErrorPlaceholder = "error.png"
+                           Source = "{Binding Photo_uri}">
+            <forms:CachedImage.Transformations>
+                <transformations:CircleTransformation />
+            </forms:CachedImage.Transformations>
+        </forms:CachedImage>
+
+        <Grid Grid.Column="1"
+                      RowSpacing="1"
+                      Padding="10,0,0,0"
+                      VerticalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label LineBreakMode="NoWrap"
+                         TextColor="#474747"
+                         Text="{Binding Pseudo}">
+                <Label.FontSize>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android">
+                            <OnIdiom x:TypeArguments="x:Double"
+                                   Phone="16"
+                                   Tablet="18" />
+                        </On>
+                        <On Platform="iOS">
+                            <OnIdiom x:TypeArguments="x:Double"
+                                   Phone="16"
+                                   Tablet="18" />
+                        </On>
+                    </OnPlatform>
+                </Label.FontSize>
+            </Label>
+            <Label Grid.Row="1"
+                         Grid.Column="0"
+                         TextColor="#474747"
+                         LineBreakMode="NoWrap"
+                         Text="{Binding Job}">
+                <Label.FontSize>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android">
+                            <OnIdiom x:TypeArguments="x:Double"
+                                   Phone="12"
+                                   Tablet="14" />
+                        </On>
+                        <On Platform="iOS">
+                            <OnIdiom x:TypeArguments="x:Double"
+                                   Phone="12"
+                                   Tablet="14" />
+                        </On>
+                    </OnPlatform>
+                </Label.FontSize>
+            </Label>
+        </Grid>
+    </Grid>
+    <StackLayout Grid.Row="1" BackgroundColor="Gray" HeightRequest="1"/>
+</Grid>
