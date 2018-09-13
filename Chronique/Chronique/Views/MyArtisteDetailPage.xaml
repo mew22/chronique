@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xForms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:xForms1="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:viewModels="clr-namespace:Chronique.ViewModels;assembly=Chronique"
+             x:Class="Chronique.Views.MyArtisteDetailPage"
+             Title="{Binding Title}">
+    <!-- NavigationPage.HasNavigationBar="False" -->
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Name="ItemTemplateRels"  x:Key="ItemTemplateRels">
+                <ViewCell>
+                    <ViewCell.View>
+                        <Frame HasShadow="true" OutlineColor="BlueViolet" >
+                            <StackLayout>
+                                <Label Text="test" />
+                                <forms:CachedImage 
+                                    CacheDuration="30" RetryCount="3" RetryDelay="250"
+                                    DownsampleToViewSize="true"
+                                    LoadingPlaceholder = "loading.png"
+                                    ErrorPlaceholder = "error.png"
+                                    Source = "{Binding}">
+                                    <forms:CachedImage.Transformations>
+                                        <transformations:CircleTransformation />
+                                        <!--                                <transformations:GrayscaleTransformation />-->
+                                    </forms:CachedImage.Transformations>
+                                    <forms:CachedImage.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Tapped="OnTapRelations"
+                                            NumberOfTapsRequired="1" />
+                                    </forms:CachedImage.GestureRecognizers>
+                                </forms:CachedImage>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Name="ItemTemplateAlbums"  x:Key="ItemTemplateAlbums">
+                <ViewCell>
+<!--                    <ViewCell.View>-->
+                    <Frame HasShadow="true" OutlineColor="CornflowerBlue" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" >
+                        <Grid>
+                        <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Text="{Binding}" Grid.Row="0" Grid.Column="0" />
+                        </Grid>
+                    </Frame>
+                    <!--                    </ViewCell.View>-->
+                </ViewCell>
+            </DataTemplate>
+
+            <DataTemplate x:Name="ItemTemplateFuturs"  x:Key="ItemTemplateFuturs">
+                <ViewCell>
+                    <ViewCell.View>
+                        <Frame HasShadow="true" OutlineColor="PaleVioletRed" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Label Text="{Binding}" Grid.Row="0" Grid.Column="0" />
+                            </Grid>
+                        </Frame>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Name="ItemTemplateLabels"  x:Key="ItemTemplateLabels">
+                <ViewCell>
+                    <ViewCell.View>
+                        <Frame HasShadow="true" OutlineColor="Aquamarine" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Label Text="{Binding}" Grid.Row="0" Grid.Column="0" />
+                            </Grid>
+                        </Frame>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <xForms1:SfPullToRefresh x:Name="pullToRefresh"
+                                           ProgressBackgroundColor="#0065FF"
+                                           RefreshContentHeight="50"
+                                           PullingThreshold="150"
+                                           RefreshContentWidth="50"
+                                           Refreshing="PullToRefresh_Refreshing"
+                                           TransitionMode="SlideOnTop"
+                                           IsRefreshing="False">
+                <xForms1:SfPullToRefresh.ProgressStrokeWidth>
+                <OnPlatform x:TypeArguments="x:Double">
+                    <On Platform="Android">6</On>
+                        <On Platform="iOS">2</On>
+                    </OnPlatform>
+                </xForms1:SfPullToRefresh.ProgressStrokeWidth>
+                <xForms1:SfPullToRefresh.PullableContent>
+                <Grid RowSpacing="10" ColumnSpacing="0" Padding="0" Margin="0" x:Name="Identity">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Frame HorizontalOptions="FillAndExpand" Grid.Row="0" HasShadow="True" OutlineColor="CornflowerBlue" BackgroundColor="{StaticResource LogoBackground}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+<!--                        <Image Grid.Column="0" Source="{Binding Item.Photo}"/>-->
+                            <forms:CachedImage Grid.Column="0"
+                                           CacheDuration="30" RetryCount="3" RetryDelay="250"
+                                           DownsampleToViewSize="true"
+                                           LoadingPlaceholder = "loading.png"
+                                           ErrorPlaceholder = "error.png"
+                                           Source = "{Binding Item.Photo_uri}">
+                            <forms:CachedImage.Transformations>
+                                <transformations:CircleTransformation />
+<!--                                <transformations:GrayscaleTransformation />-->
+                                </forms:CachedImage.Transformations>
+                        </forms:CachedImage>
+                            <StackLayout Grid.Column="1" HorizontalOptions="End" >
+                             <Label Text="{Binding Item.Pseudo}" FontAttributes="Bold" FontSize="16" TextColor="#474747"/>
+                            <Label Text="{Binding Item.Name}" FontSize="Small"/>
+                            <Label Text="{Binding Item.Age}" FontSize="Small"/>
+                                <Label Text="{Binding Item.Job}" FontSize="Small"/>
+                                <Label Text="{Binding Item.MusicKind}" FontSize="Small"/>
+                        </StackLayout>
+                        
+                    </Grid>
+                    </Frame>
+
+                    <ScrollView Grid.Row="1">
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="0" HeightRequest="100">
+                                <StackLayout>
+                                    <Label Text="Biographie" FontAttributes="Bold" FontSize="14" TextColor="#474747"/>
+                                    <Label Text="{Binding Item.Description}" FontSize="Small" LineBreakMode="TailTruncation"/>
+                                </StackLayout>
+                            </Frame>
+                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="1" HeightRequest="100">
+                                <StackLayout>
+                                    <Label Text="Liens" FontAttributes="Bold" FontSize="14" TextColor="#474747"/>
+                                    <xForms:SfListView x:Name="listViewRels" ItemsSource="{Binding Relations}" ItemTapped="OnItemTapped"
+                                                       ItemTemplate="{StaticResource ItemTemplateRels}" Orientation="Horizontal"
+                                                       ItemSpacing="0,0,5,0"  IsScrollBarVisible="True" 
+                                                       AutoFitMode="Height" SelectionMode="None"/>
+                                </StackLayout>
+                            </Frame>
+                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="2" HeightRequest="100">
+                                <StackLayout>
+                                    <Label Text="Projets Sorties" FontAttributes="Bold" FontSize="14" TextColor="#474747"/>
+                                        <xForms:SfListView x:Name="listViewAlbums" ItemSize="120" ItemsSource="{Binding Item.Projects}"
+                                           ItemTemplate="{StaticResource ItemTemplateAlbums}" Orientation="Horizontal"
+                                            ItemSpacing="0,0,5,0"  IsScrollBarVisible="True" 
+                                           AutoFitMode="Height" SelectionMode="None"/>
+                                </StackLayout>
+                            </Frame>
+                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="3">
+                                <StackLayout>
+                                    <Label Text="Projets futurs" FontAttributes="Bold" FontSize="14" TextColor="#474747"/>
+                                        <xForms:SfListView x:Name="listViewFuturs" ItemSize="120" ItemsSource="{Binding Item.FutursProject}"
+                                               ItemTemplate="{StaticResource ItemTemplateFuturs}" Orientation="Horizontal"
+                                               ItemSpacing="0,0,5,0"  IsScrollBarVisible="True"
+                                               AutoFitMode="Height" SelectionMode="None"/>
+                                    </StackLayout>
+                            </Frame>
+                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="4">
+                                <StackLayout>
+                                    <Label Text="Labels" FontAttributes="Bold" FontSize="14" TextColor="#474747"/>
+                                    <xForms:SfListView x:Name="listViewLabels" ItemSize="120" ItemsSource="{Binding Item.Labels}"
+                                               ItemTemplate="{StaticResource ItemTemplateLabels}" Orientation="Horizontal"
+                                               ItemSpacing="0,0,5,0"  IsScrollBarVisible="True" 
+                                               AutoFitMode="Height" SelectionMode="None"/>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+            </ScrollView>
+
+            </Grid>
+            </xForms1:SfPullToRefresh.PullableContent>
+            </xForms1:SfPullToRefresh>
+    </ContentPage.Content>
+
+
+</ContentPage>
