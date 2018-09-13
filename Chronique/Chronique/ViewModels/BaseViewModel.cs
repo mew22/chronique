@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+using Chronique.Models;
 
-namespace Chronique
+namespace Chronique.ViewModels
 {
     public class BaseViewModel<T> : INotifyPropertyChanged 
         where T : BaseModel

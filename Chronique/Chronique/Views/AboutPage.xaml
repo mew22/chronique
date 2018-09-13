@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Chronique.AboutPage"
+             x:Class="Chronique.Views.AboutPage"
              Title="La Chronique"
-             xmlns:vm="clr-namespace:Chronique;"
              xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:viewModels="clr-namespace:Chronique.ViewModels;assembly=Chronique">
 <!--    NavigationPage.HasNavigationBar="False"-->
     <ContentPage.BindingContext>
-		<vm:AboutViewModel />
+		<viewModels:AboutViewModel />
 	</ContentPage.BindingContext>
 	<Grid>
 		<Grid.RowDefinitions>

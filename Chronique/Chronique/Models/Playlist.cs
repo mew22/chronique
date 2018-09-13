@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Chronique.Models;
 using Xamarin.Forms;
 
-namespace Chronique
+namespace Chronique.Models
 {
     public class Playlist : BaseModel, INotifyPropertyChanged
     {

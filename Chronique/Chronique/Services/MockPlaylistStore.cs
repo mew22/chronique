@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using Chronique.Models;
-using Xamarin.Forms;
+using Chronique.Services;
 
-[assembly: Xamarin.Forms.Dependency(typeof(Chronique.MockPlaylistStore))]
-namespace Chronique
+[assembly: Xamarin.Forms.Dependency(typeof(MockPlaylistStore))]
+namespace Chronique.Services
 {
     public class MockPlaylistStore : IDataStoreImpl<Playlist>
     {

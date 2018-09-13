@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
+using Chronique.Models;
+using Chronique.ViewModels;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace Chronique
+namespace Chronique.Views
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemsPage : ContentPage
     {
         ItemsViewModel viewModel;
@@ -31,7 +32,7 @@ namespace Chronique
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewItemPage());
+            await Navigation.PushAsync(new Views.NewItemPage());
         }
 
         protected override void OnAppearing()

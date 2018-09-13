@@ -1,18 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Chronique.ViewModels;
+using Chronique.Models;
+using Chronique.Services;
 using Xamarin.Forms;
-using Syncfusion.ListView.XForms;
 
-namespace Chronique 
+namespace Chronique.ViewModels 
 {
-    public class PlaylistViewModel : BaseListViewModel<Playlist, NewArtistePage, MockPlaylistStore>
+    public class PlaylistViewModel : BaseListViewModel<Playlist, Views.NewArtistePage, MockPlaylistStore>
     {
         #region Fields
 
@@ -91,7 +84,7 @@ namespace Chronique
 
         private void NavigateToReadMoreContent(object obj)
         {
-            Navigation.PushAsync(new PlaylistDetailPage(new PlaylistDetailViewModel(obj as Playlist)));
+            Navigation.PushAsync(new Views.PlaylistDetailPage(new PlaylistDetailViewModel(obj as Playlist)));
         }
 
         private void NavigateChroniqueLink(object obj)

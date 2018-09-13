@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Threading.Tasks;
 using Chronique.Layout;
+using Chronique.ViewModels;
 using Syncfusion.DataSource;
 using Syncfusion.ListView.XForms;
 using Syncfusion.SfPicker.XForms;
-using Syncfusion.SfPullToRefresh.XForms;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace Chronique
+namespace Chronique.Views
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PeoplePage : ContentPage
     {
         protected override void OnAppearing()

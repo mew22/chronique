@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using Chronique.Models;
-
-namespace Chronique
+﻿namespace Chronique.ViewModels
 {
     public class ArtisteDetailViewModel : BaseViewModel<Artiste>
     {

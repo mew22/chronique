@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
+using Chronique.ViewModels;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace Chronique
+namespace Chronique.Views
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ArtistesPage : ContentPage
     {
         ArtistesViewModel viewModel;
@@ -31,7 +31,7 @@ namespace Chronique
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewArtistePage());
+            await Navigation.PushAsync(new Views.NewArtistePage());
         }
 
         async void About_Clicked(object sender, EventArgs e)

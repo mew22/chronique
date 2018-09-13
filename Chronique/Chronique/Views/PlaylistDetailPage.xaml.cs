@@ -1,9 +1,10 @@
-﻿using System;
-using System.Diagnostics;
+﻿using Chronique.ViewModels;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace Chronique
+namespace Chronique.Views
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlaylistDetailPage : ContentPage
     {
 

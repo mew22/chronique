@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Chronique
+﻿namespace Chronique.Models
 {
     public abstract class BaseModel
     {

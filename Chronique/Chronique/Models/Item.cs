@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Xamarin.Forms;
-
-namespace Chronique
+﻿namespace Chronique.Models
 {
     public class Item : BaseModel
     {

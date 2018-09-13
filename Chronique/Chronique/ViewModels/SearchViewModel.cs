@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using Chronique.Layout;
-using Chronique.ViewModels;
-using Syncfusion.SfPicker.XForms;
-using Xamarin.Forms;
+﻿using Chronique.Models;
+using Chronique.Services;
 
-namespace Chronique
+namespace Chronique.ViewModels
 {
 
-    public class SearchViewModel : BaseListViewModel<GenericRequestObject, NewArtistePage, MockSearchStore>
+    public class SearchViewModel : BaseListViewModel<GenericRequestObject, Views.NewArtistePage, MockSearchStore>
     {
         public string query;
         public SearchViewModel()

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace Chronique
+namespace Chronique.Views
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public class MainPage : TabbedPage
     {
         public MainPage()
@@ -27,12 +27,12 @@ namespace Chronique
 //                        Title = "Artiste"
 //
 //                    };
-                    playlistPage = new NavigationPage(new PlaylistPage())
+                    playlistPage = new NavigationPage(new Views.PlaylistPage())
                     {
                         Title = "Playlist"
 
                     };
-                    searchPage = new NavigationPage(new SearchPage())
+                    searchPage = new NavigationPage(new Views.SearchPage())
                     {
                         Title = "Search"
                     };
@@ -57,12 +57,12 @@ namespace Chronique
 //                    {
 //                        Title = "Artiste"
 //                    };
-                    playlistPage = new PlaylistPage()
+                    playlistPage = new Views.PlaylistPage()
                     {
                         Title = "Playlist"
 
                     };
-                    searchPage = new SearchPage()
+                    searchPage = new Views.SearchPage()
                     {
                         Title = "Search"
                     };

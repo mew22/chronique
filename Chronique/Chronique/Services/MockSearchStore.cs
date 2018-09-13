@@ -1,37 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Chronique.Models;
-using Chronique.Models.RestObject;
 using Chronique.Services;
+using IF.Lastfm.Core.Api;
 using Plugin.Connectivity;
-using Refit;
 
-[assembly: Xamarin.Forms.Dependency(typeof(Chronique.MockSearchStore))]
-namespace Chronique
+[assembly: Xamarin.Forms.Dependency(typeof(MockSearchStore))]
+namespace Chronique.Services
 {
     public class MockSearchStore : IDataStoreImpl<GenericRequestObject>
     {
         //        List<Item> items;
-        private static readonly string API_KEY_LAST_FM = "f8f9fc1fbe1b7f5abc8728f101b181cb";
-        private ISearchAPI searchApi;
-        public interface ISearchAPI
-        {
-            [Get("/2.0/?method=artist.search&artist={query}&api_key={api_key}&limit={limit}&format=json")]
-            Task<ArtistRootObject> GetArtists(string query, string api_key, int limit);
-
-            [Get("/2.0/?method=artist.getInfo&mbid={mbid}&api_key={api_key}&format=json")]
-            Task<ArtistRootObject> GetArtistInfo(string mbid, string api_key);
-
-            [Get("/2.0/?method=album.search&album={query}&api_key={api_key}&limit={limit}&format=json")]
-            Task<AlbumRootObject> GetAlbums(string query, string api_key, int limit);
-
-            [Get("/2.0/?method=track.search&track={query}&api_key={api_key}&limit={limit}&format=json")]
-            Task<TrackRootObject> GetTracks(string query, string api_key, int limit);
-        }
+//        private ISearchAPI searchApi;
+//        public interface ISearchAPI
+//        {
+//            [Get("/2.0/?method=artist.search&artist={query}&api_key={api_key}&limit={limit}&format=json")]
+//            Task<ArtistRootObject> GetArtists(string query, string api_key, int limit);
+//
+//            [Get("/2.0/?method=artist.getInfo&mbid={mbid}&api_key={api_key}&format=json")]
+//            Task<ArtistRootObject> GetArtistInfo(string mbid, string api_key);
+//
+//            [Get("/2.0/?method=album.search&album={query}&api_key={api_key}&limit={limit}&format=json")]
+//            Task<AlbumRootObject> GetAlbums(string query, string api_key, int limit);
+//
+//            [Get("/2.0/?method=track.search&track={query}&api_key={api_key}&limit={limit}&format=json")]
+//            Task<TrackRootObject> GetTracks(string query, string api_key, int limit);
+//        }
+        private LastfmClient lastFm;
         public MockSearchStore()
         {
             items = new ObservableCollection<GenericRequestObject>();
@@ -54,7 +51,8 @@ namespace Chronique
 //            var httpClient = new HttpClient(new HttpLoggingHandler()) { BaseAddress = new Uri("http://ws.audioscrobbler.com")};
 //            searchApi = RestService.For<ISearchAPI>(httpClient);
 
-            searchApi = RestService.For<ISearchAPI>("http://ws.audioscrobbler.com");
+//            searchApi = RestService.For<ISearchAPI>("http://ws.audioscrobbler.com");
+            lastFm = LastfmSingleton.Instance.LastFm;
         }
 
         public override async Task<IEnumerable<GenericRequestObject>> GetItemsAsync(bool refresh = false, string query = null)
@@ -64,35 +62,39 @@ namespace Chronique
                 if (query != null && query != "" && CrossConnectivity.Current.IsConnected)
                 {
                     items.Clear();
-                    var artists = await searchApi.GetArtists(query, API_KEY_LAST_FM, 10);
-                    foreach (var item in artists.root.artist_list.artists)
+                    var artists = await lastFm.Artist.SearchAsync(query, 1, 10);
+                    foreach (var item in artists)
                     {
-                        var id = item.mbid == null ? Guid.NewGuid().ToString() : item.mbid;
-                        items.Add(new GenericRequestObject(id, item.pseudo, "", "", DataType.Artiste,
-                            item.images.Last().url));
+                        var id = item.Mbid ?? item.Id;
+                        items.Add(new GenericRequestObject(id, item.Name, "", "", DataType.Artiste,
+                            item.MainImage.Large.AbsoluteUri));
                     }
 
-                    var albums = await searchApi.GetAlbums(query, API_KEY_LAST_FM, 10);
-                    foreach (var item in albums.root.albums_list.albums)
+                    var albums = await lastFm.Album.SearchAsync(query, 1, 10);
+                    foreach (var item in albums)
                     {
-                        var id = item.mbid == null ? Guid.NewGuid().ToString() : item.mbid;
-                        items.Add(new GenericRequestObject(id, item.title, item.artist_name, "", DataType.Album,
-                            item.images.Last().url));
+                        var id = item.Mbid ?? item.Id;
+                        items.Add(new GenericRequestObject(id, item.Name, item.ArtistName, "", DataType.Album,
+                            item.Images.Large.AbsoluteUri));
                     }
 
-                    var tracks = await searchApi.GetTracks(query, API_KEY_LAST_FM, 10);
-                    foreach (var item in tracks.root.track_list.tracks)
+                    var tracks = await lastFm.Track.SearchAsync(query, 1, 10);
+                    foreach (var item in tracks)
                     {
-                        var id = item.mbid == null ? Guid.NewGuid().ToString() : item.mbid;
-                        items.Add(new GenericRequestObject(id, item.title, item.artist_name, "", DataType.Track,
-                            item.images.Last().url));
+                        var id = item.Mbid ?? item.Id;
+                        items.Add(new GenericRequestObject(id, item.Name, item.ArtistName, "", DataType.Track,
+                            item.Images.Large.AbsoluteUri));
                     }
                 }
             }
-            catch (ApiException e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
+            //            catch (ApiException e)
+            //            {
+            //                Console.WriteLine(e.Message);
+            //            }
 
             return await Task.FromResult(items);
         }

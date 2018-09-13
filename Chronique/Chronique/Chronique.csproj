@@ -105,6 +105,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Inflatable.Lastfm" Version="1.1.0.339" />
     <PackageReference Include="Microsoft.AppCenter" Version="1.9.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.9.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.9.0" />
@@ -121,5 +122,17 @@
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.3.840" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.3.840" />
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />  
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Hqub.MusicBrainz.API">
+      <HintPath>..\..\..\..\MusicBrainz-master\Hqub.MusicBrainz\Hqub.MusicBrainz.API\bin\Debug\Hqub.MusicBrainz.API.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\MyArtisteDetailPage.xaml.cs">
+      <DependentUpon>MyArtisteDetailPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:chronique="clr-namespace:Chronique;assembly=Chronique"
-             x:Class="Chronique.SearchPage"
+             x:Class="Chronique.Views.SearchPage"
              x:Name="BrowsePage"
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             xmlns:dataSource="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
              xmlns:xForms="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
-             xmlns:xForms1="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
              xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:services="clr-namespace:Chronique.Services;assembly=Chronique"
+             xmlns:viewModels="clr-namespace:Chronique.ViewModels;assembly=Chronique"
              Title="{Binding Title}">
     <!-- NavigationPage.HasNavigationBar="False" -->
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="Info" Order="Secondary" Priority="1" Icon="ic_action_info.png" Clicked="About_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.BindingContext>
-        <chronique:SearchViewModel x:Name="viewModel"/>
+        <viewModels:SearchViewModel x:Name="viewModel"/>
     </ContentPage.BindingContext>
 
     
     <ContentPage.Resources>
         <ResourceDictionary>
-            <chronique:BoolToImageConverter x:Key="BoolToImageConverter"/>
+            <services:BoolToImageConverter x:Key="BoolToImageConverter"/>
             <DataTemplate x:Name="ItemTemplate"  x:Key="ItemTemplate">
                 <ViewCell>
                     <ViewCell.View>
@@ -84,22 +83,22 @@
                          TextColor="#474747"
                          LineBreakMode="NoWrap"
                          Text="{Binding Subtitle}">
-                                        <Label.FontSize>
-                                            <OnPlatform x:TypeArguments="x:Double">
-                                                <On Platform="Android">
-                                                    <OnIdiom x:TypeArguments="x:Double"
+                                            <Label.FontSize>
+                                                <OnPlatform x:TypeArguments="x:Double">
+                                                    <On Platform="Android">
+                                                        <OnIdiom x:TypeArguments="x:Double"
                                    Phone="12"
                                    Tablet="14" />
-                                                </On>
-                                                <On Platform="iOS">
-                                                    <OnIdiom x:TypeArguments="x:Double"
+                                                    </On>
+                                                    <On Platform="iOS">
+                                                        <OnIdiom x:TypeArguments="x:Double"
                                    Phone="12"
                                    Tablet="14" />
-                                                </On>
-                                            </OnPlatform>
-                                        </Label.FontSize>
-                                    </Label>
-                                </Grid>
+                                                    </On>
+                                                </OnPlatform>
+                                            </Label.FontSize>
+                                        </Label>
+                                    </Grid>
                             </Grid>
                             <StackLayout Grid.Row="1" BackgroundColor="Gray" HeightRequest="1"/>
                         </Grid>

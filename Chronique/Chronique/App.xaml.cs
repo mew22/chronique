@@ -26,9 +26,9 @@ namespace Chronique
 //                MainPage = new NavigationPage(new MainPage());
 
             if (Device.RuntimePlatform == Device.iOS)
-                MainPage = new NavigationPage(new ExtendedSplashPage());
+                MainPage = new NavigationPage(new Views.ExtendedSplashPage());
             else
-                MainPage = new NavigationPage(new ExtendedSplashPage());
+                MainPage = new NavigationPage(new Views.ExtendedSplashPage());
         }
 
 

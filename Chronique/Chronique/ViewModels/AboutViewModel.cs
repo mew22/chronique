@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
-
+using Chronique.Models;
 using Xamarin.Forms;
 
-namespace Chronique
+namespace Chronique.ViewModels
 {
     public class AboutViewModel : BaseViewModel<BaseModel>
     {

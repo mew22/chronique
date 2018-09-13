@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Chronique.BlogsPage"
+             x:Class="Chronique.Views.BlogsPage"
              xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             xmlns:chronique="clr-namespace:Chronique;assembly=Chronique"
-             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:viewModels="clr-namespace:Chronique.ViewModels;assembly=Chronique">
     <!-- NavigationPage.HasNavigationBar="False" -->
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="Info" Order="Secondary" Priority="1" Icon="ic_action_info.png" Clicked="About_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.BindingContext>
-        <chronique:BlogViewModel x:Name="viewModel"/>
+        <viewModels:BlogViewModel x:Name="viewModel"/>
     </ContentPage.BindingContext>
     <ContentPage.Resources>
         <ResourceDictionary>

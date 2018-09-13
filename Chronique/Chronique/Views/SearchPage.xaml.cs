@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Threading.Tasks;
-using Chronique.Layout;
 using Chronique.Models;
+using Chronique.ViewModels;
 using Syncfusion.DataSource;
 using Syncfusion.ListView.XForms;
-using Syncfusion.SfPicker.XForms;
-using Syncfusion.SfPullToRefresh.XForms;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace Chronique
+namespace Chronique.Views
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchPage : ContentPage
     {
         protected override void OnAppearing()
@@ -133,18 +130,18 @@ namespace Chronique
             //            if (e.ItemData == viewModel.InboxInfo[0])
             //                viewModel.InboxInfo.Remove(e.ItemData as ListViewInboxInfo);
             var item = e.ItemData as GenericRequestObject;
-            if (item == null)
+            if (item == null || item.ProviderId == null || item.ProviderId == "")
                 return;
-//            switch (item.Type)
-//            {
-//                case DataType.Artiste:
-//                    await Navigation.PushAsync(new ArtisteDetailPage(new ArtisteDetailViewModel(item)));
-//                    break;
-//            }
+            switch (item.Type)
+            {
+                case DataType.Artiste:
+                    await Navigation.PushAsync(new MyArtisteDetailPage(new MyArtistDetailsViewModel(item.ProviderId)));
+                    break;
+            }
 
-//
-//            // Manually deselect item
-//            listView.SelectedItem = null;
+
+            // Manually deselect item
+            listView.SelectedItem = null;
         }
         private void ListView_ItemHolding(object sender, ItemHoldingEventArgs e)
         {

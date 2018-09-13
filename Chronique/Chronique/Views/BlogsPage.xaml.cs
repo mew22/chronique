@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Syncfusion.ListView.XForms;
-using Syncfusion.SfPullToRefresh.XForms;
+using Chronique.Models;
+using Chronique.ViewModels;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace Chronique
+namespace Chronique.Views
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BlogsPage : ContentPage
     {
         public BlogsPage()

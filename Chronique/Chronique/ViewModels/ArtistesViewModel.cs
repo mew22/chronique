@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using Chronique.Layout;
-using Chronique.ViewModels;
-using Syncfusion.SfPicker.XForms;
+using Chronique.Services;
 using Xamarin.Forms;
 
-namespace Chronique
+namespace Chronique.ViewModels
 {
 
-    public class ArtistesViewModel : BaseListViewModel<Artiste, NewArtistePage, MockArtisteStore>  // INotifyPropertyChanged for ArtisteBaseViewModel
+    public class ArtistesViewModel : BaseListViewModel<Artiste, Views.NewArtistePage, MockArtisteStore>  // INotifyPropertyChanged for ArtisteBaseViewModel
     {
         public ArtistesViewModel()
         {

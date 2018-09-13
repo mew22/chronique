@@ -1,14 +1,13 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
-using System.Windows.Input;
 using Chronique.Layout;
-using Chronique.ViewModels;
+using Chronique.Models;
+using Chronique.Services;
 using Xamarin.Forms;
 
-namespace Chronique
+namespace Chronique.ViewModels
 {
-    public class PlaylistDetailViewModel : BaseListViewModel<Artiste, NewItemPage, MockArtisteStore>
+    public class PlaylistDetailViewModel : BaseListViewModel<Artiste, Views.NewItemPage, MockArtisteStore>
     {
         public Playlist Item { get; set; }
         public string TracksNumber { get; set; }

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Chronique.Models;
 
-namespace Chronique
+namespace Chronique.ViewModels
 {
     public class ItemDetailViewModel : BaseViewModel<Item>
     {

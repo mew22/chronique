@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Chronique.Models;
 
-namespace Chronique
+namespace Chronique.Services
 {
     public interface IDataStore<T> where T : BaseModel
     {

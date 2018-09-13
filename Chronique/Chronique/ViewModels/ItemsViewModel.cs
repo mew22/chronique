@@ -2,10 +2,11 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-
+using Chronique.Models;
+using Chronique.Services;
 using Xamarin.Forms;
 
-namespace Chronique
+namespace Chronique.ViewModels
 {
     public class ItemsViewModel : BaseViewModel<Item>
     {
@@ -19,7 +20,7 @@ namespace Chronique
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
+            MessagingCenter.Subscribe<Views.NewItemPage, Item>(this, "AddItem", async (obj, item) =>
             {
                 var _item = item as Item;
                 Items.Add(_item);

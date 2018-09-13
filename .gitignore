@@ -259,3 +259,20 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/Chronique/Chronique/Models/DataType.cs
+/Chronique/Chronique/Models/GenericRequestObject.cs
+/Chronique/Chronique/Images/SocialNetwork/youtube_page.png
+/Chronique/Chronique/Images/SocialNetwork/wikipedia_page.png
+/Chronique/Chronique/Images/SocialNetwork/twitter_page.png
+/Chronique/Chronique/Images/SocialNetwork/spotify_page.png
+/Chronique/Chronique/Images/SocialNetwork/playstore_page.png
+/Chronique/Chronique/Images/SocialNetwork/itunes_page.png
+/Chronique/Chronique/Images/SocialNetwork/insta_page.png
+/Chronique/Chronique/Images/SocialNetwork/home_page.png
+/Chronique/Chronique/Images/SocialNetwork/facebook_page.png
+/Chronique/Chronique/Images/SocialNetwork/discogs_page.png
+/Chronique/Chronique/Services/LastfmSingleton.cs
+/Chronique/Chronique/Services/MyArtistMockStore.cs
+/Chronique/Chronique/ViewModels/MyArtistDetailsViewModel.cs
+/Chronique/Chronique/Views/MyArtisteDetailPage.xaml.cs
+/Chronique/Chronique/Views/MyArtisteDetailPage.xaml

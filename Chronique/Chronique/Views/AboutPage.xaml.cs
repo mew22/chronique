@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-using Xamarin.Forms;
-
-namespace Chronique
+namespace Chronique.Views
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AboutPage : ContentPage
     {
         public AboutPage()

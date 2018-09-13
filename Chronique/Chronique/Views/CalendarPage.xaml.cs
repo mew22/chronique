@@ -3,8 +3,9 @@ using Syncfusion.SfCalendar.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Chronique
+namespace Chronique.Views
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CalendarPage : ContentPage
     {
         public CalendarPage()

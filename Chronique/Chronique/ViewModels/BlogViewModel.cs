@@ -1,18 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Chronique.ViewModels;
+using Chronique.Models;
+using Chronique.Services;
 using Xamarin.Forms;
-using Syncfusion.ListView.XForms;
 
-namespace Chronique 
+namespace Chronique.ViewModels 
 {
-    public class BlogViewModel : BaseListViewModel<BlogInfo, NewArtistePage, MockBlogStore>
+    public class BlogViewModel : BaseListViewModel<BlogInfo, Views.NewArtistePage, MockBlogStore>
     {
         #region Fields
 
@@ -85,7 +78,7 @@ namespace Chronique
 
         private void NavigateToReadMoreContent(object obj)
         {
-            Navigation.PushAsync(new BlogsDetailPage( new BlogDetailViewModel(obj as BlogInfo)));
+            Navigation.PushAsync(new Views.BlogsDetailPage( new BlogDetailViewModel(obj as BlogInfo)));
         }
 
         private void NavigateTwitterLink(object obj)

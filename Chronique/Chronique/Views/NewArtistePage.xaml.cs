@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace Chronique
+namespace Chronique.Views
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewArtistePage : ContentPage
     {
         public Artiste Item { get; set; }

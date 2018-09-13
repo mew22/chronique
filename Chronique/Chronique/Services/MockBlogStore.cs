@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+using Chronique.Models;
+using Chronique.Services;
 
-[assembly: Xamarin.Forms.Dependency(typeof(Chronique.MockBlogStore))]
+[assembly: Xamarin.Forms.Dependency(typeof(MockBlogStore))]
 
-namespace Chronique
+namespace Chronique.Services
 {
     public class MockBlogStore : IDataStoreImpl<BlogInfo>
     {
