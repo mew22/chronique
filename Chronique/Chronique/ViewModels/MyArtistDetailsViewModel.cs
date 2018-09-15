@@ -22,8 +22,8 @@ namespace Chronique.ViewModels
             }
         }
 
-        public ObservableCollection<string> Relations;
-        public Dictionary<string, ICommand> OpenRelations;
+        public ObservableCollection<string> Links { get; set; }
+        public Dictionary<string, ICommand> OpenRelations { get; set; }
 
         public string Id { get; set; }
         public IDataStore<Artiste> DataStore => DependencyService.Get<IDataStore<Artiste>>() ?? new MyArtistMockStore();
@@ -31,8 +31,9 @@ namespace Chronique.ViewModels
         public MyArtistDetailsViewModel(string id)
         {
             Id = id;
-            Relations = new ObservableCollection<string>{ "resource://Chronique.Images.SocialNetwork.home_page.png", "resource://Chronique.Images.SocialNetwork.facebook_page.png"};
-            OpenRelations = new Dictionary<string, ICommand>();
+            Links = new ObservableCollection<string>();
+            var comparer = StringComparer.OrdinalIgnoreCase;
+            OpenRelations = new Dictionary<string, ICommand>(comparer);
             LoadItemsCommand = new Command(async (query) => await ExecuteLoadItemsCommand((string)query));
         }
 
@@ -45,7 +46,7 @@ namespace Chronique.ViewModels
 
             try
             {
-                Relations.Clear();
+                Links.Clear();
                 OpenRelations.Clear();
                 Item = await DataStore.GetItemAsync(query);
                 Title = Item?.Pseudo;
@@ -56,28 +57,34 @@ namespace Chronique.ViewModels
                     switch (rel.Key)
                     {
                         case var testHome when testHome.Contains("home"):
-                            url = "resource://Chronique.Images.SocialNetwork.home_page.png";
+                            url = "resource://Chronique.Images.SocialNetwork.home.png";
                             break;
                         case var testFacebook when rel.Value.Contains("facebook"):
-                            url = "resource://Chronique.Images.SocialNetwork.facebook_page.png";
+                            url = "resource://Chronique.Images.SocialNetwork.facebook.png";
                             break;
                         case var testTwitter when rel.Value.Contains("twitter"):
-                            url = "resource://Chronique.Images.SocialNetwork.twitter_page.png";
+                            url = "resource://Chronique.Images.SocialNetwork.twitter.png";
                             break;
                         case var testInsta when rel.Value.Contains("insta"):
-                            url = "resource://Chronique.Images.SocialNetwork.insta_page.png";
+                            url = "resource://Chronique.Images.SocialNetwork.instagram.png";
                             break;
                         case var testWikipedia when testWikipedia.Contains("wikipedia"):
-                            url = "resource://Chronique.Images.SocialNetwork.wikipedia_page.png";
+                            url = "resource://Chronique.Images.SocialNetwork.wordpress.png";
                             break;
                         case var testYoutube when testYoutube.Contains("youtube"):
-                            url = "resource://Chronique.Images.SocialNetwork.youtube_page.png";
+                            url = "resource://Chronique.Images.SocialNetwork.youtube.png";
                             break;
                         case var testSpotify when testSpotify.Contains("spotify"):
-                            url = "resource://Chronique.Images.SocialNetwork.spotify_page.png";
+                            url = "resource://Chronique.Images.SocialNetwork.spotify.png";
                             break;
-                        case var testDiscogs when testDiscogs.Contains("discog"):
-                            url = "resource://Chronique.Images.SocialNetwork.discogs_page.png";
+                        case var testSoundcloud when testSoundcloud.Contains("soundcloud"):
+                            url = "resource://Chronique.Images.SocialNetwork.soundcloud.png";
+                            break;
+                        case var testAppStore when rel.Value.Contains("apple"):
+                            url = "resource://Chronique.Images.SocialNetwork.apple.png";
+                            break;
+                        case var testPlayStore when rel.Value.Contains("play.google"):
+                            url = "resource://Chronique.Images.SocialNetwork.google-play.png";
                             break;
                         default:
                             break;
@@ -88,7 +95,7 @@ namespace Chronique.ViewModels
 
                 foreach (var it in OpenRelations.Keys)
                 {
-//                    Relations.Add(it);
+                    Links.Add(it);
                 }
             }
             catch (Exception ex)
