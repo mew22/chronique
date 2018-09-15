@@ -6,6 +6,7 @@
              xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:viewModels="clr-namespace:Chronique.ViewModels;assembly=Chronique"
+             xmlns:forms1="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="Chronique.Views.MyArtisteDetailPage"
              Title="{Binding Title}">
     <!-- NavigationPage.HasNavigationBar="False" -->
@@ -14,29 +15,26 @@
         <ResourceDictionary>
             <DataTemplate x:Name="ItemTemplateRels"  x:Key="ItemTemplateRels">
                 <ViewCell>
-                    <ViewCell.View>
-                        <Frame HasShadow="true" OutlineColor="BlueViolet" >
-                            <StackLayout>
-                                <Label Text="test" />
-                                <forms:CachedImage 
+<!--                    <ViewCell.View>-->
+                    <Frame HasShadow="true" OutlineColor="BlueViolet" >
+                        <forms:CachedImage 
                                     CacheDuration="30" RetryCount="3" RetryDelay="250"
                                     DownsampleToViewSize="true"
                                     LoadingPlaceholder = "loading.png"
                                     ErrorPlaceholder = "error.png"
                                     Source = "{Binding}">
-                                    <forms:CachedImage.Transformations>
-                                        <transformations:CircleTransformation />
-                                        <!--                                <transformations:GrayscaleTransformation />-->
-                                    </forms:CachedImage.Transformations>
-                                    <forms:CachedImage.GestureRecognizers>
-                                        <TapGestureRecognizer
+                            <!--                                    <forms:CachedImage.Transformations>-->
+                            <!--                                        <transformations:CircleTransformation />-->
+                            <!--                                        <transformations:GrayscaleTransformation />-->
+                            <!--                                    </forms:CachedImage.Transformations>-->
+                            <forms:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer
                                             Tapped="OnTapRelations"
                                             NumberOfTapsRequired="1" />
-                                    </forms:CachedImage.GestureRecognizers>
-                                </forms:CachedImage>
-                            </StackLayout>
-                        </Frame>
-                    </ViewCell.View>
+                            </forms:CachedImage.GestureRecognizers>
+                        </forms:CachedImage>
+                    </Frame>
+<!--                    </ViewCell.View>-->
                 </ViewCell>
             </DataTemplate>
             <DataTemplate x:Name="ItemTemplateAlbums"  x:Key="ItemTemplateAlbums">
@@ -147,28 +145,28 @@
                     <ScrollView Grid.Row="1">
                         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="0" HeightRequest="100">
+                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="0" HeightRequest="110">
                                 <StackLayout>
                                     <Label Text="Biographie" FontAttributes="Bold" FontSize="14" TextColor="#474747"/>
                                     <Label Text="{Binding Item.Description}" FontSize="Small" LineBreakMode="TailTruncation"/>
                                 </StackLayout>
                             </Frame>
-                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="1" HeightRequest="100">
+                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="1" HeightRequest="110">
                                 <StackLayout>
                                     <Label Text="Liens" FontAttributes="Bold" FontSize="14" TextColor="#474747"/>
-                                    <xForms:SfListView x:Name="listViewRels" ItemsSource="{Binding Relations}" ItemTapped="OnItemTapped"
+                                    <xForms:SfListView x:Name="listViewRels" ItemsSource="{Binding Links}" ItemTapped="OnItemTapped"
                                                        ItemTemplate="{StaticResource ItemTemplateRels}" Orientation="Horizontal"
                                                        ItemSpacing="0,0,5,0"  IsScrollBarVisible="True" 
                                                        AutoFitMode="Height" SelectionMode="None"/>
                                 </StackLayout>
                             </Frame>
-                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="2" HeightRequest="100">
+                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="2" HeightRequest="110">
                                 <StackLayout>
                                     <Label Text="Projets Sorties" FontAttributes="Bold" FontSize="14" TextColor="#474747"/>
                                         <xForms:SfListView x:Name="listViewAlbums" ItemSize="120" ItemsSource="{Binding Item.Projects}"
@@ -177,7 +175,7 @@
                                            AutoFitMode="Height" SelectionMode="None"/>
                                 </StackLayout>
                             </Frame>
-                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="3">
+                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="3" HeightRequest="110">
                                 <StackLayout>
                                     <Label Text="Projets futurs" FontAttributes="Bold" FontSize="14" TextColor="#474747"/>
                                         <xForms:SfListView x:Name="listViewFuturs" ItemSize="120" ItemsSource="{Binding Item.FutursProject}"
@@ -186,7 +184,7 @@
                                                AutoFitMode="Height" SelectionMode="None"/>
                                     </StackLayout>
                             </Frame>
-                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="4">
+                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="4" HeightRequest="110">
                                 <StackLayout>
                                     <Label Text="Labels" FontAttributes="Bold" FontSize="14" TextColor="#474747"/>
                                     <xForms:SfListView x:Name="listViewLabels" ItemSize="120" ItemsSource="{Binding Item.Labels}"

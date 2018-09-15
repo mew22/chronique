@@ -44,6 +44,8 @@
     <None Remove="Images\PlaceHolder\loader.gif" />
     <None Remove="Images\PlaceHolder\loading.gif" />
     <None Remove="Images\PlaceHolder\loading.svg" />
+    <None Remove="Images\SocialNetwork\apple.png" />
+    <None Remove="Images\SocialNetwork\apple.svg" />
     <None Remove="Images\SocialNetwork\Blog_Facebook.png" />
     <None Remove="Images\SocialNetwork\Blog_Google_Plus.png" />
     <None Remove="Images\SocialNetwork\Blog_LinkedIn.png" />
@@ -52,6 +54,40 @@
     <None Remove="Images\SocialNetwork\Blog_Spotify.png" />
     <None Remove="Images\SocialNetwork\Blog_Twitter.png" />
     <None Remove="Images\SocialNetwork\Blog_Youtube.png" />
+    <None Remove="Images\SocialNetwork\discogs_page.png" />
+    <None Remove="Images\SocialNetwork\facebook.png" />
+    <None Remove="Images\SocialNetwork\facebook.svg" />
+    <None Remove="Images\SocialNetwork\facebook_page.png" />
+    <None Remove="Images\SocialNetwork\google-play.png" />
+    <None Remove="Images\SocialNetwork\google-play.svg" />
+    <None Remove="Images\SocialNetwork\home.png" />
+    <None Remove="Images\SocialNetwork\home.svg" />
+    <None Remove="Images\SocialNetwork\home_page.png" />
+    <None Remove="Images\SocialNetwork\instagram.png" />
+    <None Remove="Images\SocialNetwork\instagram.svg" />
+    <None Remove="Images\SocialNetwork\insta_page.png" />
+    <None Remove="Images\SocialNetwork\itunes_page.png" />
+    <None Remove="Images\SocialNetwork\pinterest.png" />
+    <None Remove="Images\SocialNetwork\pinterest.svg" />
+    <None Remove="Images\SocialNetwork\playstore_page.png" />
+    <None Remove="Images\SocialNetwork\snapchat.png" />
+    <None Remove="Images\SocialNetwork\snapchat.svg" />
+    <None Remove="Images\SocialNetwork\soundcloud.png" />
+    <None Remove="Images\SocialNetwork\soundcloud.svg" />
+    <None Remove="Images\SocialNetwork\spotify.png" />
+    <None Remove="Images\SocialNetwork\spotify.svg" />
+    <None Remove="Images\SocialNetwork\spotify_page.png" />
+    <None Remove="Images\SocialNetwork\tumblr.png" />
+    <None Remove="Images\SocialNetwork\tumblr.svg" />
+    <None Remove="Images\SocialNetwork\twitter.png" />
+    <None Remove="Images\SocialNetwork\twitter.svg" />
+    <None Remove="Images\SocialNetwork\twitter_page.png" />
+    <None Remove="Images\SocialNetwork\wikipedia_page.png" />
+    <None Remove="Images\SocialNetwork\wordpress.png" />
+    <None Remove="Images\SocialNetwork\wordpress.svg" />
+    <None Remove="Images\SocialNetwork\youtube.png" />
+    <None Remove="Images\SocialNetwork\youtube.svg" />
+    <None Remove="Images\SocialNetwork\youtube_page.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -94,6 +130,8 @@
     <EmbeddedResource Include="Images\PlaceHolder\loader.gif" />
     <EmbeddedResource Include="Images\PlaceHolder\loading.gif" />
     <EmbeddedResource Include="Images\PlaceHolder\loading.svg" />
+    <EmbeddedResource Include="Images\SocialNetwork\apple.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\apple.svg" />
     <EmbeddedResource Include="Images\SocialNetwork\Blog_Facebook.png" />
     <EmbeddedResource Include="Images\SocialNetwork\Blog_Google_Plus.png" />
     <EmbeddedResource Include="Images\SocialNetwork\Blog_LinkedIn.png" />
@@ -102,6 +140,30 @@
     <EmbeddedResource Include="Images\SocialNetwork\Blog_Spotify.png" />
     <EmbeddedResource Include="Images\SocialNetwork\Blog_Twitter.png" />
     <EmbeddedResource Include="Images\SocialNetwork\Blog_Youtube.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\facebook.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\facebook.svg" />
+    <EmbeddedResource Include="Images\SocialNetwork\google-play.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\google-play.svg" />
+    <EmbeddedResource Include="Images\SocialNetwork\home.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\home.svg" />
+    <EmbeddedResource Include="Images\SocialNetwork\instagram.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\instagram.svg" />
+    <EmbeddedResource Include="Images\SocialNetwork\pinterest.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\pinterest.svg" />
+    <EmbeddedResource Include="Images\SocialNetwork\snapchat.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\snapchat.svg" />
+    <EmbeddedResource Include="Images\SocialNetwork\soundcloud.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\soundcloud.svg" />
+    <EmbeddedResource Include="Images\SocialNetwork\spotify.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\spotify.svg" />
+    <EmbeddedResource Include="Images\SocialNetwork\tumblr.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\tumblr.svg" />
+    <EmbeddedResource Include="Images\SocialNetwork\twitter.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\twitter.svg" />
+    <EmbeddedResource Include="Images\SocialNetwork\wordpress.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\wordpress.svg" />
+    <EmbeddedResource Include="Images\SocialNetwork\youtube.png" />
+    <EmbeddedResource Include="Images\SocialNetwork\youtube.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -120,6 +182,7 @@
     <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="16.2.0.50" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.3.840" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.3.840" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.3.840" />
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />  
   </ItemGroup>

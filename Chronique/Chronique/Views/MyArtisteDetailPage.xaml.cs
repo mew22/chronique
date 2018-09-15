@@ -31,9 +31,10 @@ namespace Chronique.Views
         void OnTapRelations(object sender, EventArgs args)
         {
             var img = (CachedImage)sender;
-            string uri = ((UriImageSource)img.Source).Uri.AbsoluteUri;
-            ICommand com;
-            viewModel.OpenRelations.TryGetValue(uri, out com);
+            string uri = ((EmbeddedResourceImageSource)img.Source).Uri.AbsoluteUri;
+            var convert = uri.Split(new[] { "/?" }, StringSplitOptions.None);
+            ICommand com = null;
+            viewModel.OpenRelations.TryGetValue(convert[0], out com);
             com?.Execute(null);
         }
 
