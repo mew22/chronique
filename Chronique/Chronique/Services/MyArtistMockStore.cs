@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Chronique.Models;
 using Chronique.Services;
 using Hqub.MusicBrainz.API.Entities;
 using IF.Lastfm.Core.Api;

@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Linq;
 using Chronique.Layout;
+using Chronique.Models;
 using Chronique.Services;
 using Xamarin.Forms;
 

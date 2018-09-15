@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
 using Chronique.Layout;
+using Chronique.Models;
 using Chronique.ViewModels;
 using Syncfusion.DataSource;
 using Syncfusion.ListView.XForms;

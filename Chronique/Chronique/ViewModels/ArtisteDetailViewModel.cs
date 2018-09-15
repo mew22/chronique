@@ -1,4 +1,6 @@
-﻿namespace Chronique.ViewModels
+﻿using Chronique.Models;
+
+namespace Chronique.ViewModels
 {
     public class ArtisteDetailViewModel : BaseViewModel<Artiste>
     {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Chronique.Models;
 using Chronique.Services;
 
 [assembly: Xamarin.Forms.Dependency(typeof(MockArtisteStore))]

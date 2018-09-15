@@ -1,4 +1,5 @@
 ﻿using System;
+using Chronique.Models;
 using Chronique.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

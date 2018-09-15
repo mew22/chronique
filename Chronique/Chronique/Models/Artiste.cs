@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Chronique.Models;
-using FFImageLoading.Forms;
-using Xamarin.Forms;
 
-namespace Chronique
+namespace Chronique.Models
 {
     public class Artiste : BaseModel, INotifyPropertyChanged
     {
