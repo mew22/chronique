@@ -8,6 +8,9 @@
     <None Remove="Images\about.png" />
     <None Remove="Images\BlogAuthor.png" />
     <None Remove="Images\BlogCategory.png" />
+    <None Remove="Images\DataProviders\last_fm.png" />
+    <None Remove="Images\DataProviders\musicbrainz.png" />
+    <None Remove="Images\DataProviders\songkick.png" />
     <None Remove="Images\GroupCollapse.png" />
     <None Remove="Images\GroupExpand.png" />
     <None Remove="Images\People\Image0.png" />
@@ -94,6 +97,9 @@
     <EmbeddedResource Include="Images\about.png" />
     <EmbeddedResource Include="Images\BlogAuthor.png" />
     <EmbeddedResource Include="Images\BlogCategory.png" />
+    <EmbeddedResource Include="Images\DataProviders\last_fm.png" />
+    <EmbeddedResource Include="Images\DataProviders\musicbrainz.png" />
+    <EmbeddedResource Include="Images\DataProviders\songkick.png" />
     <EmbeddedResource Include="Images\GroupCollapse.png" />
     <EmbeddedResource Include="Images\GroupExpand.png" />
     <EmbeddedResource Include="Images\People\Image0.png" />
@@ -189,11 +195,17 @@
 
   <ItemGroup>
     <Reference Include="Hqub.MusicBrainz.API">
-      <HintPath>..\..\..\..\MusicBrainz-master\Hqub.MusicBrainz\Hqub.MusicBrainz.API\bin\Debug\Hqub.MusicBrainz.API.dll</HintPath>
+      <HintPath>..\..\..\..\MusicBrainzApi\Hqub.MusicBrainz\Hqub.MusicBrainz.API\bin\Debug\Hqub.MusicBrainz.API.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\Microsoft.CSharp\v4.0_4.0.0.0__b03f5f7f11d50a3a\Microsoft.CSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\MyAlbumDetailPage.xaml.cs">
+      <DependentUpon>MyAlbumDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\MyArtisteDetailPage.xaml.cs">
       <DependentUpon>MyArtisteDetailPage.xaml</DependentUpon>
     </Compile>

@@ -8,6 +8,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using FFImageLoading.Forms.Droid;
+using FFImageLoading.Svg.Forms;
 
 namespace Chronique.Droid
 {
@@ -23,6 +24,7 @@ namespace Chronique.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(false);
+            var ignore = typeof(SvgCachedImage);
 
             LoadApplication(new App());
         }

@@ -135,7 +135,10 @@ namespace Chronique.Views
             switch (item.Type)
             {
                 case DataType.Artiste:
-                    await Navigation.PushAsync(new MyArtisteDetailPage(new MyArtistDetailsViewModel(item.ProviderId)));
+                    await Navigation.PushAsync(new MyArtisteDetailPage(new MyArtistDetailsViewModel(item)));
+                    break;
+                case DataType.Album:
+                    await Navigation.PushAsync(new MyAlbumDetailPage(new MyAlbumDetailsViewModel(item)));
                     break;
             }
 

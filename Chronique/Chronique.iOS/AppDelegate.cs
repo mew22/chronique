@@ -1,4 +1,5 @@
 ﻿
+using FFImageLoading.Svg.Forms;
 using Foundation;
 using Microsoft.AppCenter.Distribute;
 using Syncfusion.ListView.XForms.iOS;
@@ -18,12 +19,14 @@ namespace Chronique.iOS
 			global::Xamarin.Forms.Forms.Init();
 		    Distribute.DontCheckForUpdatesInDebug();
 		    FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+		    var ignore = typeof(SvgCachedImage);
             new SfCalendarRenderer();
 		    new SfBusyIndicatorRenderer();
             SfListViewRenderer.Init();
 		    SfPullToRefreshRenderer.Init();
 		    SfPickerRenderer.Init();
             LoadApplication(new App());
+        
 
 			return base.FinishedLaunching(app, options);
 		}
