@@ -8,8 +8,8 @@ namespace Chronique.Models
     {
 
         public Artiste(string pseudo, string name = null, string otherName = null, string birthDate = null, int age = 0, string birthPlace = null, string job = null, 
-            string activityDates = null, List<KeyValuePair<string, string>> relations = null, string musicKind = null, List<string> labels = null, List<string> projects = null, 
-            List<string> futursProject = null, string description = null, string photo_uri = null, string providerId = null)
+            string activityDates = null, List<KeyValuePair<string, string>> relations = null, string musicKind = null, List<string> labels = null, List<Album> projects = null, 
+            List<Event> upEvents = null, string description = null, string photo_uri = null, string providerId = null)
         {
             Pseudo = pseudo;
             Name = name;
@@ -23,7 +23,7 @@ namespace Chronique.Models
             MusicKind = musicKind;
             Labels = labels;
             Projects = projects;
-            FutursProject = futursProject;
+            UpEvents = upEvents;
             Description = description;
             Photo_uri = photo_uri;
             ProviderId = providerId;
@@ -40,8 +40,8 @@ namespace Chronique.Models
         public List<KeyValuePair<string, string>> Relations { get { return relations; } set { relations = value; this.OnPropertyChanged("Relations"); } }
         public string MusicKind { get { return musicKind; } set { musicKind = value; this.OnPropertyChanged("MusicKind"); } }
         public List<string> Labels { get { return labels; } set { labels = value; this.OnPropertyChanged("Labels"); } }
-        public List<string> Projects { get { return projects; } set { projects = value; this.OnPropertyChanged("Projects"); } }
-        public List<string> FutursProject { get { return futursProject; } set { futursProject = value; this.OnPropertyChanged("FutursProject"); } }
+        public List<Album> Projects { get { return projects; } set { projects = value; this.OnPropertyChanged("Projects"); } }
+        public List<Event> UpEvents { get { return upEvents; } set { upEvents = value; this.OnPropertyChanged("UpEvents"); } }
         public string Description { get { return description; } set { description = value; this.OnPropertyChanged("Description"); } }
         public string Photo_uri { get { return photo_uri; } set { photo_uri = value; this.OnPropertyChanged("Photo_uri"); } }
         public string ProviderId { get { return providerId; } set { providerId = value; this.OnPropertyChanged("ProviderId"); } }
@@ -65,8 +65,8 @@ namespace Chronique.Models
         private List<KeyValuePair<string, string>> relations;
         private string musicKind;
         private List<string> labels;
-        private List<string> projects;
-        private List<string> futursProject;
+        private List<Album> projects;
+        private List<Event> upEvents;
         private string description;
         private string photo_uri;
         private string providerId;

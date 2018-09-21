@@ -65,7 +65,7 @@ namespace Chronique.Services
                     var artists = await lastFm.Artist.SearchAsync(query, 1, 10);
                     foreach (var item in artists)
                     {
-                        var id = item.Mbid ?? item.Id;
+                        var id = item.Mbid == "" ? item.Name : item.Mbid;
                         items.Add(new GenericRequestObject(id, item.Name, "", "", DataType.Artiste,
                             item.MainImage.Large.AbsoluteUri));
                     }
@@ -73,7 +73,7 @@ namespace Chronique.Services
                     var albums = await lastFm.Album.SearchAsync(query, 1, 10);
                     foreach (var item in albums)
                     {
-                        var id = item.Mbid ?? item.Id;
+                        var id = item.Mbid == "" ? item.Name : item.Mbid;
                         items.Add(new GenericRequestObject(id, item.Name, item.ArtistName, "", DataType.Album,
                             item.Images.Large.AbsoluteUri));
                     }
@@ -81,7 +81,7 @@ namespace Chronique.Services
                     var tracks = await lastFm.Track.SearchAsync(query, 1, 10);
                     foreach (var item in tracks)
                     {
-                        var id = item.Mbid ?? item.Id;
+                        var id = item.Mbid == "" ? item.Name : item.Mbid;
                         items.Add(new GenericRequestObject(id, item.Name, item.ArtistName, "", DataType.Track,
                             item.Images.Large.AbsoluteUri));
                     }

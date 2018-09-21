@@ -26,10 +26,10 @@ namespace Chronique.ViewModels
         public ObservableCollection<string> Links { get; set; }
         public Dictionary<string, ICommand> OpenRelations { get; set; }
 
-        public string Id { get; set; }
+        public GenericRequestObject Id { get; set; }
         public IDataStore<Artiste> DataStore => DependencyService.Get<IDataStore<Artiste>>() ?? new MyArtistMockStore();
         public Command LoadItemsCommand { get; set; }
-        public MyArtistDetailsViewModel(string id)
+        public MyArtistDetailsViewModel(GenericRequestObject id)
         {
             Id = id;
             Links = new ObservableCollection<string>();

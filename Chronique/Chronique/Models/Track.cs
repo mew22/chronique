@@ -11,32 +11,53 @@ namespace Chronique.Models
 {
     public class Track : BaseModel, INotifyPropertyChanged
     {
-        private int position;
+        private int? position;
         private string name;
-        private List<Artiste> peoples;
+        private string albumName;
+        private string artistName;
+        private string artistId;
+        private string providerId;
 
-        public Track(string name, int position, List<Artiste> peoples)
+        public Track(string name = null, string albumName = null, int? position = 0, string artistName = null, string artistId = null, string providerId = null)
         {
             this.Name = name;
+            this.AlbumName = albumName;
             this.Position = position;
-            this.Peoples = peoples;
+            this.ArtistName = artistName;
+            this.ArtistId = artistId;
+            this.ProviderId = providerId;
         }
 
-        public string Name
+        public string AlbumName
         {
-            get => name;
-            set { name = value; this.OnPropertyChanged("Name"); }
+            get => albumName;
+            set { albumName = value; this.OnPropertyChanged("AlbumName"); }
         }
-        public int Position
+        public string ArtistName
+        {
+            get => artistName;
+            set { artistName = value; this.OnPropertyChanged("ArtistName"); }
+        }
+        public int? Position
         {
             get => position;
             set { position = value; this.OnPropertyChanged("Position"); }
         }
 
-        public List<Artiste> Peoples
+        public string ArtistId
         {
-            get => peoples;
-            set { peoples = value; this.OnPropertyChanged("Peoples"); }
+            get => artistId;
+            set { artistId = value; this.OnPropertyChanged("ArtistId"); }
+        }
+        public string ProviderId
+        {
+            get => providerId;
+            set { providerId = value; this.OnPropertyChanged("ProviderId"); }
+        }
+        public string Name
+        {
+            get => name;
+            set { name = value; this.OnPropertyChanged("Name"); }
         }
 
 

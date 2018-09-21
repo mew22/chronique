@@ -39,7 +39,7 @@ namespace Chronique.Services
             return await Task.FromResult(true);
         }
 
-        public virtual async Task<T> GetItemAsync(string id)
+        public virtual async Task<T> GetItemAsync(string id, string additionnalInfos = null)
         {
             return await Task.FromResult(items.FirstOrDefault(s => (s as BaseModel).Id == id));
         }
