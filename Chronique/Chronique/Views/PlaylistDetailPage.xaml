@@ -54,7 +54,7 @@
 <!--                                    <xForms:SfListView x:Name="listArtiste" ItemsSource="{Binding Peoples}"-->
 <!--                                                       ItemTemplate="{StaticResource ArtisteTemplate}"/>-->
 <!--                                </StackLayout>-->
-                                    <chronique:BindableStackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" ItemsSource="{Binding Peoples}"  ItemTemplate="{StaticResource ArtisteTemplate}"/>
+<!--                                    <chronique:BindableStackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" ItemsSource="{Binding Peoples}"  ItemTemplate="{StaticResource ArtisteTemplate}"/>-->
                                         
                                 </StackLayout>
 <!--                        </Grid>-->
