@@ -42,7 +42,7 @@ namespace Chronique.Views
 
         private async void DelayedNaviagition()
         {
-//            await Task.Delay(2000);
+            await Task.Delay(100);
 
             if (Device.RuntimePlatform == Device.iOS)
             {
