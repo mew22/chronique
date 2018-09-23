@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Chronique.Models;
 using Chronique.ViewModels;
 using FFImageLoading.Forms;
 using Xamarin.Forms;
@@ -28,19 +29,33 @@ namespace Chronique.Views
             BindingContext = viewModel;
         }
 
-        void OnTapRelations(object sender, EventArgs args)
+        //        void OnTapRelations(object sender, EventArgs args)
+        //        {
+        //            var img = (CachedImage)sender;
+        //            string uri = ((EmbeddedResourceImageSource)img.Source).Uri.AbsoluteUri;
+        //            var convert = uri.Split(new[] { "/?" }, StringSplitOptions.None);
+        //            ICommand com = null;
+        //            viewModel.OpenRelations.TryGetValue(convert[0], out com);
+        //            com?.Execute(null);
+        //        }
+
+        async void OnTapAlbumsList(object sender, ItemTappedEventArgs args)
         {
-            var img = (CachedImage)sender;
-            string uri = ((EmbeddedResourceImageSource)img.Source).Uri.AbsoluteUri;
-            var convert = uri.Split(new[] { "/?" }, StringSplitOptions.None);
-            ICommand com = null;
-            viewModel.OpenRelations.TryGetValue(convert[0], out com);
-            com?.Execute(null);
+            if (!(args.ItemData is Album item) || item.ProviderId == null || item.ProviderId == "")
+                return;
+
+            await Navigation.PushAsync(new MyAlbumDetailPage(new MyAlbumDetailsViewModel(item)));
+
+            // Manually deselect item
+            listViewAlbums.SelectedItem = null;
         }
 
-        void OnItemTapped(object sender, ItemTappedEventArgs tappedEventArgs)
+        async void OnTapRelationsList(object sender, ItemTappedEventArgs tappedEventArgs)
         {
-            var toto = "debug";
+            string uri = (string)tappedEventArgs.ItemData;
+            ICommand com = null;
+            viewModel.OpenRelations.TryGetValue(uri, out com);
+            com?.Execute(null);
         }
 
         private async void PullToRefresh_Refreshing(object sender, EventArgs args)

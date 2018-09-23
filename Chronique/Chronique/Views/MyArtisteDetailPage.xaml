@@ -21,11 +21,11 @@
                                     LoadingPlaceholder = "loading.png"
                                     ErrorPlaceholder = "error.png"
                                     Source = "{Binding}">
-                            <forms:CachedImage.GestureRecognizers>
-                                <TapGestureRecognizer
-                                            Tapped="OnTapRelations"
-                                            NumberOfTapsRequired="1" />
-                            </forms:CachedImage.GestureRecognizers>
+<!--                            <forms:CachedImage.GestureRecognizers>-->
+<!--                                <TapGestureRecognizer-->
+<!--                                            Tapped="OnTapRelations"-->
+<!--                                            NumberOfTapsRequired="1" />-->
+<!--                            </forms:CachedImage.GestureRecognizers>-->
                         </forms:CachedImage>
                     </Frame>
 <!--                    </ViewCell.View>-->
@@ -34,21 +34,16 @@
             <DataTemplate x:Name="ItemTemplateAlbums"  x:Key="ItemTemplateAlbums">
                 <ViewCell>
 <!--                    <ViewCell.View>-->
-                    <Frame HasShadow="true" OutlineColor="CornflowerBlue" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" >
-                           <StackLayout>
-                               <forms:CachedImage 
+                    <Frame HasShadow="true" OutlineColor="CornflowerBlue" VerticalOptions="FillAndExpand" >
+                        <StackLayout HeightRequest="120" WidthRequest="120">
+                            <forms:CachedImage HeightRequest="100" WidthRequest="100"
                                    CacheDuration="30" RetryCount="3" RetryDelay="250"
                                    DownsampleToViewSize="true"
                                    LoadingPlaceholder = "loading.png"
                                    ErrorPlaceholder = "error.png"
                                    Source = "{Binding Photo_uri}">
-<!--                                   <forms:CachedImage.GestureRecognizers>-->
-<!--                                       <TapGestureRecognizer-->
-<!--                                           Tapped="OnTapRelations"-->
-<!--                                           NumberOfTapsRequired="1" />-->
-<!--                                   </forms:CachedImage.GestureRecognizers>-->
-                               </forms:CachedImage>
-                               <Label Text="{Binding Item.Name}" FontSize="Small" LineBreakMode="TailTruncation"/>
+                            </forms:CachedImage>
+                               <Label Text="{Binding Name}" FontSize="Small" LineBreakMode="TailTruncation"/>
                         </StackLayout>
                     </Frame>
                     <!--                    </ViewCell.View>-->
@@ -176,16 +171,16 @@
                             <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="1" HeightRequest="110">
                                 <StackLayout>
                                     <Label Text="Liens" FontAttributes="Bold" FontSize="14" TextColor="#474747"/>
-                                    <xForms:SfListView x:Name="listViewRels" ItemsSource="{Binding Links}" ItemTapped="OnItemTapped"
+                                    <xForms:SfListView x:Name="listViewRels" ItemsSource="{Binding Links}" ItemTapped="OnTapRelationsList"
                                                        ItemTemplate="{StaticResource ItemTemplateRels}" Orientation="Horizontal"
                                                        ItemSpacing="0,0,5,0"  IsScrollBarVisible="True" 
                                                        AutoFitMode="Height" SelectionMode="None"/>
                                 </StackLayout>
                             </Frame>
-                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="2" HeightRequest="110">
+                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="2" HeightRequest="180">
                                 <StackLayout>
                                     <Label Text="Projets Sorties" FontAttributes="Bold" FontSize="14" TextColor="#474747"/>
-                                        <xForms:SfListView x:Name="listViewAlbums" ItemSize="120" ItemsSource="{Binding Item.Projects}"
+                                    <xForms:SfListView x:Name="listViewAlbums" ItemSize="120" ItemTapped="OnTapAlbumsList" ItemsSource="{Binding Item.Projects}"
                                            ItemTemplate="{StaticResource ItemTemplateAlbums}" Orientation="Horizontal"
                                             ItemSpacing="0,0,5,0"  IsScrollBarVisible="True" 
                                            AutoFitMode="Height" SelectionMode="None"/>
