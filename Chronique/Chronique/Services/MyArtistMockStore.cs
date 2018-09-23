@@ -70,13 +70,15 @@ namespace Chronique.Services
                         // Parallelise request to data providers
                         var artistRequest = Artist.GetAsync(id, "artist-rels", "url-rels", "event-rels",
                             "release-rels");
-//                            var releasesRequest = Release.SearchAsync(query, 9);
-                        var releasesRequest = Release.BrowseAsync("artist", id, 9);
+//                        var releasesRequest = Release.BrowseAsync("artist", id, 9);
+                        var lastfmArtisTopAlbumsRequest = lastFm.Artist.GetTopAlbumsAsync(additionnalInfos);
                         var lastfmArtistRequest = lastFm.Artist.GetInfoByMbidAsync(id, "fr");
-                        await Task.WhenAll(artistRequest, releasesRequest, lastfmArtistRequest);
+                        //                        await Task.WhenAll(artistRequest, releasesRequest, lastfmArtistRequest);
+                        await Task.WhenAll(artistRequest, lastfmArtisTopAlbumsRequest, lastfmArtistRequest);
 
                         var artist = await artistRequest;
-                        var releases = await releasesRequest;
+//                        var releases = await releasesRequest;
+                        var lastfmArtisTopAlbums = await lastfmArtisTopAlbumsRequest;
                         var lastfmArtis = await lastfmArtistRequest;
 
                         // Use tmpArtist until full artist data are ok
@@ -88,45 +90,46 @@ namespace Chronique.Services
                             lastfmArtis.Content.MainImage.Large.AbsoluteUri, id);
 
                         // Load releases and releases img from MB parallele
-                        List<Task<Release>> requestRelease = new List<Task<Release>>();
-                        List<Task<HttpResponseMessage>> releaseImageUrl = new List<Task<HttpResponseMessage>>();
-                        HttpClient client = new HttpClient();
-                        foreach (var release in releases.Items)
-                        {
-                            requestRelease.Add(Release.GetAsync(release.Id, "recordings", "artist-credits",
-                                "url-rels"));
-                            var image_uri = new Uri("http://coverartarchive.org/release/" + release.Id);
-                            releaseImageUrl.Add(client.GetAsync(image_uri));
-                        }
-                        var loadedReleases = await Task.WhenAll(requestRelease);
-                        var releaseImages = await Task.WhenAll(releaseImageUrl);
-                        List<Task<string>> imgContents = new List<Task<string>>();
-                        foreach (var relImg in releaseImages)
-                        {
-                            var content = relImg.Content.ReadAsStringAsync();
-                            imgContents.Add(content);
-                        }
-                        var imgs = await Task.WhenAll(imgContents);
-
-                        // Try to parse json img response
-                        List<string> urlList = new List<string>();
-                        foreach (var img in imgs)
-                        {
-                            string url = null;
-                            try
-                            {
-                                dynamic json = JsonConvert.DeserializeObject(img);
-                                url = json.images[0].image;
-                            }
-                            catch (Exception e)
-                            {
-                                Console.WriteLine(e.Message);
-                            }
-
-                            urlList.Add(url);
-                        }
-
-                        tmpArtist.Projects = ConverterToViewObj.ConvertMbAlbums(loadedReleases, urlList);
+//                        List<Task<Release>> requestRelease = new List<Task<Release>>();
+//                        List<Task<HttpResponseMessage>> releaseImageUrl = new List<Task<HttpResponseMessage>>();
+//                        HttpClient client = new HttpClient();
+//                        foreach (var release in releases.Items)
+//                        {
+//                            requestRelease.Add(Release.GetAsync(release.Id, "recordings", "artist-credits",
+//                                "url-rels"));
+//                            var image_uri = new Uri("http://coverartarchive.org/release/" + release.Id);
+//                            releaseImageUrl.Add(client.GetAsync(image_uri));
+//                        }
+//                        var loadedReleases = await Task.WhenAll(requestRelease);
+//                        var releaseImages = await Task.WhenAll(releaseImageUrl);
+//                        List<Task<string>> imgContents = new List<Task<string>>();
+//                        foreach (var relImg in releaseImages)
+//                        {
+//                            var content = relImg.Content.ReadAsStringAsync();
+//                            imgContents.Add(content);
+//                        }
+//                        var imgs = await Task.WhenAll(imgContents);
+//
+//                        // Try to parse json img response
+//                        List<string> urlList = new List<string>();
+//                        foreach (var img in imgs)
+//                        {
+//                            string url = null;
+//                            try
+//                            {
+//                                dynamic json = JsonConvert.DeserializeObject(img);
+//                                url = json.images[0].image;
+//                            }
+//                            catch (Exception e)
+//                            {
+//                                Console.WriteLine(e.Message);
+//                            }
+//
+//                            urlList.Add(url);
+//                        }
+//
+//                        tmpArtist.Projects = ConverterToViewObj.ConvertMbAlbums(loadedReleases, urlList);
+                        tmpArtist.Projects = ConverterToViewObj.ConvertAlbums(lastfmArtisTopAlbums.Content);
                         lastArtist = tmpArtist;
 
                         return await Task.FromResult(tmpArtist);

@@ -49,7 +49,9 @@ namespace Chronique.ViewModels
             {
                 Links.Clear();
                 OpenRelations.Clear();
-                Item = await DataStore.GetItemAsync(query);
+
+                // use Id.Title as temp workaround (artist name)
+                Item = await DataStore.GetItemAsync(query, Id.Title);
                 Title = Item?.Pseudo;
 
                 foreach (var rel in Item.Relations)
