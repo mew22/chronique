@@ -129,8 +129,7 @@ namespace Chronique.Views
         {
             //            if (e.ItemData == viewModel.InboxInfo[0])
             //                viewModel.InboxInfo.Remove(e.ItemData as ListViewInboxInfo);
-            var item = e.ItemData as GenericRequestObject;
-            if (item == null || item.ProviderId == null || item.ProviderId == "")
+            if (!(e.ItemData is GenericRequestObject item) || item.ProviderId == null || item.ProviderId == "")
                 return;
             switch (item.Type)
             {
