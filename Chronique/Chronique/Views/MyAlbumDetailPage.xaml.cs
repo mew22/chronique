@@ -18,7 +18,7 @@ namespace Chronique.Views
             base.OnAppearing();
 
             if (viewModel.Item == null)
-                viewModel.LoadItemsCommand.Execute(viewModel.Id.ProviderId);
+                viewModel.LoadItemsCommand.Execute(null);
         }
 
         public MyAlbumDetailPage(MyAlbumDetailsViewModel vm)

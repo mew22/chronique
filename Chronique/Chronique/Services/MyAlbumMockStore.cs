@@ -52,8 +52,8 @@ namespace Chronique.Services
                         //If mbid
                         if (id.Length == 36 && id.Contains("-"))
                         {
-                            var album = await Release.GetAsync(id, "artist-rels", "url-rels", "event-rels",
-                                "release-rels");
+//                            var album = await Release.GetAsync(id, "artist-rels", "url-rels", "event-rels",
+//                                "release-rels");
                             var lastfmAlbum = await lastFm.Album.GetInfoByMbidAsync(id);
                             lastAlbum = new Album(lastfmAlbum.Content.Name,
                                 lastfmAlbum.Content.ReleaseDateUtc.ToString(), lastfmAlbum.Content.ArtistName,
