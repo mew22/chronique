@@ -44,7 +44,7 @@ namespace Chronique.Services
             foreach (var al in albums)
             {
                 albs.Add(new Album(al.Name, al.ReleaseDateUtc.ToString(), al.ArtistName, al.ArtistName, 
-                    ConvertTracks(al.Tracks), ConvertTags(al.TopTags), al.Images.Large.AbsoluteUri));
+                    ConvertTracks(al.Tracks), ConvertTags(al.TopTags), al.Images.Large.AbsoluteUri, al.Mbid ?? al.Name));
             }
             return albs;
         }
@@ -60,7 +60,7 @@ namespace Chronique.Services
                 if(images != null && images[i] != null && i < images.Count)
                     image = images[i];
                 albs.Add(new Album(albums[i].Title, albums[i].Date, artist.Artist.Name, artist.Artist.Id,
-                    ConvertMbTracks(albums[i].Title, medium.Tracks), ConvertMbLabel(albums[i].Labels), image));
+                    ConvertMbTracks(albums[i].Title, medium.Tracks), ConvertMbLabel(albums[i].Labels), image, albums[i].Id));
             }
             return albs;
         }
@@ -80,7 +80,7 @@ namespace Chronique.Services
             List<Track> convertedTracks = new List<Track>();
             foreach (var track in tracks)
             {
-                convertedTracks.Add(new Track(track.Name, track.AlbumName, track.Rank, track.ArtistName, track.ArtistMbid, track.Mbid));
+                convertedTracks.Add(new Track(track.Name, track.AlbumName, track.Rank, track.ArtistName, track.ArtistMbid, track.Mbid ?? track.Id));
             }
 
             return convertedTracks;
