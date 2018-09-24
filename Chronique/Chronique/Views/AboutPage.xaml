@@ -78,7 +78,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <forms:CachedImage HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center"
+                    <forms:CachedImage HeightRequest="75" WidthRequest="75" VerticalOptions="Center" HorizontalOptions="Center"
                                        DownsampleToViewSize="true" Grid.Column="0"
                                        LoadingPlaceholder = "loading.png"
                                        ErrorPlaceholder = "error.png"
@@ -90,7 +90,7 @@
                             <TapGestureRecognizer Command="{Binding OpenLastFmCommand}" />
                         </forms:CachedImage.GestureRecognizers>
                     </forms:CachedImage>
-                    <forms:CachedImage HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center"
+                    <forms:CachedImage HeightRequest="75" WidthRequest="75" VerticalOptions="Center" HorizontalOptions="Center"
                                        DownsampleToViewSize="true" Grid.Column="1"
                                        LoadingPlaceholder = "loading.png"
                                        ErrorPlaceholder = "error.png"
@@ -102,7 +102,7 @@
                             <TapGestureRecognizer Command="{Binding OpenMbCommand}" />
                         </forms:CachedImage.GestureRecognizers>
                     </forms:CachedImage>
-                    <forms:CachedImage HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center"
+                    <forms:CachedImage HeightRequest="75" WidthRequest="75" VerticalOptions="Center" HorizontalOptions="Center"
                                        DownsampleToViewSize="true" Grid.Column="2"
                                        LoadingPlaceholder = "loading.png"
                                        ErrorPlaceholder = "error.png"
