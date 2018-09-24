@@ -27,11 +27,22 @@ namespace Chronique.ViewModels
         public Dictionary<string, ICommand> OpenRelations { get; set; }
 
         public GenericRequestObject Id { get; set; }
+        public Artiste FromArtistPage { get; set; }
         public IDataStore<Artiste> DataStore => DependencyService.Get<IDataStore<Artiste>>() ?? new MyArtistMockStore();
         public Command LoadItemsCommand { get; set; }
         public MyArtistDetailsViewModel(GenericRequestObject id)
         {
             Id = id;
+            FromArtistPage = null;
+            Links = new ObservableCollection<string>();
+            var comparer = StringComparer.OrdinalIgnoreCase;
+            OpenRelations = new Dictionary<string, ICommand>(comparer);
+            LoadItemsCommand = new Command(async (query) => await ExecuteLoadItemsCommand((string)query));
+        }
+        public MyArtistDetailsViewModel(Artiste id)
+        {
+            Id = null;
+            FromArtistPage = id;
             Links = new ObservableCollection<string>();
             var comparer = StringComparer.OrdinalIgnoreCase;
             OpenRelations = new Dictionary<string, ICommand>(comparer);
@@ -51,7 +62,15 @@ namespace Chronique.ViewModels
                 OpenRelations.Clear();
 
                 // use Id.Title as temp workaround (artist name)
-                Item = await DataStore.GetItemAsync(query, Id.Title);
+                if (FromArtistPage != null)
+                {
+                    Item = await DataStore.GetItemAsync(FromArtistPage.ProviderId, FromArtistPage.Pseudo);
+                }
+                else if (Id != null)
+                {
+                    Item = await DataStore.GetItemAsync(Id.ProviderId, Id.Title);
+                }
+
                 Title = Item?.Pseudo;
 
                 foreach (var rel in Item.Relations)

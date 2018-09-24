@@ -67,19 +67,20 @@
                     </ViewCell.View>
                 </ViewCell>
             </DataTemplate>
-            <DataTemplate x:Name="ItemTemplateLabels"  x:Key="ItemTemplateLabels">
+            <DataTemplate x:Name="ItemTemplateSimilars"  x:Key="ItemTemplateSimilars">
                 <ViewCell>
                     <ViewCell.View>
-                        <Frame HasShadow="true" OutlineColor="Aquamarine" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" >
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <Label Text="{Binding}" Grid.Row="0" Grid.Column="0" />
-                            </Grid>
+                        <Frame HasShadow="true" OutlineColor="Aquamarine" VerticalOptions="FillAndExpand" >
+                            <StackLayout HeightRequest="120" WidthRequest="120">
+                                <forms:CachedImage HeightRequest="100" WidthRequest="100"
+                                                   CacheDuration="30" RetryCount="3" RetryDelay="250"
+                                                   DownsampleToViewSize="true"
+                                                   LoadingPlaceholder = "loading.png"
+                                                   ErrorPlaceholder = "error.png"
+                                                   Source = "{Binding Photo_uri}">
+                                </forms:CachedImage>
+                                <Label Text="{Binding Pseudo}" FontSize="Small" LineBreakMode="TailTruncation"/>
+                            </StackLayout>
                         </Frame>
                     </ViewCell.View>
                 </ViewCell>
@@ -195,11 +196,11 @@
                                                AutoFitMode="Height" SelectionMode="None"/>
                                     </StackLayout>
                             </Frame>
-                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="4" HeightRequest="110">
+                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="4" HeightRequest="180">
                                 <StackLayout>
                                     <Label Text="Artistes similaires" FontAttributes="Bold" FontSize="14" TextColor="#474747"/>
-                                    <xForms:SfListView x:Name="listViewLabels" ItemSize="120" ItemsSource="{Binding Item.Labels}"
-                                               ItemTemplate="{StaticResource ItemTemplateLabels}" Orientation="Horizontal"
+                                    <xForms:SfListView x:Name="listViewSimilars" ItemSize="120" ItemsSource="{Binding Item.Similars}"
+                                               ItemTemplate="{StaticResource ItemTemplateSimilars}" Orientation="Horizontal" ItemTapped="OnTapSimilarsList"
                                                ItemSpacing="0,0,5,0"  IsScrollBarVisible="True" 
                                                AutoFitMode="Height" SelectionMode="None"/>
                                 </StackLayout>

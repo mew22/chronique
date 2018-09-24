@@ -115,5 +115,19 @@ namespace Chronique.Services
 
             return strBuilder.ToString();
         }
+
+        public static List<Artiste> ConvertArtistes(IEnumerable<LastArtist> artists)
+        {
+            List<Artiste> converted = new List<Artiste>();
+            foreach (var ar in artists)
+            {
+                Artiste a = new Artiste(ar.Name);
+                a.Photo_uri = ar.MainImage.Large.AbsoluteUri;
+                a.ProviderId = ar.Mbid ?? ar.Name;
+                converted.Add(a);
+            }
+
+            return converted;
+        }
     }
 }

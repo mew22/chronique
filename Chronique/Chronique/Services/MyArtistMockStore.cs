@@ -71,24 +71,26 @@ namespace Chronique.Services
 //                        var releasesRequest = Release.BrowseAsync("artist", id, 9);
                         var lastfmArtisTopAlbumsRequest = lastFm.Artist.GetTopAlbumsAsync(additionnalInfos);
                         var lastfmArtistRequest = lastFm.Artist.GetInfoByMbidAsync(id, "fr");
+                        var lastfmArtistSimilarsRequest = lastFm.Artist.GetSimilarByMbidAsync(id, false, 10);
                         //                        await Task.WhenAll(artistRequest, releasesRequest, lastfmArtistRequest);
-                        await Task.WhenAll(artistRequest, lastfmArtisTopAlbumsRequest, lastfmArtistRequest);
+                        await Task.WhenAll(artistRequest, lastfmArtisTopAlbumsRequest, lastfmArtistRequest, lastfmArtistSimilarsRequest);
 
                         var artist = await artistRequest;
 //                        var releases = await releasesRequest;
                         var lastfmArtisTopAlbums = await lastfmArtisTopAlbumsRequest;
                         var lastfmArtis = await lastfmArtistRequest;
+                        var lastfmArtistSimilars = await lastfmArtistSimilarsRequest;
 
                         // Use tmpArtist until full artist data are ok
                         tmpArtist = new Artiste(lastfmArtis.Content.Name, lastfmArtis.Content.Name, "", artist.LifeSpan.Begin,
                             ConverterToViewObj.GetAge(artist.LifeSpan.Begin), artist.Country, artist.Type, "",
                             ConverterToViewObj.ConvertRelToMap(artist.Relations), artist.Disambiguation,
-                            new List<string> {"toto", "tutu", "lulu"}, null,
+                            new List<Artiste>(), null,
                             new List<Event>(), lastfmArtis.Content.Bio.Summary,
                             lastfmArtis.Content.MainImage.Large.AbsoluteUri, id);
 
-
                         tmpArtist.Projects = ConverterToViewObj.ConvertAlbums(lastfmArtisTopAlbums.Content);
+                        tmpArtist.Similars = ConverterToViewObj.ConvertArtistes(lastfmArtistSimilars.Content);
 
                         // If no album loaded with last.fm, try with Musicbrainz
                         if (tmpArtist.Projects?.Count == 0)
@@ -144,13 +146,15 @@ namespace Chronique.Services
                         //TODO: test paralelle async call
                         var syncArtist = lastFm.Artist.GetInfoAsync(id, "fr");
                         var syncAlbums = lastFm.Artist.GetTopAlbumsAsync(id);
-                        await Task.WhenAll(syncArtist, syncAlbums);
+                        var syncSimilars = lastFm.Artist.GetTopAlbumsAsync(id, false, 1, 10);
+                        await Task.WhenAll(syncArtist, syncAlbums, syncSimilars);
                         var lastfmArtis = await syncArtist;
                         var lastfmArtisTopAlbums = await syncAlbums;
+                        var lastfmArtisSimilars = await syncSimilars;
 
                         tmpArtist = new Artiste(lastfmArtis.Content.Name, lastfmArtis.Content.Name, "", "",
                             0, "", "", "", new List<KeyValuePair<string, string>>(), "",
-                            new List<string> {"toto", "tutu", "lulu"},
+                            new List<Artiste>(),
                             ConverterToViewObj.ConvertAlbums(lastfmArtisTopAlbums.Content),
                             new List<Event>(), lastfmArtis.Content.Bio.Summary,
                             lastfmArtis.Content.MainImage.Large.AbsoluteUri, id);

@@ -25,32 +25,32 @@ namespace Chronique.Services
             
                 new Artiste("Kendrick Lamar", "Kendrick Lamar Duckworth", "K-Dot", "June 17, 1987", 30,
                 "Compton, California, U.S.", "Rapper songwriter", "2004–present",   new List<KeyValuePair<string, string>>(), "Hip hop",
-                new List<string>() {"Top Dawg"," Aftermath", " Interscope", "nique ta mer", "balance ton porc", "sale histoire"}, new List<Album>(),
+                new List<Artiste>(), new List<Album>(),
                     new List<Event>(),"no description", RandomImageURIHelper.GetRandomImageUrl()
                 /*ImageSource.FromResource(people_image + r.Next(0, 28) + ".png")*/),
                 new Artiste("Shakira", "Kendrick Lamar Duckworth", "K-Dot", "June 17, 1987", 30,
                     "Compton, California, U.S.", "Rapper songwriter", "2004–present",   new List<KeyValuePair<string, string>>(), "Hip hop",
-                    new List<string>() {"Top Dawg"," Aftermath", " Interscope"}, new List<Album>(),
+                    new List<Artiste>() , new List<Album>(),
                     new List<Event>(),"no description", RandomImageURIHelper.GetRandomImageUrl()
                     /*ImageSource.FromResource(people_image + r.Next(0, 28) + ".png")*/),
                 new Artiste("Rihanna", "Kendrick Lamar Duckworth", "K-Dot", "June 17, 1987", 30,
                     "Compton, California, U.S.", "Rapper songwriter", "2004–present",   new List<KeyValuePair<string, string>>(), "Hip hop",
-                    new List<string>() {"Top Dawg"," Aftermath", " Interscope"}, new List<Album>(),
+                    new List<Artiste>(), new List<Album>(),
                     new List<Event>(),"no description", RandomImageURIHelper.GetRandomImageUrl()
                     /*ImageSource.FromResource(people_image + r.Next(0, 28) + ".png")*/),
                 new Artiste("Sia", "Kendrick Lamar Duckworth", "K-Dot", "June 17, 1987", 30,
                     "Compton, California, U.S.", "Rapper songwriter", "2004–present",   new List<KeyValuePair<string, string>>(), "Hip hop",
-                    new List<string>() {"Top Dawg"," Aftermath", " Interscope"}, new List<Album>(),
+                    new List<Artiste>(), new List<Album>(),
                     new List<Event>(),"no description", RandomImageURIHelper.GetRandomImageUrl()
                     /*ImageSource.FromResource(people_image + r.Next(0, 28) + ".png")*/),
                 new Artiste("Wiz", "Kendrick Lamar Duckworth", "K-Dot", "June 17, 1987", 30,
                     "Compton, California, U.S.", "Rapper songwriter", "2004–present",   new List<KeyValuePair<string, string>>(), "Hip hop",
-                    new List<string>() {"Top Dawg"," Aftermath", " Interscope"}, new List<Album>(),
+                    new List<Artiste>() , new List<Album>(),
                     new List<Event>(),"no description", RandomImageURIHelper.GetRandomImageUrl()
                     /*ImageSource.FromResource(people_image + r.Next(0, 28) + ".png")*/),
                 new Artiste("Abcd", "Kendrick Lamar Duckworth", "K-Dot", "June 17, 1987", 30,
                     "Compton, California, U.S.", "Rapper songwriter", "2004–present",   new List<KeyValuePair<string, string>>(), "Hip hop",
-                    new List<string>() {"Top Dawg"," Aftermath", " Interscope"}, new List<Album>(),
+                    new List<Artiste>(), new List<Album>(),
                     new List<Event>(),"no description", RandomImageURIHelper.GetRandomImageUrl()
                     /*ImageSource.FromResource(people_image + r.Next(0, 28) + ".png")*/),
             };

@@ -19,7 +19,7 @@ namespace Chronique.Views
             base.OnAppearing();
 
             if (viewModel.Item == null)
-                viewModel.LoadItemsCommand.Execute(viewModel.Id.ProviderId);
+                viewModel.LoadItemsCommand.Execute(null);
         }
 
         public MyArtisteDetailPage(MyArtistDetailsViewModel vm)
@@ -48,6 +48,16 @@ namespace Chronique.Views
 
             // Manually deselect item
             listViewAlbums.SelectedItem = null;
+        }
+        async void OnTapSimilarsList(object sender, ItemTappedEventArgs args)
+        {
+            if (!(args.ItemData is Artiste item) || item.ProviderId == null || item.ProviderId == "")
+                return;
+
+            await Navigation.PushAsync(new MyArtisteDetailPage(new MyArtistDetailsViewModel(item)));
+
+            // Manually deselect item
+            listViewSimilars.SelectedItem = null;
         }
 
         async void OnTapRelationsList(object sender, ItemTappedEventArgs tappedEventArgs)

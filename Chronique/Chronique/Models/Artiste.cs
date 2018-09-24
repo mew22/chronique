@@ -8,7 +8,7 @@ namespace Chronique.Models
     {
 
         public Artiste(string pseudo, string name = null, string otherName = null, string birthDate = null, int age = 0, string birthPlace = null, string job = null, 
-            string activityDates = null, List<KeyValuePair<string, string>> relations = null, string musicKind = null, List<string> labels = null, List<Album> projects = null, 
+            string activityDates = null, List<KeyValuePair<string, string>> relations = null, string musicKind = null, List<Artiste> similars = null, List<Album> projects = null, 
             List<Event> upEvents = null, string description = null, string photo_uri = null, string providerId = null)
         {
             Pseudo = pseudo;
@@ -21,7 +21,7 @@ namespace Chronique.Models
             ActivityDates = activityDates;
             Relations = relations;
             MusicKind = musicKind;
-            Labels = labels;
+            Similars = similars;
             Projects = projects;
             UpEvents = upEvents;
             Description = description;
@@ -39,7 +39,7 @@ namespace Chronique.Models
         public string ActivityDates { get { return activityDates; } set { activityDates = value; this.OnPropertyChanged("ActivityDates"); } }
         public List<KeyValuePair<string, string>> Relations { get { return relations; } set { relations = value; this.OnPropertyChanged("Relations"); } }
         public string MusicKind { get { return musicKind; } set { musicKind = value; this.OnPropertyChanged("MusicKind"); } }
-        public List<string> Labels { get { return labels; } set { labels = value; this.OnPropertyChanged("Labels"); } }
+        public List<Artiste> Similars { get { return similars; } set { similars = value; this.OnPropertyChanged("Similars"); } }
         public List<Album> Projects { get { return projects; } set { projects = value; this.OnPropertyChanged("Projects"); } }
         public List<Event> UpEvents { get { return upEvents; } set { upEvents = value; this.OnPropertyChanged("UpEvents"); } }
         public string Description { get { return description; } set { description = value; this.OnPropertyChanged("Description"); } }
@@ -64,7 +64,7 @@ namespace Chronique.Models
         private string activityDates;
         private List<KeyValuePair<string, string>> relations;
         private string musicKind;
-        private List<string> labels;
+        private List<Artiste> similars;
         private List<Album> projects;
         private List<Event> upEvents;
         private string description;
