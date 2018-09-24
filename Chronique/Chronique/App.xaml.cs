@@ -18,6 +18,8 @@ namespace Chronique
     {
         public App()
         {
+            Hqub.MusicBrainz.API.Configuration.UserAgent =
+                "LaChronique/1.0.0 (sebastien.delaherche@gmail.com)";
             InitializeComponent();
 
 //            if (Device.RuntimePlatform == Device.iOS)

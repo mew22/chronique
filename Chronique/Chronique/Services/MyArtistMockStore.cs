@@ -61,9 +61,6 @@ namespace Chronique.Services
 //                            query.Add("status", "official");
                         // Search for a release by title.
 
-                        // TODO: add custom user agent in application init
-                        Hqub.MusicBrainz.API.Configuration.UserAgent =
-                            "LaChronique/1.0.0 (sebastien.delaherche@gmail.com)";
 
                         // Parallelise request to data providers
                         var artistRequest = Artist.GetAsync(id, "artist-rels", "url-rels", "event-rels",
