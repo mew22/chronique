@@ -188,7 +188,7 @@
                             </Frame>
                             <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="3" HeightRequest="110">
                                 <StackLayout>
-                                    <Label Text="Projets futurs" FontAttributes="Bold" FontSize="14" TextColor="#474747"/>
+                                    <Label Text="Evenements futurs" FontAttributes="Bold" FontSize="14" TextColor="#474747"/>
                                     <xForms:SfListView x:Name="listViewFuturs" ItemSize="120" ItemsSource="{Binding Item.UpEvents}"
                                                ItemTemplate="{StaticResource ItemTemplateFuturs}" Orientation="Horizontal"
                                                ItemSpacing="0,0,5,0"  IsScrollBarVisible="True"
@@ -197,7 +197,7 @@
                             </Frame>
                             <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="4" HeightRequest="110">
                                 <StackLayout>
-                                    <Label Text="Labels" FontAttributes="Bold" FontSize="14" TextColor="#474747"/>
+                                    <Label Text="Artistes similaires" FontAttributes="Bold" FontSize="14" TextColor="#474747"/>
                                     <xForms:SfListView x:Name="listViewLabels" ItemSize="120" ItemsSource="{Binding Item.Labels}"
                                                ItemTemplate="{StaticResource ItemTemplateLabels}" Orientation="Horizontal"
                                                ItemSpacing="0,0,5,0"  IsScrollBarVisible="True" 
