@@ -43,8 +43,14 @@ namespace Chronique.Services
             List<Album> albs = new List<Album>();
             foreach (var al in albums)
             {
-                albs.Add(new Album(al.Name, al.ReleaseDateUtc.ToString(), al.ArtistName, al.ArtistName, 
-                    ConvertTracks(al.Tracks), ConvertTags(al.TopTags), al.Images.Large.AbsoluteUri, al.Mbid ?? al.Name));
+                if (!string.IsNullOrEmpty(al.Name) && al.Name != "(null)")
+                {
+                    var image = al?.Images?.Large?.AbsoluteUri ?? "resource://Chronique.Images.PlaceHolder.error.png";
+
+                    albs.Add(new Album(al.Name, al.ReleaseDateUtc.ToString(), al.ArtistName, al.ArtistName,
+                        ConvertTracks(al.Tracks), ConvertTags(al.TopTags), image ,
+                        al.Mbid ?? al.Name));
+                }
             }
             return albs;
         }
