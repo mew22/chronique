@@ -16,6 +16,7 @@ namespace Chronique
 {
     public partial class App : Application
     {
+        public static readonly string SONGKICK_API_KEY = "AZjkNivxIbJtdy2l";
         public App()
         {
             Hqub.MusicBrainz.API.Configuration.UserAgent =
