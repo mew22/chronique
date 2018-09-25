@@ -51,16 +51,16 @@ namespace Chronique.Services
                     return await Task.FromResult(lastArtist);
                 }else if (id != null && id != "" && CrossConnectivity.Current.IsConnected)
                 {
+                    HttpClient client = new HttpClient();
                     //If mbid
                     if (id.Length == 36 && id.Contains("-"))
                     {
                         // Build an advanced query to search for the release.
-//                            var query = new QueryParameters<Release>();
-//                            query.Add("arid", id );
-//                            query.Add("type", "album");
-//                            query.Add("status", "official");
+                        //                            var query = new QueryParameters<Release>();
+                        //                            query.Add("arid", id );
+                        //                            query.Add("type", "album");
+                        //                            query.Add("status", "official");
                         // Search for a release by title.
-
 
                         // Parallelise request to data providers
                         var artistRequest = Artist.GetAsync(id, "artist-rels", "url-rels", "event-rels",
@@ -69,14 +69,17 @@ namespace Chronique.Services
                         var lastfmArtisTopAlbumsRequest = lastFm.Artist.GetTopAlbumsAsync(additionnalInfos);
                         var lastfmArtistRequest = lastFm.Artist.GetInfoByMbidAsync(id, "fr");
                         var lastfmArtistSimilarsRequest = lastFm.Artist.GetSimilarByMbidAsync(id, false, 10);
+                        var songKickUpEventRequest = client.GetAsync("https://api.songkick.com/api/3.0/artists/mbid:"
+                        + id + "/calendar.json?apikey=" + App.SONGKICK_API_KEY);
                         //                        await Task.WhenAll(artistRequest, releasesRequest, lastfmArtistRequest);
-                        await Task.WhenAll(artistRequest, lastfmArtisTopAlbumsRequest, lastfmArtistRequest, lastfmArtistSimilarsRequest);
+                        await Task.WhenAll(artistRequest, lastfmArtisTopAlbumsRequest, lastfmArtistRequest, lastfmArtistSimilarsRequest, songKickUpEventRequest);
 
                         var artist = await artistRequest;
 //                        var releases = await releasesRequest;
                         var lastfmArtisTopAlbums = await lastfmArtisTopAlbumsRequest;
                         var lastfmArtis = await lastfmArtistRequest;
                         var lastfmArtistSimilars = await lastfmArtistSimilarsRequest;
+                        var songKickUpEvent = await songKickUpEventRequest;
 
                         // Use tmpArtist until full artist data are ok
                         tmpArtist = new Artiste(lastfmArtis.Content.Name, lastfmArtis.Content.Name, "", artist.LifeSpan.Begin,
@@ -89,6 +92,9 @@ namespace Chronique.Services
                         tmpArtist.Projects = ConverterToViewObj.ConvertAlbums(lastfmArtisTopAlbums.Content);
                         tmpArtist.Similars = ConverterToViewObj.ConvertArtistes(lastfmArtistSimilars.Content);
 
+                        var songKickUpEvt = await songKickUpEvent.Content.ReadAsStringAsync();
+                        tmpArtist.UpEvents = ConverterToViewObj.ConvertSkEvents(songKickUpEvt);
+
                         // If no album loaded with last.fm, try with Musicbrainz
                         if (tmpArtist.Projects?.Count == 0)
                         {
@@ -96,7 +102,6 @@ namespace Chronique.Services
                             var releases = await Release.BrowseAsync("artist", id, 9);
                             List<Task<Release>> requestRelease = new List<Task<Release>>();
                             List<Task<HttpResponseMessage>> releaseImageUrl = new List<Task<HttpResponseMessage>>();
-                            HttpClient client = new HttpClient();
                             foreach (var release in releases.Items)
                             {
                                 requestRelease.Add(Release.GetAsync(release.Id, "recordings", "artist-credits",

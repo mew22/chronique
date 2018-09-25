@@ -50,18 +50,24 @@
                 </ViewCell>
             </DataTemplate>
 
-            <DataTemplate x:Name="ItemTemplateFuturs"  x:Key="ItemTemplateFuturs">
+            <DataTemplate x:Name="ItemTemplateUpEvents"  x:Key="ItemTemplateUpEvents">
                 <ViewCell>
                     <ViewCell.View>
-                        <Frame HasShadow="true" OutlineColor="PaleVioletRed" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" >
+                        <Frame HasShadow="true" OutlineColor="PaleVioletRed" VerticalOptions="FillAndExpand" >
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="80"></RowDefinition>
+                                    <RowDefinition Height="1"></RowDefinition>
+                                    <RowDefinition Height="15"></RowDefinition>
+                                    <RowDefinition Height="15"></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <Label Text="{Binding}" Grid.Row="0" Grid.Column="0" />
+                                <Label Text="{Binding Date, StringFormat='{}{0:dd}' }" Grid.Row="0" FontSize="60" FontFamily="Calibri" TextColor="DeepPink" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                <BoxView HeightRequest="1" Grid.Row="1" BackgroundColor="DarkGray"></BoxView>
+                                <StackLayout Grid.Row="2" Orientation="Horizontal">
+                                    <Label FontSize="10" Text="{Binding Date, StringFormat='{}{0:MMMM, yyyy}' }" />
+<!--                                    <Label Text="{Binding Date, StringFormat='{}{0:yyyy}' }" />-->
+                                </StackLayout>
+                                <Label Grid.Row="3" FontSize="10" Text="{Binding Location}"></Label>
                             </Grid>
                         </Frame>
                     </ViewCell.View>
@@ -151,6 +157,13 @@
                                 <Label Text="Genre: " Grid.Row="4" Grid.Column="0"/>
                                 <Label Text="{Binding Item.MusicKind}" Grid.Row="4" Grid.Column="1"  FontSize="Small" LineBreakMode="TailTruncation"/>
                             </Grid>
+<!--                        <StackLayout Grid.Column="1" Orientation="Vertical">-->
+<!--                                <Label HorizontalTextAlignment="Start" Text="{Binding Item.Pseudo, StringFormat='Pseudo: {0}'}"/>-->
+<!--                                <Label HorizontalTextAlignment="Start" Text="{Binding Item.Name, StringFormat='Nom: {0}'}"/>-->
+<!--                                <Label HorizontalTextAlignment="Start" Text="{Binding Item.Age, StringFormat='Age: {0}'}"/>-->
+<!--                                <Label HorizontalTextAlignment="Start" Text="{Binding Item.Job, StringFormat='Job: {0}'}"/>-->
+<!--                                <Label HorizontalTextAlignment="Start" Text="{Binding Item.MusicKind, StringFormat='Genre: {0}'}"/>-->
+<!--                            </StackLayout>-->
                         </Grid>
                     </Frame>
 
@@ -187,11 +200,11 @@
                                            AutoFitMode="Height" SelectionMode="None"/>
                                 </StackLayout>
                             </Frame>
-                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="3" HeightRequest="110">
+                            <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="3" HeightRequest="180">
                                 <StackLayout>
                                     <Label Text="Evenements futurs" FontAttributes="Bold" FontSize="14" TextColor="#474747"/>
-                                    <xForms:SfListView x:Name="listViewFuturs" ItemSize="120" ItemsSource="{Binding Item.UpEvents}"
-                                               ItemTemplate="{StaticResource ItemTemplateFuturs}" Orientation="Horizontal"
+                                    <xForms:SfListView x:Name="listViewUpEvents" ItemSize="120" ItemsSource="{Binding Item.UpEvents}"
+                                               ItemTemplate="{StaticResource ItemTemplateUpEvents}" Orientation="Horizontal"
                                                ItemSpacing="0,0,5,0"  IsScrollBarVisible="True"
                                                AutoFitMode="Height" SelectionMode="None"/>
                                     </StackLayout>

@@ -5,6 +5,7 @@ using System.Text;
 using Chronique.Models;
 using Hqub.MusicBrainz.API.Entities;
 using IF.Lastfm.Core.Objects;
+using Newtonsoft.Json;
 using Track = Chronique.Models.Track;
 
 namespace Chronique.Services
@@ -129,5 +130,34 @@ namespace Chronique.Services
 
             return converted;
         }
+
+        public static List<Event> ConvertSkEvents(string data)
+        {
+            List<Event> upEvents = new List<Event>();
+
+            try
+            {
+                dynamic json = JsonConvert.DeserializeObject(data);
+                foreach (var evt in json.resultsPage.results["event"])
+                {
+                    Event upEvent = new Event();
+                    upEvent.Title = evt.displayName;
+                    upEvent.Type = evt.type;
+                    upEvent.DateString = evt.start.date;
+                    upEvent.Location = evt.location.city;
+                    upEvent.ProviderUri = evt.uri;
+
+                    upEvents.Add(upEvent);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("error parsing json: " + e);
+            }
+
+            return upEvents;
+        }
+
     }
 }
