@@ -70,11 +70,11 @@
                                    Phone="16"
                                    Tablet="18" />
                                                 </On>
-                                                <On Platform="iOS">
-                                                    <OnIdiom x:TypeArguments="x:Double"
-                                   Phone="16"
-                                   Tablet="18" />
-                                                </On>
+<!--                                                <On Platform="iOS">-->
+<!--                                                    <OnIdiom x:TypeArguments="x:Double"-->
+<!--                                   Phone="16"-->
+<!--                                   Tablet="18" />-->
+<!--                                                </On>-->
                                             </OnPlatform>
                                         </Label.FontSize>
                                     </Label>
@@ -90,17 +90,17 @@
                                    Phone="12"
                                    Tablet="14" />
                                                     </On>
-                                                    <On Platform="iOS">
-                                                        <OnIdiom x:TypeArguments="x:Double"
-                                   Phone="12"
-                                   Tablet="14" />
-                                                    </On>
+<!--                                                    <On Platform="iOS">-->
+<!--                                                        <OnIdiom x:TypeArguments="x:Double"-->
+<!--                                   Phone="12"-->
+<!--                                   Tablet="14" />-->
+<!--                                                    </On>-->
                                                 </OnPlatform>
                                             </Label.FontSize>
                                         </Label>
                                     </Grid>
                             </Grid>
-                            <StackLayout Grid.Row="1" BackgroundColor="Gray" HeightRequest="1"/>
+                            <BoxView Grid.Row="1" BackgroundColor="Gray" HeightRequest="1"/>
                         </Grid>
                     </ViewCell.View>
                 </ViewCell>
@@ -135,7 +135,6 @@
                                     TransitionMode="Push"
                                     ProgressBackgroundColor="BlueViolet"
                                     ProgressStrokeColor="Red"
-                                    Pulling="PullToRefresh_Pulling"
                                     Refreshing="PullToRefresh_Refreshing"
                                     Refreshed="PullToRefresh_Refreshed"
                                     IsRefreshing="False" 
