@@ -38,10 +38,10 @@ namespace Chronique
         protected override void OnStart()
         {
             base.OnStart();
-//            AppCenter.Start("ios=9d33b664-e5c5-4237-bb25-afbc50024b6c;" +
-//                            "android=d1fe6934-15c6-4ec1-88fb-73357451198e;",
-//                typeof(Analytics), typeof(Crashes), typeof(Distribute));
-//            Distribute.SetEnabledAsync(true);
+            AppCenter.Start("ios=9d33b664-e5c5-4237-bb25-afbc50024b6c;" +
+                            "android=d1fe6934-15c6-4ec1-88fb-73357451198e;",
+                typeof(Analytics), typeof(Crashes), typeof(Distribute));
+            Distribute.SetEnabledAsync(true);
         }
     }
 }
