@@ -19,9 +19,11 @@
     <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>C:\Users\Asus\AppData\Local\Xamarin\Mono for Android\Keystore\La Chronique Up\La Chronique Up.keystore</AndroidSigningKeyStore>
+    <AndroidKeyStore>false</AndroidKeyStore>
+    <AndroidSigningKeyStore>C:\Users\Asus\AppData\Local\Xamarin\Mono for Android\Keystore\ChoniqueNow\ChoniqueNow.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>inopainkiba</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>ChroniqueNow</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>inopainkiba</AndroidSigningKeyPass>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,13 +54,9 @@
     <EnableLLVM>false</EnableLLVM>
     <EnableProguard>true</EnableProguard>
     <BundleAssemblies>true</BundleAssemblies>
-    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+    <AndroidEnableSGenConcurrent>false</AndroidEnableSGenConcurrent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Hqub.MusicBrainz.API, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\MusicBrainzApi\Hqub.MusicBrainz\Hqub.MusicBrainz.API\bin\Debug\Hqub.MusicBrainz.API.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -192,9 +192,6 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Hqub.MusicBrainz.API">
-      <HintPath>..\..\..\..\MusicBrainzApi\Hqub.MusicBrainz\Hqub.MusicBrainz.API\bin\Debug\Hqub.MusicBrainz.API.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
