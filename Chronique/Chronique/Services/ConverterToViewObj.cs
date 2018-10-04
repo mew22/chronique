@@ -140,14 +140,22 @@ namespace Chronique.Services
                 dynamic json = JsonConvert.DeserializeObject(data);
                 foreach (var evt in json.resultsPage.results["event"])
                 {
-                    Event upEvent = new Event();
-                    upEvent.Title = evt.displayName;
-                    upEvent.Type = evt.type;
-                    upEvent.DateString = evt.start.date;
-                    upEvent.Location = evt.location.city;
-                    upEvent.ProviderUri = evt.uri;
+                    try
+                    {
+                        Event upEvent = new Event();
+                        upEvent.Title = evt.displayName;
+                        upEvent.Type = evt.type;
+                        upEvent.DateString = evt.start.date;
+                        upEvent.Location = evt.location.city;
+                        upEvent.ProviderUri = evt.uri;
 
-                    upEvents.Add(upEvent);
+                        upEvents.Add(upEvent);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("error parsing json: " + e);
+                        continue;
+                    }
                 }
 
             }
