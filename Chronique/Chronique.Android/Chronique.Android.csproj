@@ -19,8 +19,8 @@
     <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AndroidKeyStore>false</AndroidKeyStore>
-    <AndroidSigningKeyStore>C:\Users\Asus\AppData\Local\Xamarin\Mono for Android\Keystore\ChoniqueNow\ChoniqueNow.keystore</AndroidSigningKeyStore>
+    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidSigningKeyStore>C:\Users\Asus\AppData\Local\Xamarin\Mono for Android\Keystore\chronique_keystore\chronique_keystore.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>inopainkiba</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>ChroniqueNow</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>inopainkiba</AndroidSigningKeyPass>
