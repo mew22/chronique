@@ -49,7 +49,8 @@ namespace Chronique.Services
                 if (lastArtist != null && lastArtist.ProviderId == id)
                 {
                     return await Task.FromResult(lastArtist);
-                }else if (id != null && id != "" && CrossConnectivity.Current.IsConnected)
+                }
+                else if (id != null && id != "" && CrossConnectivity.Current.IsConnected)
                 {
                     HttpClient client = new HttpClient();
                     //If mbid
@@ -70,9 +71,11 @@ namespace Chronique.Services
                         var lastfmArtistRequest = lastFm.Artist.GetInfoByMbidAsync(id, "fr");
                         var lastfmArtistSimilarsRequest = lastFm.Artist.GetSimilarByMbidAsync(id, false, 10);
                         var songKickUpEventRequest = client.GetAsync("https://api.songkick.com/api/3.0/artists/mbid:"
-                        + id + "/calendar.json?apikey=" + App.SONGKICK_API_KEY);
+                                                                     + id + "/calendar.json?apikey=" +
+                                                                     App.SONGKICK_API_KEY);
                         //                        await Task.WhenAll(artistRequest, releasesRequest, lastfmArtistRequest);
-                        await Task.WhenAll(artistRequest, lastfmArtisTopAlbumsRequest, lastfmArtistRequest, lastfmArtistSimilarsRequest, songKickUpEventRequest);
+                        await Task.WhenAll(artistRequest, lastfmArtisTopAlbumsRequest, lastfmArtistRequest,
+                            lastfmArtistSimilarsRequest, songKickUpEventRequest);
 
                         var artist = await artistRequest;
 //                        var releases = await releasesRequest;
@@ -82,7 +85,8 @@ namespace Chronique.Services
                         var songKickUpEvent = await songKickUpEventRequest;
 
                         // Use tmpArtist until full artist data are ok
-                        tmpArtist = new Artiste(lastfmArtis.Content.Name, lastfmArtis.Content.Name, "", artist.LifeSpan.Begin,
+                        tmpArtist = new Artiste(lastfmArtis.Content.Name, lastfmArtis.Content.Name, "",
+                            artist.LifeSpan.Begin,
                             ConverterToViewObj.GetAge(artist.LifeSpan.Begin), artist.Country, artist.Type, "",
                             ConverterToViewObj.ConvertRelToMap(artist.Relations), artist.Disambiguation,
                             new List<Artiste>(), null,
@@ -109,6 +113,7 @@ namespace Chronique.Services
                                 var image_uri = new Uri("http://coverartarchive.org/release/" + release.Id);
                                 releaseImageUrl.Add(client.GetAsync(image_uri));
                             }
+
                             var loadedReleases = await Task.WhenAll(requestRelease);
                             var releaseImages = await Task.WhenAll(releaseImageUrl);
                             List<Task<string>> imgContents = new List<Task<string>>();
@@ -117,8 +122,9 @@ namespace Chronique.Services
                                 var content = relImg.Content.ReadAsStringAsync();
                                 imgContents.Add(content);
                             }
+
                             var imgs = await Task.WhenAll(imgContents);
-                            
+
                             // Try to parse json img response
                             List<string> urlList = new List<string>();
                             foreach (var img in imgs)
@@ -133,12 +139,13 @@ namespace Chronique.Services
                                 {
                                     Console.WriteLine(e.Message);
                                 }
-                            
+
                                 urlList.Add(url);
                             }
-                            
+
                             tmpArtist.Projects = ConverterToViewObj.ConvertMbAlbums(loadedReleases, urlList);
                         }
+
                         lastArtist = tmpArtist;
 
                         return await Task.FromResult(tmpArtist);
@@ -164,8 +171,8 @@ namespace Chronique.Services
 
                         return await Task.FromResult(tmpArtist);
                     }
-
                 }
+
                 return await Task.FromResult(lastArtist);
             }
             catch (Exception e)

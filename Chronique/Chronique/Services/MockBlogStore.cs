@@ -43,7 +43,6 @@ namespace Chronique.Services
                 };
                 items.Insert(0, blog);
             }
-
         }
 
         #region BlogsInfo
@@ -67,7 +66,6 @@ namespace Chronique.Services
 
         internal string GenerateUriTw(string title)
         {
-
             var firstPart = "https://twitter.com/intent/tweet?status=";
             var lastPart =
                 "+%7C+Syncfusion+Blog+%3A+http%3A%2F%2Fbit.ly%2FQ2iGwU+%23syncfusionblog&url=http%3A%2F%2Fbit.ly%2FQ2iGwU";

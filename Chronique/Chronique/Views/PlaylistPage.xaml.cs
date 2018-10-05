@@ -18,9 +18,8 @@ namespace Chronique.Views
 
 //            transitionTypePicker.Items.Add("SlideOnTop");
 //            transitionTypePicker.Items.Add("Push");
-
-
         }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();

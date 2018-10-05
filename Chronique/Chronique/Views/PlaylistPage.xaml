@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Chronique.Views.PlaylistPage"
@@ -6,18 +7,19 @@
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             xmlns:viewModels="clr-namespace:Chronique.ViewModels;assembly=Chronique">
+             xmlns:viewModels="clr-namespace:Chronique.ViewModels;assembly=Chronique"
+             xmlns:xForms="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms">
     <!-- NavigationPage.HasNavigationBar="False" -->
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="Info" Order="Secondary" Priority="1" Icon="ic_action_info.png" Clicked="About_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.BindingContext>
-        <viewModels:PlaylistViewModel x:Name="viewModel"/>
+        <viewModels:PlaylistViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <DataTemplate x:Name="ItemTemplate"  x:Key="ItemTemplate">
+            <DataTemplate x:Name="ItemTemplate" x:Key="ItemTemplate">
                 <ViewCell>
                     <ViewCell.View>
                         <Grid RowSpacing="0" ColumnSpacing="0" Margin="0">
@@ -32,15 +34,18 @@
                                 </Grid.ColumnDefinitions>
                                 <StackLayout Grid.Column="0">
                                     <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.OpenWebCommand, Source={x:Reference Name=listView}}" CommandParameter="{Binding .}"/>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Path=BindingContext.OpenWebCommand, Source={x:Reference Name=listView}}"
+                                            CommandParameter="{Binding .}" />
                                     </StackLayout.GestureRecognizers>
-                                    <forms:CachedImage x:Name="img_logo" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                    <forms:CachedImage x:Name="img_logo" HorizontalOptions="FillAndExpand"
+                                                       VerticalOptions="FillAndExpand"
                                                        CacheDuration="30" RetryCount="3" RetryDelay="250"
-                                                       LoadingPlaceholder = "loading.png"
-                                                       ErrorPlaceholder = "error.png"
-                                                       Source = "{Binding LogoUrl}">
+                                                       LoadingPlaceholder="loading.png"
+                                                       ErrorPlaceholder="error.png"
+                                                       Source="{Binding LogoUrl}">
                                         <forms:CachedImage.Transformations>
-                                            <transformations:CornersTransformation CornersTransformType="AllRounded"/>
+                                            <transformations:CornersTransformation CornersTransformType="AllRounded" />
                                         </forms:CachedImage.Transformations>
                                     </forms:CachedImage>
                                 </StackLayout>
@@ -50,70 +55,79 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="50" />
                                     </Grid.RowDefinitions>
-                                    <Label Grid.Row="0" Text="{Binding Name}" FontAttributes="Bold" FontSize="16" TextColor="#474747" />
-                                    <Label Grid.Row="1" Text="{Binding Date}" Opacity=" 0.54" TextColor="#000000" FontSize="12"  />
+                                    <Label Grid.Row="0" Text="{Binding Name}" FontAttributes="Bold" FontSize="16"
+                                           TextColor="#474747" />
+                                    <Label Grid.Row="1" Text="{Binding Date}" Opacity=" 0.54" TextColor="#000000"
+                                           FontSize="12" />
 
                                     <Grid Grid.Row="2" Padding="0,15,0,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
-                                        <Button x:Name="button" Margin="-3,0,0,0" Grid.Column="0" Text="READ MORE" WidthRequest="86" HeightRequest="40"
-                                TextColor="White" BackgroundColor="#2196F3" FontSize="10" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" 
-                                
-                                Command="{Binding Path=BindingContext.ReadMoreCommand, Source={x:Reference Name=listView}}"
-                                CommandParameter="{Binding .}" />
-                                        <StackLayout Orientation="Horizontal" Margin="0,0,5,0" HeightRequest="31" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center">
+                                        <Button x:Name="button" Margin="-3,0,0,0" Grid.Column="0" Text="READ MORE"
+                                                WidthRequest="86" HeightRequest="40"
+                                                TextColor="White" BackgroundColor="#2196F3" FontSize="10"
+                                                VerticalOptions="CenterAndExpand" HorizontalOptions="Center"
+
+                                                Command="{Binding Path=BindingContext.ReadMoreCommand, Source={x:Reference Name=listView}}"
+                                                CommandParameter="{Binding .}" />
+                                        <StackLayout Orientation="Horizontal" Margin="0,0,5,0" HeightRequest="31"
+                                                     Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center">
                                             <Grid Padding="2,0,2,0" HorizontalOptions="Fill" VerticalOptions="Fill">
                                                 <Grid.GestureRecognizers>
-                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.TwitterCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>
+                                                    <TapGestureRecognizer
+                                                        Command="{Binding Path=BindingContext.TwitterCommand, Source={x:Reference listView}}"
+                                                        CommandParameter="{Binding .}" />
                                                 </Grid.GestureRecognizers>
                                                 <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                                     <forms:CachedImage HeightRequest="24" WidthRequest="24"
                                                                        DownsampleToViewSize="true"
-                                                                       LoadingPlaceholder = "loading.png"
-                                                                       ErrorPlaceholder = "error.png"
-                                                                       Source = "resource://Chronique.Images.SocialNetwork.Blog_Twitter.png">
-                                                    </forms:CachedImage>
+                                                                       LoadingPlaceholder="loading.png"
+                                                                       ErrorPlaceholder="error.png"
+                                                                       Source="resource://Chronique.Images.SocialNetwork.Blog_Twitter.png" />
                                                 </Grid>
                                             </Grid>
                                             <Grid Padding="2,0,2,0" HorizontalOptions="Fill" VerticalOptions="Fill">
                                                 <Grid.GestureRecognizers>
-                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.LinkedInCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>
+                                                    <TapGestureRecognizer
+                                                        Command="{Binding Path=BindingContext.LinkedInCommand, Source={x:Reference listView}}"
+                                                        CommandParameter="{Binding .}" />
                                                 </Grid.GestureRecognizers>
                                                 <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                                     <forms:CachedImage HeightRequest="24" WidthRequest="24"
                                                                        DownsampleToViewSize="true"
-                                                                       LoadingPlaceholder = "loading.png"
-                                                                       ErrorPlaceholder = "error.png"
-                                                                       Source = "resource://Chronique.Images.SocialNetwork.Blog_LinkedIn.png">
-                                                    </forms:CachedImage>
+                                                                       LoadingPlaceholder="loading.png"
+                                                                       ErrorPlaceholder="error.png"
+                                                                       Source="resource://Chronique.Images.SocialNetwork.Blog_LinkedIn.png" />
                                                 </Grid>
                                             </Grid>
                                             <Grid Padding="2,0,2,0" HorizontalOptions="Fill" VerticalOptions="Fill">
                                                 <Grid.GestureRecognizers>
-                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.FacebookCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>
+                                                    <TapGestureRecognizer
+                                                        Command="{Binding Path=BindingContext.FacebookCommand, Source={x:Reference listView}}"
+                                                        CommandParameter="{Binding .}" />
                                                 </Grid.GestureRecognizers>
                                                 <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                                     <forms:CachedImage HeightRequest="24" WidthRequest="24"
                                                                        DownsampleToViewSize="true"
-                                                                       LoadingPlaceholder = "loading.png"
-                                                                       ErrorPlaceholder = "error.png"
-                                                                       Source = "resource://Chronique.Images.SocialNetwork.Blog_Facebook.png">
-                                                    </forms:CachedImage>
+                                                                       LoadingPlaceholder="loading.png"
+                                                                       ErrorPlaceholder="error.png"
+                                                                       Source="resource://Chronique.Images.SocialNetwork.Blog_Facebook.png" />
                                                 </Grid>
                                             </Grid>
                                             <Grid Padding="2,0,2,0" HorizontalOptions="Fill" VerticalOptions="Fill">
                                                 <Grid.GestureRecognizers>
-                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.GooglePlusCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>
+                                                    <TapGestureRecognizer
+                                                        Command="{Binding Path=BindingContext.GooglePlusCommand, Source={x:Reference listView}}"
+                                                        CommandParameter="{Binding .}" />
                                                 </Grid.GestureRecognizers>
                                                 <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                                     <forms:CachedImage HeightRequest="24" WidthRequest="24"
                                                                        DownsampleToViewSize="true"
-                                                                       LoadingPlaceholder = "loading.png"
-                                                                       ErrorPlaceholder = "error.png"
-                                                                       Source = "resource://Chronique.Images.SocialNetwork.Blog_Google_Plus.png">
-                                                    </forms:CachedImage>
+                                                                       LoadingPlaceholder="loading.png"
+                                                                       ErrorPlaceholder="error.png"
+                                                                       Source="resource://Chronique.Images.SocialNetwork.Blog_Google_Plus.png" />
                                                 </Grid>
                                             </Grid>
                                         </StackLayout>
@@ -128,15 +142,8 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-                        <ContentPage.Content>
-        <Grid RowSpacing="0" ColumnSpacing="0" Padding="0" Margin="0">
-<!--            <Grid.Behaviors>-->
-<!--                <local:SfListViewPullToRefreshBehavior />-->
-<!--            </Grid.Behaviors>-->
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-<!--                <RowDefinition Height="60"/>-->
-            </Grid.RowDefinitions>
+    <ContentPage.Content>
+        <AbsoluteLayout>
             <pulltoRefresh:SfPullToRefresh x:Name="pullToRefresh"
                                            ProgressBackgroundColor="#0065FF"
                                            RefreshContentHeight="50"
@@ -148,103 +155,24 @@
                 <pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
                     <OnPlatform x:TypeArguments="x:Double">
                         <On Platform="Android">6</On>
-                        <On Platform="iOS">2</On>
+                        <!-- <On Platform="iOS">2</On> -->
                     </OnPlatform>
                 </pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
                 <pulltoRefresh:SfPullToRefresh.PullableContent>
                     <syncfusion:SfListView x:Name="listView" ItemSize="120" ItemsSource="{Binding Items}"
                                            ItemTemplate="{StaticResource ItemTemplate}"
-                                   AutoFitMode="Height" SelectionMode="None"/>
-
-<!--                        <syncfusion:SfListView.ItemTemplate>-->
-<!--                            <DataTemplate>-->
-<!--                                <Grid RowSpacing="0" ColumnSpacing="0" Margin="0">-->
-<!--                                    <Grid.RowDefinitions>-->
-<!--                                        <RowDefinition Height="*" />-->
-<!--                                        <RowDefinition Height="1" />-->
-<!--                                    </Grid.RowDefinitions>-->
-<!--                                    <Grid Grid.Row="0" Padding="0,2,0,0">-->
-<!--                                        <Grid.ColumnDefinitions>-->
-<!--                                            <ColumnDefinition Width="Auto" />-->
-<!--                                            <ColumnDefinition Width="*" />-->
-<!--                                        </Grid.ColumnDefinitions>-->
-<!--                                        <ContentView Grid.Column="0" VerticalOptions="Fill" HorizontalOptions="Fill">-->
-<!--                                            <ContentView.GestureRecognizers>-->
-<!--                                                <TapGestureRecognizer Command="{Binding OpenWebCommand}"/>-->
-<!--                                            </ContentView.GestureRecognizers>-->
-<!--                                            <Image Source="{Binding LogoIcon}" />-->
-<!--                                        </ContentView>-->
-<!--                                        <Grid RowSpacing="0" Padding="10" Grid.Column="1">-->
-<!--                                        <Grid.RowDefinitions>-->
-<!--                                            <RowDefinition Height="Auto" />-->
-<!--                                            <RowDefinition Height="Auto" />-->
-<!--                                            <RowDefinition Height="50" />-->
-<!--                                        </Grid.RowDefinitions>-->
-<!--                                            <Label Grid.Row="0" Text="{Binding Name}" FontAttributes="Bold" FontSize="16" TextColor="#474747" />-->
-<!--                                            <Label Grid.Row="1" Text="{Binding Date}" Opacity=" 0.54" TextColor="#000000" FontSize="12"  />-->
-<!---->
-<!--                                        <Grid Grid.Row="2" Padding="0,15,0,0">-->
-<!--                                            <Grid.ColumnDefinitions>-->
-<!--                                                <ColumnDefinition Width="Auto" />-->
-<!--                                                <ColumnDefinition Width="*" />-->
-<!--                                            </Grid.ColumnDefinitions>-->
-<!--                                            <Button x:Name="button" Margin="-3,0,0,0" Grid.Column="0" Text="READ MORE" WidthRequest="86" HeightRequest="40"-->
-<!--                                TextColor="White" BackgroundColor="#2196F3" FontSize="10" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" -->
-<!--                                -->
-<!--                                Command="{Binding Path=BindingContext.ReadMoreCommand, Source={x:Reference Name=listView}}"-->
-<!--                                CommandParameter="{Binding .}" />-->
-<!--                                            <StackLayout Orientation="Horizontal" Margin="0,0,5,0" HeightRequest="31" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center">-->
-<!--                                                <Grid Padding="2,0,2,0" HorizontalOptions="Fill" VerticalOptions="Fill">-->
-<!--                                                    <Grid.GestureRecognizers>-->
-<!--                                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.TwitterCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>-->
-<!--                                                    </Grid.GestureRecognizers>-->
-<!--                                                    <Grid VerticalOptions="Center" HorizontalOptions="Center">-->
-<!--                                                        <Image HeightRequest="24" WidthRequest="24"  Source="{Binding BlogTwitterIcon}" />-->
-<!--                                                    </Grid>-->
-<!--                                                </Grid>-->
-<!--                                                <Grid Padding="2,0,2,0" HorizontalOptions="Fill" VerticalOptions="Fill">-->
-<!--                                                    <Grid.GestureRecognizers>-->
-<!--                                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.LinkedInCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>-->
-<!--                                                    </Grid.GestureRecognizers>-->
-<!--                                                    <Grid VerticalOptions="Center" HorizontalOptions="Center">-->
-<!--                                                        <Image HeightRequest="24" WidthRequest="24" Source="{Binding BlogLinkedInIcon}"/>-->
-<!--                                                    </Grid>-->
-<!--                                                </Grid>-->
-<!--                                                <Grid Padding="2,0,2,0" HorizontalOptions="Fill" VerticalOptions="Fill">-->
-<!--                                                    <Grid.GestureRecognizers>-->
-<!--                                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.FacebookCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>-->
-<!--                                                    </Grid.GestureRecognizers>-->
-<!--                                                    <Grid VerticalOptions="Center" HorizontalOptions="Center">-->
-<!--                                                        <Image HeightRequest="24" WidthRequest="24" Source="{Binding BlogFacebookIcon}"/>-->
-<!--                                                    </Grid>-->
-<!--                                                </Grid>-->
-<!--                                                <Grid Padding="2,0,2,0" HorizontalOptions="Fill" VerticalOptions="Fill">-->
-<!--                                                    <Grid.GestureRecognizers>-->
-<!--                                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.GooglePlusCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>-->
-<!--                                                    </Grid.GestureRecognizers>-->
-<!--                                                    <Grid VerticalOptions="Center" HorizontalOptions="Center">-->
-<!--                                                        <Image HeightRequest="24" WidthRequest="24" Source="{Binding BlogGooglePlusIcon}"/>-->
-<!--                                                    </Grid>-->
-<!--                                                </Grid>-->
-<!--                                            </StackLayout>-->
-<!--                                        </Grid>-->
-<!--                                      </Grid>-->
-<!--                                    </Grid>-->
-<!--                                    <BoxView Grid.Row="1" HeightRequest="1" Opacity="0.75" BackgroundColor="#DFDEE3" />-->
-<!--                                </Grid>-->
-<!--                            </DataTemplate>-->
-<!--                        </syncfusion:SfListView.ItemTemplate>-->
-                    
+                                           AutoFitMode="Height" SelectionMode="None" />
                 </pulltoRefresh:SfPullToRefresh.PullableContent>
             </pulltoRefresh:SfPullToRefresh>
+            <Frame BackgroundColor="{StaticResource BusyBackground}" HasShadow="True"
+                   AbsoluteLayout.LayoutBounds="0.5, 0.5, 1.0, 1.0" AbsoluteLayout.LayoutFlags="All"
+                   IsEnabled="{Binding IsBusy}" IsVisible="{Binding IsBusy}">
+                <xForms:SfBusyIndicator x:Name="busyindicator" IsEnabled="{Binding IsBusy}"
+                                        IsVisible="{Binding IsBusy}"
 
-<!--            <StackLayout Spacing="10" Grid.Row="1" BackgroundColor="Teal">-->
-<!--                <StackLayout Orientation="Vertical">-->
-<!--                    <Label Text="Transition Type"  WidthRequest="150" VerticalOptions ="Center" -->
-<!--                           HorizontalOptions ="Start"  FontFamily="Helvetica" FontSize="16" TextColor="White"/>-->
-<!--                    <Picker x:Name="transitionTypePicker" IsEnabled="true" TextColor="White" SelectedIndex="1" SelectedIndexChanged="Picker_SelectedIndexChanged"/>-->
-<!--                </StackLayout>-->
-<!--            </StackLayout>-->
-        </Grid>
+                                        ViewBoxWidth="100" ViewBoxHeight="100" AnimationType="Ball" Title="Loading..."
+                                        TextColor="CornflowerBlue" VerticalOptions="Center" HorizontalOptions="Center" />
+            </Frame>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

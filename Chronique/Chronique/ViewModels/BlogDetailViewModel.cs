@@ -5,6 +5,7 @@ namespace Chronique.ViewModels
     public class BlogDetailViewModel : BaseViewModel<BlogInfo>
     {
         public BlogInfo Item { get; set; }
+
         public BlogDetailViewModel(BlogInfo item = null)
         {
             Title = item?.BlogTitle;

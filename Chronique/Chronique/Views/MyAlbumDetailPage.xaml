@@ -1,34 +1,36 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xForms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:xForms1="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
              xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:xForms2="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              x:Class="Chronique.Views.MyAlbumDetailPage"
              Title="{Binding Title}">
     <!-- NavigationPage.HasNavigationBar="False" -->
 
     <ContentPage.Resources>
         <ResourceDictionary>
-<!--            <DataTemplate x:Name="ArtisteTemplate"  x:Key="ArtisteTemplate">-->
-<!--                <StackLayout Orientation="Horizontal">-->
-<!--                    <StackLayout.GestureRecognizers>-->
-<!--                        <TapGestureRecognizer Command="{Binding Path=BindingContext.OpenArtistAddCommand, Source={x:Reference Name=trackList}}" CommandParameter="{Binding .}"/>-->
-<!--                    </StackLayout.GestureRecognizers>-->
-<!--                    <Label Text="{Binding Pseudo}" FontAttributes="Bold"/>-->
-<!--                    ~1~                <Label Text=","/>@1@-->
-<!--                </StackLayout>-->
-<!--            </DataTemplate>-->
-            <DataTemplate x:Name="FooterTemplate"  x:Key="FooterTemplate">
+            <!--            <DataTemplate x:Name="ArtisteTemplate"  x:Key="ArtisteTemplate">-->
+            <!--                <StackLayout Orientation="Horizontal">-->
+            <!--                    <StackLayout.GestureRecognizers>-->
+            <!--                        <TapGestureRecognizer Command="{Binding Path=BindingContext.OpenArtistAddCommand, Source={x:Reference Name=trackList}}" CommandParameter="{Binding .}"/>-->
+            <!--                    </StackLayout.GestureRecognizers>-->
+            <!--                    <Label Text="{Binding Pseudo}" FontAttributes="Bold"/>-->
+            <!--                    ~1~                <Label Text=","/>@1@-->
+            <!--                </StackLayout>-->
+            <!--            </DataTemplate>-->
+            <DataTemplate x:Name="FooterTemplate" x:Key="FooterTemplate">
                 <ViewCell>
                     <ViewCell.View>
                         <Frame HasShadow="True" HorizontalOptions="FillAndExpand">
-                            <Label Text="{Binding Item.ShortDescription}" FontAttributes="Italic"/>
+                            <Label Text="{Binding Item.ShortDescription}" FontAttributes="Italic" />
                         </Frame>
                     </ViewCell.View>
                 </ViewCell>
             </DataTemplate>
-            <DataTemplate x:Name="ItemTemplate"  x:Key="ItemTemplate">
+            <DataTemplate x:Name="ItemTemplate" x:Key="ItemTemplate">
                 <ViewCell>
                     <ViewCell.View>
                         <Grid>
@@ -36,15 +38,15 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="1" />
                             </Grid.RowDefinitions>
-                            <StackLayout  Orientation="Horizontal">
-                                <Label Text="{Binding Position}"/>
-                                <Label Text="."/>
-                                <Label Text="{Binding Name}"/>
-                                <Label Text="-"/>
-                                <Label Text="{Binding ArtistName}"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Position}" />
+                                <Label Text="." />
+                                <Label Text="{Binding Name}" />
+                                <Label Text="-" />
+                                <Label Text="{Binding ArtistName}" />
                                 <!--                                <chronique:BindableStackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" ItemsSource="{Binding Peoples}"  ItemTemplate="{StaticResource ArtisteTemplate}"/>-->
                             </StackLayout>
-                            <StackLayout Grid.Row="1" BackgroundColor="Gray" HeightRequest="1"/>
+                            <StackLayout Grid.Row="1" BackgroundColor="Gray" HeightRequest="1" />
                         </Grid>
                     </ViewCell.View>
                 </ViewCell>
@@ -53,81 +55,98 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <xForms1:SfPullToRefresh x:Name="pullToRefresh"
-                                           ProgressBackgroundColor="#0065FF"
-                                           RefreshContentHeight="50"
-                                           PullingThreshold="150"
-                                           RefreshContentWidth="50"
-                                           TransitionMode="SlideOnTop"
-                                           IsRefreshing="False">
+        <AbsoluteLayout>
+            <xForms1:SfPullToRefresh x:Name="pullToRefresh"
+                                     ProgressBackgroundColor="#0065FF"
+                                     RefreshContentHeight="50"
+                                     PullingThreshold="150"
+                                     RefreshContentWidth="50"
+                                     TransitionMode="SlideOnTop"
+                                     IsRefreshing="False">
                 <xForms1:SfPullToRefresh.ProgressStrokeWidth>
-                <OnPlatform x:TypeArguments="x:Double">
-                    <On Platform="Android">6</On>
-                        <On Platform="iOS">2</On>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android">6</On>
+                        <!-- <On Platform="iOS">2</On> -->
                     </OnPlatform>
                 </xForms1:SfPullToRefresh.ProgressStrokeWidth>
                 <xForms1:SfPullToRefresh.PullableContent>
-                <Grid RowSpacing="10" ColumnSpacing="0" Padding="0" Margin="0" x:Name="Identity">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Frame HorizontalOptions="FillAndExpand" Grid.Row="0" HasShadow="True" OutlineColor="CornflowerBlue" BackgroundColor="{StaticResource PurpleTheme}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-<!--                        <Image Grid.Column="0" Source="{Binding Item.Photo}"/>-->
-
-                            <forms:CachedImage Grid.Column="0"
-                                        CacheDuration="30" RetryCount="3" RetryDelay="250"
-                                        DownsampleToViewSize="true"
-                                        LoadingPlaceholder = "loading.png"
-                                        ErrorPlaceholder = "error.png"
-                                        Source = "{Binding Item.Photo_uri}">
-
-                            </forms:CachedImage>
-
-                            <Grid Grid.Column="1" RowSpacing="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                    <Grid RowSpacing="10" ColumnSpacing="0" Padding="0" Margin="0" x:Name="Identity">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Frame HorizontalOptions="FillAndExpand" Grid.Row="0" HasShadow="True"
+                               OutlineColor="CornflowerBlue" BackgroundColor="{StaticResource PurpleTheme}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
+                                <!--                        <Image Grid.Column="0" Source="{Binding Item.Photo}"/>-->
 
-                            <Label Text="Title: " Grid.Row="0" Grid.Column="0" FontAttributes="Bold" FontSize="16"/>
-                                <Label Text="{Binding Item.Name}" Grid.Row="0" Grid.Column="1" FontAttributes="Bold" FontSize="16"  LineBreakMode="TailTruncation"/>
-                            <Label Text="Artist: " Grid.Row="1" Grid.Column="0"/>
-                                <Label Text="{Binding Item.MainArtist}" Grid.Row="1" Grid.Column="1"  FontSize="Small" LineBreakMode="TailTruncation"/>
-                            <Label Text="Date: " Grid.Row="2" Grid.Column="0"/>
-                                <Label Text="{Binding Item.Date}" Grid.Row="2" Grid.Column="1"  FontSize="Small" LineBreakMode="TailTruncation"/>
-                            <Label Text="Tracks: " Grid.Row="3" Grid.Column="0"/>
-                                <Label Text="{Binding TracksNumber}" Grid.Row="3" Grid.Column="1"  FontSize="Small" LineBreakMode="TailTruncation"/>
-                            <Label Text="Genre: " Grid.Row="4" Grid.Column="0"/>
-                                <Label Text="{Binding Item.Description}" Grid.Row="4" Grid.Column="1"  FontSize="Small" LineBreakMode="TailTruncation"/>
-                        </Grid>
+                                <forms:CachedImage Grid.Column="0"
+                                                   CacheDuration="30" RetryCount="3" RetryDelay="250"
+                                                   DownsampleToViewSize="true"
+                                                   LoadingPlaceholder="loading.png"
+                                                   ErrorPlaceholder="error.png"
+                                                   Source="{Binding Item.Photo_uri}" />
 
-                        </Grid>
-                    </Frame>
+                                <Grid Grid.Column="1" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
 
-                    <Frame Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="True">
-                        <xForms:SfListView x:Name="trackList" ItemSize="120" ItemsSource="{Binding Item.TrackList}" 
-                                           ItemTemplate="{StaticResource ItemTemplate}"
-                                           IsStickyFooter="True"
-                                           FooterTemplate="{StaticResource FooterTemplate}"
-                                           AutoFitMode="Height" SelectionMode="None"/>
-                    </Frame>
+                                    <Label Text="Title: " Grid.Row="0" Grid.Column="0" FontAttributes="Bold"
+                                           FontSize="16" />
+                                    <Label Text="{Binding Item.Name}" Grid.Row="0" Grid.Column="1"
+                                           FontAttributes="Bold" FontSize="16" LineBreakMode="TailTruncation" />
+                                    <Label Text="Artist: " Grid.Row="1" Grid.Column="0" />
+                                    <Label Text="{Binding Item.MainArtist}" Grid.Row="1" Grid.Column="1"
+                                           FontSize="Small" LineBreakMode="TailTruncation" />
+                                    <Label Text="Date: " Grid.Row="2" Grid.Column="0" />
+                                    <Label Text="{Binding Item.Date}" Grid.Row="2" Grid.Column="1" FontSize="Small"
+                                           LineBreakMode="TailTruncation" />
+                                    <Label Text="Tracks: " Grid.Row="3" Grid.Column="0" />
+                                    <Label Text="{Binding TracksNumber}" Grid.Row="3" Grid.Column="1" FontSize="Small"
+                                           LineBreakMode="TailTruncation" />
+                                    <Label Text="Genre: " Grid.Row="4" Grid.Column="0" />
+                                    <Label Text="{Binding Item.Description}" Grid.Row="4" Grid.Column="1"
+                                           FontSize="Small" LineBreakMode="TailTruncation" />
+                                </Grid>
 
-                </Grid>
-            </xForms1:SfPullToRefresh.PullableContent>
+                            </Grid>
+                        </Frame>
+
+                        <Frame Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                               HasShadow="True">
+                            <xForms:SfListView x:Name="trackList" ItemSize="120" ItemsSource="{Binding Item.TrackList}"
+                                               ItemTemplate="{StaticResource ItemTemplate}"
+                                               IsStickyFooter="True"
+                                               FooterTemplate="{StaticResource FooterTemplate}"
+                                               AutoFitMode="Height" SelectionMode="None" />
+                        </Frame>
+
+                    </Grid>
+                </xForms1:SfPullToRefresh.PullableContent>
             </xForms1:SfPullToRefresh>
+            <Frame BackgroundColor="{StaticResource BusyBackground}" HasShadow="True"
+                   AbsoluteLayout.LayoutBounds="0.5, 0.5, 1.0, 1.0" AbsoluteLayout.LayoutFlags="All"
+                   IsEnabled="{Binding IsBusy}" IsVisible="{Binding IsBusy}">
+                <xForms2:SfBusyIndicator x:Name="busyindicator" IsEnabled="{Binding IsBusy}"
+                                         IsVisible="{Binding IsBusy}"
+
+                                         ViewBoxWidth="100" ViewBoxHeight="100" AnimationType="Ball" Title="Loading..."
+                                         TextColor="CornflowerBlue" VerticalOptions="Center" HorizontalOptions="Center" />
+            </Frame>
+        </AbsoluteLayout>
     </ContentPage.Content>
 
 

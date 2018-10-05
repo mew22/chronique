@@ -14,6 +14,7 @@ namespace Chronique.Views
     public partial class MyArtisteDetailPage : ContentPage
     {
         private MyArtistDetailsViewModel viewModel;
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -49,6 +50,7 @@ namespace Chronique.Views
             // Manually deselect item
             listViewAlbums.SelectedItem = null;
         }
+
         async void OnTapSimilarsList(object sender, ItemTappedEventArgs args)
         {
             if (!(args.ItemData is Artiste item) || item.ProviderId == null || item.ProviderId == "")
@@ -62,7 +64,7 @@ namespace Chronique.Views
 
         async void OnTapRelationsList(object sender, ItemTappedEventArgs tappedEventArgs)
         {
-            string uri = (string)tappedEventArgs.ItemData;
+            string uri = (string) tappedEventArgs.ItemData;
             ICommand com = null;
             viewModel.OpenRelations.TryGetValue(uri, out com);
             com?.Execute(null);
@@ -87,6 +89,7 @@ namespace Chronique.Views
                 //                };
                 //                pullToRefreshViewModel.BlogsInfo.Insert(0, item);
             }
+
             //pullToRefresh.IsRefreshing = false;
         }
     }

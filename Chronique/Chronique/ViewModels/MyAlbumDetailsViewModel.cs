@@ -13,6 +13,7 @@ namespace Chronique.ViewModels
     public class MyAlbumDetailsViewModel : BaseViewModel<Album>
     {
         private Album item;
+
         public Album Item
         {
             get => item;
@@ -24,6 +25,7 @@ namespace Chronique.ViewModels
         }
 
         private string tracksNumber;
+
         public string TracksNumber
         {
             get => tracksNumber;
@@ -38,12 +40,14 @@ namespace Chronique.ViewModels
         public Album DataFromArtistPage { get; set; }
         public IDataStore<Album> DataStore => DependencyService.Get<IDataStore<Album>>() ?? new MyAlbumMockStore();
         public Command LoadItemsCommand { get; set; }
+
         public MyAlbumDetailsViewModel(GenericRequestObject id)
         {
             Id = id;
             DataFromArtistPage = null;
-            LoadItemsCommand = new Command(async (query) => await ExecuteLoadItemsCommand((string)query));
+            LoadItemsCommand = new Command(async (query) => await ExecuteLoadItemsCommand((string) query));
         }
+
         public MyAlbumDetailsViewModel(Album data)
         {
             DataFromArtistPage = data;
@@ -64,15 +68,17 @@ namespace Chronique.ViewModels
                 {
                     Item = DataFromArtistPage;
                 }
-                else if(DataFromArtistPage != null && DataFromArtistPage.ProviderId != null)
+                else if (DataFromArtistPage != null && DataFromArtistPage.ProviderId != null)
                 {
-                    Item = await DataStore.GetItemAsync(DataFromArtistPage.ProviderId ?? DataFromArtistPage.Name, DataFromArtistPage.MainArtist);
+                    Item = await DataStore.GetItemAsync(DataFromArtistPage.ProviderId ?? DataFromArtistPage.Name,
+                        DataFromArtistPage.MainArtist);
                 }
-                else if(Id?.ProviderId != null)
+                else if (Id?.ProviderId != null)
                 {
                     //Id.Subtitle temp fix to get artist if mbid not exist (pass album name and artist name...)
                     Item = await DataStore.GetItemAsync(Id.ProviderId, Id.Subtitle);
                 }
+
                 TracksNumber = Item.TrackList.Count + "";
                 Title = Item?.Name;
             }

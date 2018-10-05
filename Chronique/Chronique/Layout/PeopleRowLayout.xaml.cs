@@ -13,12 +13,12 @@ namespace Chronique.Layout
     public partial class PeopleRowLayout : Grid
     {
         private Artiste artiste;
+
         public PeopleRowLayout(Artiste artiste)
         {
             this.artiste = artiste;
             BindingContext = artiste;
             InitializeComponent();
-
         }
     }
 }

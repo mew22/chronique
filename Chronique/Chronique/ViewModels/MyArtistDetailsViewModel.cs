@@ -13,6 +13,7 @@ namespace Chronique.ViewModels
     public class MyArtistDetailsViewModel : BaseViewModel<Artiste>
     {
         private Artiste item;
+
         public Artiste Item
         {
             get => item;
@@ -30,6 +31,7 @@ namespace Chronique.ViewModels
         public Artiste FromArtistPage { get; set; }
         public IDataStore<Artiste> DataStore => DependencyService.Get<IDataStore<Artiste>>() ?? new MyArtistMockStore();
         public Command LoadItemsCommand { get; set; }
+
         public MyArtistDetailsViewModel(GenericRequestObject id)
         {
             Id = id;
@@ -37,8 +39,9 @@ namespace Chronique.ViewModels
             Links = new ObservableCollection<string>();
             var comparer = StringComparer.OrdinalIgnoreCase;
             OpenRelations = new Dictionary<string, ICommand>(comparer);
-            LoadItemsCommand = new Command(async (query) => await ExecuteLoadItemsCommand((string)query));
+            LoadItemsCommand = new Command(async (query) => await ExecuteLoadItemsCommand((string) query));
         }
+
         public MyArtistDetailsViewModel(Artiste id)
         {
             Id = null;
@@ -46,7 +49,7 @@ namespace Chronique.ViewModels
             Links = new ObservableCollection<string>();
             var comparer = StringComparer.OrdinalIgnoreCase;
             OpenRelations = new Dictionary<string, ICommand>(comparer);
-            LoadItemsCommand = new Command(async (query) => await ExecuteLoadItemsCommand((string)query));
+            LoadItemsCommand = new Command(async (query) => await ExecuteLoadItemsCommand((string) query));
         }
 
         public virtual async Task ExecuteLoadItemsCommand(string query = null)
@@ -111,6 +114,7 @@ namespace Chronique.ViewModels
                         default:
                             break;
                     }
+
                     if (url != null && !OpenRelations.ContainsKey(url))
                         OpenRelations.Add(url, new Command(() => Device.OpenUri(new Uri(rel.Value))));
                 }

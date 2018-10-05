@@ -7,8 +7,6 @@ namespace Chronique.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlaylistDetailPage : ContentPage
     {
-
-
         public PlaylistDetailPage(PlaylistDetailViewModel viewModel)
         {
             InitializeComponent();

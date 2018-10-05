@@ -34,6 +34,7 @@ namespace Chronique.Views
 
             calendarSorties.DataSource = collection;
         }
+
         async void About_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AboutPage());

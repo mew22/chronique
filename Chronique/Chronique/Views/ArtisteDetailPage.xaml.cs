@@ -9,8 +9,6 @@ namespace Chronique.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ArtisteDetailPage : ContentPage
     {
-
-
         // Note - The Xamarin.Forms Previewer requires a default, parameterless constructor to render a page.
 
 
@@ -40,6 +38,7 @@ namespace Chronique.Views
                 //                };
                 //                pullToRefreshViewModel.BlogsInfo.Insert(0, item);
             }
+
             //pullToRefresh.IsRefreshing = false;
         }
     }

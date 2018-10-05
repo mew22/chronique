@@ -13,15 +13,16 @@ namespace Chronique.ViewModels
 {
     public class BaseListViewModel<T, U, V> : BaseViewModel<T>
         where T : BaseModel
-        where U : ContentPage 
-        where V : IDataStore<T>, new ()
+        where U : ContentPage
+        where V : IDataStore<T>, new()
     {
         public Command LoadItemsCommand { get; set; }
 
         private ObservableCollection<T> items;
+
         public ObservableCollection<T> Items
         {
-            get { return items;}
+            get { return items; }
             set
             {
                 items = value;
@@ -30,10 +31,11 @@ namespace Chronique.ViewModels
         }
 
         public IDataStore<T> DataStore => DependencyService.Get<IDataStore<T>>() ?? new V();
+
         public BaseListViewModel()
         {
             Items = new ObservableCollection<T>();
-            LoadItemsCommand = new Command(async (query) => await ExecuteLoadItemsCommand((string)query));
+            LoadItemsCommand = new Command(async (query) => await ExecuteLoadItemsCommand((string) query));
             MessagingCenter.Subscribe<U, T>(this, "Ajouter un Item", async (obj, item) =>
             {
                 Items.Add(item);
@@ -50,7 +52,6 @@ namespace Chronique.ViewModels
 
             try
             {
-                
                 var loaded_items = await DataStore.GetItemsAsync(true, query);
                 Items.Clear();
                 foreach (var item in loaded_items)
@@ -69,4 +70,3 @@ namespace Chronique.ViewModels
         }
     }
 }
-

@@ -8,6 +8,7 @@ namespace Chronique.Models
 
         private string blogTitle;
         private string blogCategory;
+
         private string blogAuthor;
 //        private ImageSource categoryIcon;
 //        private ImageSource autherIcon;
@@ -127,22 +128,41 @@ namespace Chronique.Models
         public string FB_link
         {
             get { return fb_link; }
-            set { fb_link = value; OnPropertyChanged("FB_link"); }
+            set
+            {
+                fb_link = value;
+                OnPropertyChanged("FB_link");
+            }
         }
+
         public string TW_link
         {
             get { return tw_link; }
-            set { tw_link = value; OnPropertyChanged("TW_link"); }
+            set
+            {
+                tw_link = value;
+                OnPropertyChanged("TW_link");
+            }
         }
+
         public string GP_link
         {
             get { return gp_link; }
-            set { gp_link = value; OnPropertyChanged("GP_link"); }
+            set
+            {
+                gp_link = value;
+                OnPropertyChanged("GP_link");
+            }
         }
+
         public string LI_link
         {
             get { return li_link; }
-            set { li_link = value; OnPropertyChanged("LI_link"); }
+            set
+            {
+                li_link = value;
+                OnPropertyChanged("LI_link");
+            }
         }
 
         public string ReadMoreContent

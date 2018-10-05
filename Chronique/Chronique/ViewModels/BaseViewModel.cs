@@ -6,11 +6,11 @@ using Chronique.Models;
 
 namespace Chronique.ViewModels
 {
-    public class BaseViewModel<T> : INotifyPropertyChanged 
+    public class BaseViewModel<T> : INotifyPropertyChanged
         where T : BaseModel
     {
-
         bool isBusy = false;
+
         public bool IsBusy
         {
             get { return isBusy; }
@@ -18,6 +18,7 @@ namespace Chronique.ViewModels
         }
 
         string title = string.Empty;
+
         public string Title
         {
             get { return title; }
@@ -25,7 +26,7 @@ namespace Chronique.ViewModels
         }
 
         protected bool SetProperty<T>(ref T backingStore, T value,
-            [CallerMemberName]string propertyName = "",
+            [CallerMemberName] string propertyName = "",
             Action onChanged = null)
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
@@ -38,7 +39,9 @@ namespace Chronique.ViewModels
         }
 
         #region INotifyPropertyChanged
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = PropertyChanged;
@@ -47,6 +50,7 @@ namespace Chronique.ViewModels
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
         #endregion
     }
 }

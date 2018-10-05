@@ -19,6 +19,7 @@ namespace Chronique.Views
 //            if (viewModel.Items.Count == 0)
 //                viewModel.LoadItemsCommand.Execute(null);
         }
+
         public SearchPage()
         {
             Title = "La Chronique";
@@ -41,8 +42,7 @@ namespace Chronique.Views
             });
 
             listView.DataSource.FilterChanged += DataSource_FilterChanged;
-
-    }
+        }
 
         #region FilterBar event
 
@@ -55,6 +55,7 @@ namespace Chronique.Views
                 this.listView.DataSource.RefreshFilter();
             }
         }
+
         private void OnSearchButtonPressed(object sender, EventArgs e)
         {
             searchBar = (sender as SearchBar);
@@ -79,9 +80,11 @@ namespace Chronique.Views
             else
                 return false;
         }
+
         #endregion
 
         #region PullToRefresh Event
+
         private async void PullToRefresh_Refreshing(object sender, EventArgs args)
         {
             pullToRefresh.IsRefreshing = true;
@@ -99,20 +102,22 @@ namespace Chronique.Views
 //                };
 //                pullToRefreshViewModel.BlogsInfo.Insert(0, item);
             }
+
             pullToRefresh.IsRefreshing = false;
         }
+
         private async void PullToRefresh_Refreshed(object sender, EventArgs args)
         {
-            
         }
+
         private async void PullToRefresh_Pulling(object sender, EventArgs args)
         {
-
         }
 
         #endregion
 
         #region List Event
+
         private void ListView_GroupExpanding(object sender, GroupExpandCollapseChangingEventArgs e)
         {
 //            if (e.Groups[0] == listView.DataSource.Groups[0])
@@ -145,11 +150,13 @@ namespace Chronique.Views
             // Manually deselect item
             listView.SelectedItem = null;
         }
+
         private void ListView_ItemHolding(object sender, ItemHoldingEventArgs e)
         {
 //            if (e.ItemData == viewModel.InboxInfo[3])
 //                viewModel.InboxInfo.Remove(e.ItemData as ListViewInboxInfo);
         }
+
         private void ListView_ItemDoubleTapped(object sender, ItemDoubleTappedEventArgs e)
         {
 //            var listViewInboxInfo = new ListViewInboxInfo();
@@ -174,13 +181,16 @@ namespace Chronique.Views
 //            });
 //            listView.RefreshView();
         }
+
         #endregion
 
         #region Menu
+
         async void About_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AboutPage());
         }
+
         #endregion
     }
 }

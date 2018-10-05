@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Chronique.Views.PeoplePage"
@@ -10,6 +11,7 @@
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:viewModels="clr-namespace:Chronique.ViewModels;assembly=Chronique"
              xmlns:services="clr-namespace:Chronique.Services;assembly=Chronique"
+             xmlns:xForms2="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              Title="{Binding Title}">
     <!-- NavigationPage.HasNavigationBar="False" -->
     <ContentPage.ToolbarItems>
@@ -17,14 +19,14 @@
         <ToolbarItem Name="Info" Order="Secondary" Priority="1" Icon="ic_action_info.png" Clicked="About_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.BindingContext>
-        <viewModels:ArtistesViewModel x:Name="viewModel"/>
+        <viewModels:ArtistesViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
 
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
-            <services:BoolToImageConverter x:Key="BoolToImageConverter"/>
-            <DataTemplate x:Name="ItemTemplate"  x:Key="ItemTemplate">
+            <services:BoolToImageConverter x:Key="BoolToImageConverter" />
+            <DataTemplate x:Name="ItemTemplate" x:Key="ItemTemplate">
                 <ViewCell>
                     <ViewCell.View>
                         <Grid x:Name="grid" RowSpacing="1">
@@ -39,75 +41,76 @@
                                     <ColumnDefinition Width="70" />
                                 </Grid.ColumnDefinitions>
 
-<!--                                <Image Source="{Binding Photo}"-->
-<!--                       VerticalOptions="Center"-->
-<!--                       HorizontalOptions="Center"-->
-<!--                       HeightRequest="50"/>-->
+                                <!--                                <Image Source="{Binding Photo}"-->
+                                <!--                       VerticalOptions="Center"-->
+                                <!--                       HorizontalOptions="Center"-->
+                                <!--                       HeightRequest="50"/>-->
                                 <forms:CachedImage HorizontalOptions="Center" VerticalOptions="Center"
-                                HeightRequest="50" CacheDuration="30" RetryCount="3" RetryDelay="250"
-                                DownsampleToViewSize="true"
-                                LoadingPlaceholder = "loading.png"
-                                ErrorPlaceholder = "error.png"
-                                Source = "{Binding Photo_uri}">
+                                                   HeightRequest="50" CacheDuration="30" RetryCount="3"
+                                                   RetryDelay="250"
+                                                   DownsampleToViewSize="true"
+                                                   LoadingPlaceholder="loading.png"
+                                                   ErrorPlaceholder="error.png"
+                                                   Source="{Binding Photo_uri}">
                                     <forms:CachedImage.Transformations>
                                         <transformations:CircleTransformation />
                                     </forms:CachedImage.Transformations>
                                 </forms:CachedImage>
                                 <Grid Grid.Column="1"
-                      RowSpacing="1"
-                      Padding="10,0,0,0"
-                      VerticalOptions="Center">
+                                      RowSpacing="1"
+                                      Padding="10,0,0,0"
+                                      VerticalOptions="Center">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
 
                                     <Label LineBreakMode="NoWrap"
-                         TextColor="#474747"
-                         Text="{Binding Pseudo}">
+                                           TextColor="#474747"
+                                           Text="{Binding Pseudo}">
                                         <Label.FontSize>
                                             <OnPlatform x:TypeArguments="x:Double">
                                                 <On Platform="Android">
                                                     <OnIdiom x:TypeArguments="x:Double"
-                                   Phone="16"
-                                   Tablet="18" />
+                                                             Phone="16"
+                                                             Tablet="18" />
                                                 </On>
-<!--                                                <On Platform="iOS">-->
-<!--                                                    <OnIdiom x:TypeArguments="x:Double"-->
-<!--                                   Phone="16"-->
-<!--                                   Tablet="18" />-->
-<!--                                                </On>-->
+                                                <!--                                                <On Platform="iOS">-->
+                                                <!--                                                    <OnIdiom x:TypeArguments="x:Double"-->
+                                                <!--                                   Phone="16"-->
+                                                <!--                                   Tablet="18" />-->
+                                                <!--                                                </On>-->
                                             </OnPlatform>
                                         </Label.FontSize>
                                     </Label>
                                     <Label Grid.Row="1"
-                         Grid.Column="0"
-                         TextColor="#474747"
-                         LineBreakMode="NoWrap"
-                         Text="{Binding Job}">
+                                           Grid.Column="0"
+                                           TextColor="#474747"
+                                           LineBreakMode="NoWrap"
+                                           Text="{Binding Job}">
                                         <Label.FontSize>
                                             <OnPlatform x:TypeArguments="x:Double">
                                                 <On Platform="Android">
                                                     <OnIdiom x:TypeArguments="x:Double"
-                                   Phone="12"
-                                   Tablet="14" />
+                                                             Phone="12"
+                                                             Tablet="14" />
                                                 </On>
-<!--                                                <On Platform="iOS">-->
-<!--                                                    <OnIdiom x:TypeArguments="x:Double"-->
-<!--                                   Phone="12"-->
-<!--                                   Tablet="14" />-->
-<!--                                                </On>-->
+                                                <!--                                                <On Platform="iOS">-->
+                                                <!--                                                    <OnIdiom x:TypeArguments="x:Double"-->
+                                                <!--                                   Phone="12"-->
+                                                <!--                                   Tablet="14" />-->
+                                                <!--                                                </On>-->
                                             </OnPlatform>
                                         </Label.FontSize>
                                     </Label>
                                 </Grid>
                             </Grid>
-                            <BoxView Grid.Row="1" BackgroundColor="Gray" HeightRequest="1"/>
+                            <BoxView Grid.Row="1" BackgroundColor="Gray" HeightRequest="1" />
                         </Grid>
                     </ViewCell.View>
                 </ViewCell>
             </DataTemplate>
-            <DataTemplate x:Name="GroupHeaderTemplate"  x:Key="GroupHeaderTemplate">
+            <DataTemplate x:Name="GroupHeaderTemplate" x:Key="GroupHeaderTemplate">
                 <ViewCell>
                     <ViewCell.View>
                         <Grid BackgroundColor="#E4E4E4">
@@ -116,16 +119,16 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Image x:Name="NormalImage" Grid.Column="0" HorizontalOptions="Center"
-                HeightRequest="30"
-                WidthRequest="30"
-                Source="{Binding IsExpand, Converter={StaticResource BoolToImageConverter}}"
-                VerticalOptions="Center"/>
+                                   HeightRequest="30"
+                                   WidthRequest="30"
+                                   Source="{Binding IsExpand, Converter={StaticResource BoolToImageConverter}}"
+                                   VerticalOptions="Center" />
                             <Label Text="{Binding Key}" Grid.Column="1"
-                     FontSize="22"
-                     FontAttributes="Bold"
-                     VerticalOptions="Center"
-                     HorizontalOptions="Start"
-                     Margin="20,0,0,0" />
+                                   FontSize="22"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"
+                                   Margin="20,0,0,0" />
                         </Grid>
                     </ViewCell.View>
                 </ViewCell>
@@ -133,43 +136,44 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <xForms:SfPullToRefresh x:Name="pullToRefresh"
+        <AbsoluteLayout>
+            <xForms:SfPullToRefresh x:Name="pullToRefresh"
                                     TransitionMode="Push"
                                     ProgressBackgroundColor="BlueViolet"
                                     ProgressStrokeColor="Red"
                                     Refreshing="PullToRefresh_Refreshing"
                                     Refreshed="PullToRefresh_Refreshed"
-                                    IsRefreshing="False" 
+                                    IsRefreshing="False"
                                     PullingThreshold="100"
                                     RefreshContentHeight="50"
                                     RefreshContentThreshold="30"
                                     RefreshContentWidth="50">
-            <xForms:SfPullToRefresh.PullableContent>
+                <xForms:SfPullToRefresh.PullableContent>
 
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="0"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <SearchBar x:Name="searchBar" Placeholder = "Search here to filter" TextChanged="OnFilterTextChanged" ></SearchBar>
-                    <listView:SfListView x:Name="listView" ItemSize="70" GroupHeaderSize="60" ItemTemplate="{StaticResource ItemTemplate}" GroupHeaderTemplate="{StaticResource GroupHeaderTemplate}"
-                           ItemsSource="{Binding Items}" ItemSpacing="0,0,5,0" AllowGroupExpandCollapse="True" IsScrollBarVisible="True" 
-                           GroupCollapsing="ListView_GroupCollapsing" GroupExpanding="ListView_GroupExpanding" ItemHolding="ListView_ItemHolding" ItemTapped="ListView_ItemTapped" ItemDoubleTapped="ListView_ItemDoubleTapped"
-                           Grid.Row="1" Grid.Column="0">
-                    </listView:SfListView>
-                    <xForms1:SfPicker Grid.Row="2" HeaderBackgroundColor="Green" HeaderTextColor="White"
-                        PickerHeight="400" PickerWidth="300" ColumnHeaderHeight="40"
-                        x:Name="picker" HeaderText="Add an artist to your list" ItemsSource="{Binding Items}" OnPickerItemLoaded="picker_OnPickerItemLoaded"
-                        PickerMode="Dialog" SelectedItemTextColor="Red" IsVisible="False" IsOpen="False" SelectionBackgroundColor="Aquamarine"
-                                      HorizontalOptions="Center" VerticalOptions="Center"
-                                      
-                        CancelButtonClicked="Picker_OnCancelButtonClicked" OkButtonClicked="Picker_OnOkButtonClicked" ShowFooter="True"/>
-                </Grid>
-            </xForms:SfPullToRefresh.PullableContent>
-        </xForms:SfPullToRefresh>
+                    <StackLayout>
+                        <SearchBar x:Name="searchBar" Placeholder="Search here to filter"
+                                   TextChanged="OnFilterTextChanged" />
+                        <listView:SfListView x:Name="listView" ItemSize="70" GroupHeaderSize="60"
+                                             ItemTemplate="{StaticResource ItemTemplate}"
+                                             GroupHeaderTemplate="{StaticResource GroupHeaderTemplate}"
+                                             ItemsSource="{Binding Items}" ItemSpacing="0,0,5,0"
+                                             AllowGroupExpandCollapse="True" IsScrollBarVisible="True"
+                                             GroupCollapsing="ListView_GroupCollapsing"
+                                             GroupExpanding="ListView_GroupExpanding"
+                                             ItemHolding="ListView_ItemHolding" ItemTapped="ListView_ItemTapped"
+                                             ItemDoubleTapped="ListView_ItemDoubleTapped" />
+                    </StackLayout>
+                </xForms:SfPullToRefresh.PullableContent>
+            </xForms:SfPullToRefresh>
+            <Frame BackgroundColor="{StaticResource BusyBackground}" HasShadow="True"
+                   AbsoluteLayout.LayoutBounds="0.5, 0.5, 1.0, 1.0" AbsoluteLayout.LayoutFlags="All"
+                   IsEnabled="{Binding IsBusy}" IsVisible="{Binding IsBusy}">
+                <xForms2:SfBusyIndicator x:Name="busyindicator" IsEnabled="{Binding IsBusy}"
+                                         IsVisible="{Binding IsBusy}"
+
+                                         ViewBoxWidth="100" ViewBoxHeight="100" AnimationType="Ball" Title="Loading..."
+                                         TextColor="CornflowerBlue" VerticalOptions="Center" HorizontalOptions="Center" />
+            </Frame>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

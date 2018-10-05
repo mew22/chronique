@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+
 //using Realms;
 
 namespace Chronique.Services
@@ -13,6 +14,7 @@ namespace Chronique.Services
         {
 //            realmInstance = Realm.GetInstance();
         }
+
         public virtual IEnumerable<TEntity> GetAll()
         {
             throw new NotImplementedException();

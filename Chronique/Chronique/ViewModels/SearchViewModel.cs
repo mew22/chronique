@@ -3,14 +3,15 @@ using Chronique.Services;
 
 namespace Chronique.ViewModels
 {
-
     public class SearchViewModel : BaseListViewModel<GenericRequestObject, Views.NewArtistePage, MockSearchStore>
     {
         public string query;
+
         public SearchViewModel()
         {
             Title = "La Chronique";
         }
+
         //        public override async Task ExecuteLoadItemsCommand()
         //        {
         //            if (IsBusy)
@@ -36,5 +37,5 @@ namespace Chronique.ViewModels
         //                IsBusy = false;
         //            }
         //        }
-            }
     }
+}

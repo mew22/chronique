@@ -11,6 +11,7 @@ using Plugin.Connectivity;
 using Track = Chronique.Models.Track;
 
 [assembly: Xamarin.Forms.Dependency(typeof(MyAlbumMockStore))]
+
 namespace Chronique.Services
 {
     public class MyAlbumMockStore : IDataStore<Album>
@@ -48,34 +49,36 @@ namespace Chronique.Services
                 }
 
                 else if (id != null && id != "" && CrossConnectivity.Current.IsConnected)
+                {
+                    //If mbid
+                    if (id.Length == 36 && id.Contains("-"))
                     {
-                        //If mbid
-                        if (id.Length == 36 && id.Contains("-"))
-                        {
 //                            var album = await Release.GetAsync(id, "artist-rels", "url-rels", "event-rels",
 //                                "release-rels");
-                            var lastfmAlbum = await lastFm.Album.GetInfoByMbidAsync(id);
-                            lastAlbum = new Album(lastfmAlbum.Content.Name,
-                                lastfmAlbum.Content.ReleaseDateUtc.ToString(), lastfmAlbum.Content.ArtistName,
-                                lastfmAlbum.Content.ArtistName,
-                                ConverterToViewObj.ConvertTracks(lastfmAlbum.Content.Tracks),
-                                ConverterToViewObj.ConvertTags(lastfmAlbum.Content.TopTags), lastfmAlbum.Content.Images.Large.AbsoluteUri,
-                                lastfmAlbum.Content.Mbid);
+                        var lastfmAlbum = await lastFm.Album.GetInfoByMbidAsync(id);
+                        lastAlbum = new Album(lastfmAlbum.Content.Name,
+                            lastfmAlbum.Content.ReleaseDateUtc.ToString(), lastfmAlbum.Content.ArtistName,
+                            lastfmAlbum.Content.ArtistName,
+                            ConverterToViewObj.ConvertTracks(lastfmAlbum.Content.Tracks),
+                            ConverterToViewObj.ConvertTags(lastfmAlbum.Content.TopTags),
+                            lastfmAlbum.Content.Images.Large.AbsoluteUri,
+                            lastfmAlbum.Content.Mbid);
                     }
-                        else
-                        {
-                            var lastfmAlbum = await lastFm.Album.GetInfoAsync(additionnalInfos, id);
-                            lastAlbum = new Album(lastfmAlbum.Content.Name,
-                                lastfmAlbum.Content.ReleaseDateUtc.ToString(), lastfmAlbum.Content.ArtistName,
-                                lastfmAlbum.Content.ArtistName,
-                                ConverterToViewObj.ConvertTracks(lastfmAlbum.Content.Tracks),
-                                ConverterToViewObj.ConvertTags(lastfmAlbum.Content.TopTags), lastfmAlbum.Content.Images.Large.AbsoluteUri,
-                                lastfmAlbum.Content.Mbid);
+                    else
+                    {
+                        var lastfmAlbum = await lastFm.Album.GetInfoAsync(additionnalInfos, id);
+                        lastAlbum = new Album(lastfmAlbum.Content.Name,
+                            lastfmAlbum.Content.ReleaseDateUtc.ToString(), lastfmAlbum.Content.ArtistName,
+                            lastfmAlbum.Content.ArtistName,
+                            ConverterToViewObj.ConvertTracks(lastfmAlbum.Content.Tracks),
+                            ConverterToViewObj.ConvertTags(lastfmAlbum.Content.TopTags),
+                            lastfmAlbum.Content.Images.Large.AbsoluteUri,
+                            lastfmAlbum.Content.Mbid);
                     }
 
-                        return await Task.FromResult(lastAlbum);
-                    }
-                
+                    return await Task.FromResult(lastAlbum);
+                }
+
 
                 return null;
             }
@@ -90,7 +93,5 @@ namespace Chronique.Services
         {
             throw new NotImplementedException();
         }
-
-
     }
 }

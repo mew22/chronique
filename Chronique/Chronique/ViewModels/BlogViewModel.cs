@@ -3,12 +3,11 @@ using Chronique.Models;
 using Chronique.Services;
 using Xamarin.Forms;
 
-namespace Chronique.ViewModels 
+namespace Chronique.ViewModels
 {
     public class BlogViewModel : BaseListViewModel<BlogInfo, Views.NewArtistePage, MockBlogStore>
     {
         #region Fields
-
 
         private Command<object> readMoreCommand;
         private Command<object> twitterCommand;
@@ -34,7 +33,6 @@ namespace Chronique.ViewModels
         #endregion
 
         #region Properties
-
 
         public Command<object> ReadMoreCommand
         {
@@ -66,11 +64,7 @@ namespace Chronique.ViewModels
             set { googlePlusCommand = value; }
         }
 
-        internal INavigation Navigation
-        {
-            get;
-            set;
-        }
+        internal INavigation Navigation { get; set; }
 
         #endregion
 
@@ -78,7 +72,7 @@ namespace Chronique.ViewModels
 
         private void NavigateToReadMoreContent(object obj)
         {
-            Navigation.PushAsync(new Views.BlogsDetailPage( new BlogDetailViewModel(obj as BlogInfo)));
+            Navigation.PushAsync(new Views.BlogsDetailPage(new BlogDetailViewModel(obj as BlogInfo)));
         }
 
         private void NavigateTwitterLink(object obj)

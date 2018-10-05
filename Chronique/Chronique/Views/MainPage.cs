@@ -20,7 +20,6 @@ namespace Chronique.Views
                     sortiesPage = new NavigationPage(new CalendarPage())
                     {
                         Title = "Sorties"
-
                     };
 //                    artistePage = new NavigationPage(new PeoplePage())
 //                    {
@@ -30,13 +29,12 @@ namespace Chronique.Views
                     playlistPage = new NavigationPage(new Views.PlaylistPage())
                     {
                         Title = "Playlist"
-
                     };
                     searchPage = new NavigationPage(new Views.SearchPage())
                     {
                         Title = "Search"
                     };
-                   
+
                     newsPage.Icon = "ic_action_notifications_active.png";
                     sortiesPage.Icon = "ic_action_today.png";
                     playlistPage.Icon = "ic_action_audiotrack.png";
@@ -60,7 +58,6 @@ namespace Chronique.Views
                     playlistPage = new Views.PlaylistPage()
                     {
                         Title = "Playlist"
-
                     };
                     searchPage = new Views.SearchPage()
                     {
@@ -92,12 +89,10 @@ namespace Chronique.Views
             base.OnCurrentPageChanged();
             //Title = CurrentPage?.Title ?? string.Empty;
         }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-
-
         }
     }
 }

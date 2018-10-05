@@ -15,7 +15,6 @@ namespace Chronique.Views
 //            img_spotify.Source = ImageSource.FromResource("Chronique.Images.SocialNetwork.Blog_Spotify.png");
 //            img_youtube.Source = ImageSource.FromResource("Chronique.Images.SocialNetwork.Blog_Youtube.png");
 //            img_soundcloud.Source = ImageSource.FromResource("Chronique.Images.SocialNetwork.Blog_Soundcloud.png");
-
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿
-//using FFImageLoading.Svg.Forms;
+﻿//using FFImageLoading.Svg.Forms;
+
 using Foundation;
 using Microsoft.AppCenter.Distribute;
 using Syncfusion.ListView.XForms.iOS;
@@ -11,24 +11,24 @@ using UIKit;
 
 namespace Chronique.iOS
 {
-	[Register("AppDelegate")]
-	public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
-	{
-		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
-		{
-			global::Xamarin.Forms.Forms.Init();
-		    Distribute.DontCheckForUpdatesInDebug();
-		    FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+    [Register("AppDelegate")]
+    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
+    {
+        public override bool FinishedLaunching(UIApplication app, NSDictionary options)
+        {
+            global::Xamarin.Forms.Forms.Init();
+            Distribute.DontCheckForUpdatesInDebug();
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
 //		    var ignore = typeof(SvgCachedImage);
             new SfCalendarRenderer();
-		    new SfBusyIndicatorRenderer();
+            new SfBusyIndicatorRenderer();
             SfListViewRenderer.Init();
-		    SfPullToRefreshRenderer.Init();
-		    SfPickerRenderer.Init();
+            SfPullToRefreshRenderer.Init();
+            SfPickerRenderer.Init();
             LoadApplication(new App());
-        
 
-			return base.FinishedLaunching(app, options);
-		}
-	}
+
+            return base.FinishedLaunching(app, options);
+        }
+    }
 }

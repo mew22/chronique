@@ -30,10 +30,7 @@ namespace Chronique.Services
 
         public static LastfmSingleton Instance
         {
-            get
-            {
-                return instance;
-            }
+            get { return instance; }
         }
     }
 }

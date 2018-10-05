@@ -8,7 +8,7 @@ namespace Chronique.Services
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((bool)value)
+            if ((bool) value)
                 return ImageSource.FromResource("Chronique.Images.GroupExpand.png");
             else
                 return ImageSource.FromResource("Chronique.Images.GroupCollapse.png");

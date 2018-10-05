@@ -13,6 +13,7 @@ namespace Chronique.Views
     public partial class MyAlbumDetailPage : ContentPage
     {
         private MyAlbumDetailsViewModel viewModel;
+
         protected override void OnAppearing()
         {
             base.OnAppearing();

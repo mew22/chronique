@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xForms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
@@ -6,31 +7,34 @@
              xmlns:chronique="clr-namespace:Chronique;assembly=Chronique"
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:xForms2="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              x:Class="Chronique.Views.PlaylistDetailPage"
              Title="{Binding Title}">
     <!-- NavigationPage.HasNavigationBar="False" -->
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <DataTemplate x:Name="ArtisteTemplate"  x:Key="ArtisteTemplate">
+            <DataTemplate x:Name="ArtisteTemplate" x:Key="ArtisteTemplate">
                 <StackLayout Orientation="Horizontal">
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Path=BindingContext.OpenArtistAddCommand, Source={x:Reference Name=listView}}" CommandParameter="{Binding .}"/>
+                        <TapGestureRecognizer
+                            Command="{Binding Path=BindingContext.OpenArtistAddCommand, Source={x:Reference Name=listView}}"
+                            CommandParameter="{Binding .}" />
                     </StackLayout.GestureRecognizers>
-                <Label Text="{Binding Pseudo}" FontAttributes="Bold"/>
-<!--                <Label Text=","/>-->
+                    <Label Text="{Binding Pseudo}" FontAttributes="Bold" />
+                    <!--                <Label Text=","/>-->
                 </StackLayout>
             </DataTemplate>
-            <DataTemplate x:Name="FooterTemplate"  x:Key="FooterTemplate">
+            <DataTemplate x:Name="FooterTemplate" x:Key="FooterTemplate">
                 <ViewCell>
                     <ViewCell.View>
                         <Frame HasShadow="True" HorizontalOptions="FillAndExpand">
-                            <Label Text="{Binding Item.ShortDescription}" FontAttributes="Italic"/>
+                            <Label Text="{Binding Item.ShortDescription}" FontAttributes="Italic" />
                         </Frame>
                     </ViewCell.View>
                 </ViewCell>
             </DataTemplate>
-            <DataTemplate x:Name="ItemTemplate"  x:Key="ItemTemplate">
+            <DataTemplate x:Name="ItemTemplate" x:Key="ItemTemplate">
                 <ViewCell>
                     <ViewCell.View>
                         <Grid>
@@ -38,27 +42,27 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="1" />
                             </Grid.RowDefinitions>
-<!--                            <Grid Grid.Row="0">-->
-<!--                            <Grid.ColumnDefinitions>-->
-<!--                                <ColumnDefinition>10</ColumnDefinition>-->
-<!--                                    <ColumnDefinition>Auto</ColumnDefinition>-->
-<!--                            </Grid.ColumnDefinitions>-->
-                            <StackLayout  Orientation="Horizontal">
-                                <Label Text="{Binding Position}"/>
-                                <Label Text="."/>
-<!--                            </StackLayout>-->
-<!--                            <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand">-->
-                                <Label Text="{Binding Name}"/>
-                                <Label Text="-"/>
-<!--                                <StackLayout>-->
-<!--                                    <xForms:SfListView x:Name="listArtiste" ItemsSource="{Binding Peoples}"-->
-<!--                                                       ItemTemplate="{StaticResource ArtisteTemplate}"/>-->
-<!--                                </StackLayout>-->
-<!--                                    <chronique:BindableStackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" ItemsSource="{Binding Peoples}"  ItemTemplate="{StaticResource ArtisteTemplate}"/>-->
-                                        
-                                </StackLayout>
-<!--                        </Grid>-->
-                        <StackLayout Grid.Row="1" BackgroundColor="Gray" HeightRequest="1"/>
+                            <!--                            <Grid Grid.Row="0">-->
+                            <!--                            <Grid.ColumnDefinitions>-->
+                            <!--                                <ColumnDefinition>10</ColumnDefinition>-->
+                            <!--                                    <ColumnDefinition>Auto</ColumnDefinition>-->
+                            <!--                            </Grid.ColumnDefinitions>-->
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Position}" />
+                                <Label Text="." />
+                                <!--                            </StackLayout>-->
+                                <!--                            <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand">-->
+                                <Label Text="{Binding Name}" />
+                                <Label Text="-" />
+                                <!--                                <StackLayout>-->
+                                <!--                                    <xForms:SfListView x:Name="listArtiste" ItemsSource="{Binding Peoples}"-->
+                                <!--                                                       ItemTemplate="{StaticResource ArtisteTemplate}"/>-->
+                                <!--                                </StackLayout>-->
+                                <!--                                    <chronique:BindableStackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" ItemsSource="{Binding Peoples}"  ItemTemplate="{StaticResource ArtisteTemplate}"/>-->
+
+                            </StackLayout>
+                            <!--                        </Grid>-->
+                            <StackLayout Grid.Row="1" BackgroundColor="Gray" HeightRequest="1" />
                         </Grid>
                     </ViewCell.View>
                 </ViewCell>
@@ -66,129 +70,154 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <xForms1:SfPullToRefresh x:Name="pullToRefresh"
-                                 ProgressBackgroundColor="#0065FF"
-                                 RefreshContentHeight="50"
-                                 PullingThreshold="150"
-                                 RefreshContentWidth="50"
-                                 TransitionMode="SlideOnTop"
-                                 IsRefreshing="False">
-            <xForms1:SfPullToRefresh.ProgressStrokeWidth>
-                <OnPlatform x:TypeArguments="x:Double">
-                    <On Platform="Android">6</On>
-                    <On Platform="iOS">2</On>
-                </OnPlatform>
-            </xForms1:SfPullToRefresh.ProgressStrokeWidth>
-            <xForms1:SfPullToRefresh.PullableContent>
-                <Grid RowSpacing="5">
-	    <Grid.RowDefinitions>
-	        <RowDefinition Height="Auto" />
-	        <RowDefinition Height="Auto" />
-	        <RowDefinition Height="*" />
-	    </Grid.RowDefinitions>
-<!--                    <Frame HorizontalOptions="FillAndExpand"  HasShadow="True" OutlineColor="CornflowerBlue" >-->
+        <AbsoluteLayout>
+            <xForms1:SfPullToRefresh x:Name="pullToRefresh"
+                                     ProgressBackgroundColor="#0065FF"
+                                     RefreshContentHeight="50"
+                                     PullingThreshold="150"
+                                     RefreshContentWidth="50"
+                                     TransitionMode="SlideOnTop"
+                                     IsRefreshing="False">
+                <xForms1:SfPullToRefresh.ProgressStrokeWidth>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android">6</On>
+                    </OnPlatform>
+                </xForms1:SfPullToRefresh.ProgressStrokeWidth>
+                <xForms1:SfPullToRefresh.PullableContent>
+                    <Grid RowSpacing="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <!--                    <Frame HorizontalOptions="FillAndExpand"  HasShadow="True" OutlineColor="CornflowerBlue" >-->
                         <AbsoluteLayout Grid.Row="0" BackgroundColor="Blue" Opacity="0.5">
 
-            <Image Source="{Binding Item.LogoIcon}" HeightRequest="150" Aspect="AspectFill" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
-                        <forms:CachedImage x:Name="img_logo" HorizontalOptions="FillAndExpand" HeightRequest="150" Aspect="AspectFill" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
-                                           CacheDuration="30" RetryCount="3" RetryDelay="250"
-                                           DownsampleToViewSize="true"
-                                           LoadingPlaceholder = "loading.png"
-                                           ErrorPlaceholder = "error.png"
-                                           Source = "{Binding Item.LogoUrl}">
-                        </forms:CachedImage>
-                        <!--        <Label Text="{Binding Item.Name}" FontSize="Small"/>-->
+                            <Image Source="{Binding Item.LogoIcon}" HeightRequest="150" Aspect="AspectFill"
+                                   HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="All"
+                                   AbsoluteLayout.LayoutBounds="0,0,1,1" />
+                            <forms:CachedImage x:Name="img_logo" HorizontalOptions="FillAndExpand" HeightRequest="150"
+                                               Aspect="AspectFill" AbsoluteLayout.LayoutFlags="All"
+                                               AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                               CacheDuration="30" RetryCount="3" RetryDelay="250"
+                                               DownsampleToViewSize="true"
+                                               LoadingPlaceholder="loading.png"
+                                               ErrorPlaceholder="error.png"
+                                               Source="{Binding Item.LogoUrl}" />
+                            <!--        <Label Text="{Binding Item.Name}" FontSize="Small"/>-->
 
 
-                        <StackLayout Orientation="Horizontal" Margin="0,0,5,0" HeightRequest="43" HorizontalOptions="End" VerticalOptions="End" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-                            <Grid Padding="2,0,2,0" HorizontalOptions="Fill" VerticalOptions="Fill" >
-                                <!--                        <Grid.GestureRecognizers>-->
-                                <!--                            <TapGestureRecognizer Command="{Binding TwitterCommand}"/>-->
-                                <!--                        </Grid.GestureRecognizers>-->
-                                <Grid VerticalOptions="Center" HorizontalOptions="Center">
-<!--                                    <Image HeightRequest="24" WidthRequest="24"  Source="{Binding Item.SoundsgoodIcon}" />-->
-                                    <forms:CachedImage HeightRequest="40" WidthRequest="40"
-                                                       BackgroundColor="AliceBlue"
-                                                       DownsampleToViewSize="true"
-                                                       LoadingPlaceholder = "loading.png"
-                                                       ErrorPlaceholder = "error.png"
-                                                       Source = "resource://Chronique.Images.SocialNetwork.Blog_Soundsgood.png">
-                                        <forms:CachedImage.Transformations>
-                                            <transformations:TintTransformation HexColor="#ccff0000" EnableSolidColor="true" />
-                                        </forms:CachedImage.Transformations>
-                                    </forms:CachedImage>
+                            <StackLayout Orientation="Horizontal" Margin="0,0,5,0" HeightRequest="43"
+                                         HorizontalOptions="End" VerticalOptions="End" AbsoluteLayout.LayoutFlags="All"
+                                         AbsoluteLayout.LayoutBounds="0,0,1,1">
+                                <Grid Padding="2,0,2,0" HorizontalOptions="Fill" VerticalOptions="Fill">
+                                    <!--                        <Grid.GestureRecognizers>-->
+                                    <!--                            <TapGestureRecognizer Command="{Binding TwitterCommand}"/>-->
+                                    <!--                        </Grid.GestureRecognizers>-->
+                                    <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                                        <!--                                    <Image HeightRequest="24" WidthRequest="24"  Source="{Binding Item.SoundsgoodIcon}" />-->
+                                        <forms:CachedImage HeightRequest="40" WidthRequest="40"
+                                                           BackgroundColor="AliceBlue"
+                                                           DownsampleToViewSize="true"
+                                                           LoadingPlaceholder="loading.png"
+                                                           ErrorPlaceholder="error.png"
+                                                           Source="resource://Chronique.Images.SocialNetwork.Blog_Soundsgood.png">
+                                            <forms:CachedImage.Transformations>
+                                                <transformations:TintTransformation HexColor="#ccff0000"
+                                                                                    EnableSolidColor="true" />
+                                            </forms:CachedImage.Transformations>
+                                        </forms:CachedImage>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
-                            <Grid Padding="2,0,2,0" HorizontalOptions="Fill" VerticalOptions="Fill">
-                                <!--                        <Grid.GestureRecognizers>-->
-                                <!--                            <TapGestureRecognizer Command="{Binding Path=BindingContext.LinkedInCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>-->
-                                <!--                        </Grid.GestureRecognizers>-->
-                                <Grid VerticalOptions="Center" HorizontalOptions="Center">
-<!--                                    <Image HeightRequest="24" WidthRequest="24" Source="{Binding Item.SoundcloudIcon}"/>-->
-                                    <forms:CachedImage HeightRequest="40" WidthRequest="40"
-                                                       BackgroundColor="AliceBlue"
-                                                       DownsampleToViewSize="true"
-                                                       LoadingPlaceholder = "loading.png"
-                                                       ErrorPlaceholder = "error.png"
-                                                       Source = "resource://Chronique.Images.SocialNetwork.Blog_Soundcloud.png">
-                                        <forms:CachedImage.Transformations>
-                                            <transformations:TintTransformation HexColor="#ccff0000" EnableSolidColor="true" />
-                                        </forms:CachedImage.Transformations>
-                                    </forms:CachedImage>
+                                <Grid Padding="2,0,2,0" HorizontalOptions="Fill" VerticalOptions="Fill">
+                                    <!--                        <Grid.GestureRecognizers>-->
+                                    <!--                            <TapGestureRecognizer Command="{Binding Path=BindingContext.LinkedInCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>-->
+                                    <!--                        </Grid.GestureRecognizers>-->
+                                    <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                                        <!--                                    <Image HeightRequest="24" WidthRequest="24" Source="{Binding Item.SoundcloudIcon}"/>-->
+                                        <forms:CachedImage HeightRequest="40" WidthRequest="40"
+                                                           BackgroundColor="AliceBlue"
+                                                           DownsampleToViewSize="true"
+                                                           LoadingPlaceholder="loading.png"
+                                                           ErrorPlaceholder="error.png"
+                                                           Source="resource://Chronique.Images.SocialNetwork.Blog_Soundcloud.png">
+                                            <forms:CachedImage.Transformations>
+                                                <transformations:TintTransformation HexColor="#ccff0000"
+                                                                                    EnableSolidColor="true" />
+                                            </forms:CachedImage.Transformations>
+                                        </forms:CachedImage>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
-                            <Grid Padding="2,0,2,0" HorizontalOptions="Fill" VerticalOptions="Fill">
-                                <!--                        <Grid.GestureRecognizers>-->
-                                <!--                            <TapGestureRecognizer Command="{Binding Path=BindingContext.FacebookCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>-->
-                                <!--                        </Grid.GestureRecognizers>-->
-                                <Grid VerticalOptions="Center" HorizontalOptions="Center">
-<!--                                    <Image HeightRequest="24" WidthRequest="24" Source="{Binding Item.YoutubeIcon}"/>-->
-                                    <forms:CachedImage HeightRequest="40" WidthRequest="40"
-                                                       BackgroundColor="AliceBlue"
-                                                       DownsampleToViewSize="true"
-                                                       LoadingPlaceholder = "loading.png"
-                                                       ErrorPlaceholder = "error.png"
-                                                       Source = "resource://Chronique.Images.SocialNetwork.Blog_Youtube.png">
-                                        <forms:CachedImage.Transformations>
-                                            <transformations:TintTransformation HexColor="#ccff0000" EnableSolidColor="true" />
-                                        </forms:CachedImage.Transformations>
-                                    </forms:CachedImage>
+                                <Grid Padding="2,0,2,0" HorizontalOptions="Fill" VerticalOptions="Fill">
+                                    <!--                        <Grid.GestureRecognizers>-->
+                                    <!--                            <TapGestureRecognizer Command="{Binding Path=BindingContext.FacebookCommand, Source={x:Reference listView}}" CommandParameter="{Binding .}"/>-->
+                                    <!--                        </Grid.GestureRecognizers>-->
+                                    <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                                        <!--                                    <Image HeightRequest="24" WidthRequest="24" Source="{Binding Item.YoutubeIcon}"/>-->
+                                        <forms:CachedImage HeightRequest="40" WidthRequest="40"
+                                                           BackgroundColor="AliceBlue"
+                                                           DownsampleToViewSize="true"
+                                                           LoadingPlaceholder="loading.png"
+                                                           ErrorPlaceholder="error.png"
+                                                           Source="resource://Chronique.Images.SocialNetwork.Blog_Youtube.png">
+                                            <forms:CachedImage.Transformations>
+                                                <transformations:TintTransformation HexColor="#ccff0000"
+                                                                                    EnableSolidColor="true" />
+                                            </forms:CachedImage.Transformations>
+                                        </forms:CachedImage>
+                                    </Grid>
                                 </Grid>
+                            </StackLayout>
+                        </AbsoluteLayout>
+                        <!--                    </Frame>-->
+
+                        <Frame Grid.Row="1" HasShadow="True" HorizontalOptions="FillAndExpand"
+                               VerticalOptions="FillAndExpand">
+                            <Grid RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="Title: " Grid.Row="0" Grid.Column="0" FontAttributes="Bold" FontSize="16" />
+                                <Label Text="{Binding Item.Name}" Grid.Row="0" Grid.Column="1" FontAttributes="Bold"
+                                       FontSize="16" />
+                                <Label Text="Date: " Grid.Row="1" Grid.Column="0" />
+                                <Label Text="{Binding Item.Date}" Grid.Row="1" Grid.Column="1" />
+                                <Label Text="Tracks: " Grid.Row="2" Grid.Column="0" />
+                                <Label Text="{Binding TracksNumber}" Grid.Row="2" Grid.Column="1" />
+                                <Label Text="Genre: " Grid.Row="3" Grid.Column="0" />
+                                <Label Text="{Binding Item.Kind}" Grid.Row="3" Grid.Column="1" />
                             </Grid>
-                        </StackLayout>
-                    </AbsoluteLayout>
-<!--                    </Frame>-->
 
-                    <Frame Grid.Row="1" HasShadow="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Grid RowSpacing="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition>Auto</RowDefinition>
-                    <RowDefinition>Auto</RowDefinition>
-                    <RowDefinition>Auto</RowDefinition>
-                    <RowDefinition>Auto</RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition>*</ColumnDefinition>
-                    <ColumnDefinition>*</ColumnDefinition>
-                </Grid.ColumnDefinitions>
+                            <!--            <Label Text="{Binding Item.ShortDescription}" FontAttributes="Italic"/>-->
+                        </Frame>
+                        <Frame Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                               HasShadow="True">
+                            <xForms:SfListView x:Name="listView" ItemSize="120" ItemsSource="{Binding Item.Tracks}"
+                                               ItemTemplate="{StaticResource ItemTemplate}"
+                                               IsStickyFooter="True"
+                                               FooterTemplate="{StaticResource FooterTemplate}"
+                                               AutoFitMode="Height" SelectionMode="None" />
+                        </Frame>
+                    </Grid>
+                </xForms1:SfPullToRefresh.PullableContent>
+            </xForms1:SfPullToRefresh>
+            <Frame BackgroundColor="{StaticResource BusyBackground}" HasShadow="True"
+                   AbsoluteLayout.LayoutBounds="0.5, 0.5, 1.0, 1.0" AbsoluteLayout.LayoutFlags="All"
+                   IsEnabled="{Binding IsBusy}" IsVisible="{Binding IsBusy}">
+                <xForms2:SfBusyIndicator x:Name="busyindicator" IsEnabled="{Binding IsBusy}"
+                                         IsVisible="{Binding IsBusy}"
 
-                <Label Text="Title: " Grid.Row="0" Grid.Column="0" FontAttributes="Bold" FontSize="16"/> <Label Text="{Binding Item.Name}" Grid.Row="0" Grid.Column="1" FontAttributes="Bold" FontSize="16"/>
-                <Label Text="Date: " Grid.Row="1" Grid.Column="0"/> <Label Text="{Binding Item.Date}" Grid.Row="1" Grid.Column="1"/>
-                <Label Text="Tracks: " Grid.Row="2" Grid.Column="0"/> <Label Text="{Binding TracksNumber}" Grid.Row="2" Grid.Column="1"/>
-                <Label Text="Genre: " Grid.Row="3" Grid.Column="0"/> <Label Text="{Binding Item.Kind}" Grid.Row="3" Grid.Column="1"/>
-            </Grid>
-
-<!--            <Label Text="{Binding Item.ShortDescription}" FontAttributes="Italic"/>-->
-        </Frame>
-                    <Frame Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="True">
-        <xForms:SfListView x:Name="listView" ItemSize="120" ItemsSource="{Binding Item.Tracks}" 
-                               ItemTemplate="{StaticResource ItemTemplate}"
-                           IsStickyFooter="True"
-                           FooterTemplate="{StaticResource FooterTemplate}"
-                               AutoFitMode="Height" SelectionMode="None"/>
-</Frame>
-                </Grid>
-            </xForms1:SfPullToRefresh.PullableContent>
-        </xForms1:SfPullToRefresh>
+                                         ViewBoxWidth="100" ViewBoxHeight="100" AnimationType="Ball" Title="Loading..."
+                                         TextColor="CornflowerBlue" VerticalOptions="Center" HorizontalOptions="Center" />
+            </Frame>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

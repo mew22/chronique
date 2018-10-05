@@ -10,16 +10,13 @@ namespace Chronique.Views
     {
         public ExtendedSplashPage()
         {
-
             InitializeComponent();
-
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
             DelayedNaviagition();
-
         }
 
         protected override void OnDisappearing()
@@ -35,7 +32,6 @@ namespace Chronique.Views
                         Navigation.RemovePage(page);
                         break;
                     }
-
                 }
             }
         }

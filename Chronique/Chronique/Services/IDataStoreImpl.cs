@@ -6,13 +6,13 @@ using Chronique.Models;
 
 namespace Chronique.Services
 {
-    public class IDataStoreImpl<T> : IDataStore<T> 
-        where T:BaseModel
+    public class IDataStoreImpl<T> : IDataStore<T>
+        where T : BaseModel
     {
         protected ObservableCollection<T> items;
+
         public IDataStoreImpl()
         {
-
         }
 
         public virtual async Task<bool> AddItemAsync(T item)
@@ -49,5 +49,4 @@ namespace Chronique.Services
             return await Task.FromResult(items);
         }
     }
-
 }

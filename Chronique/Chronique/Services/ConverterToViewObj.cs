@@ -12,7 +12,6 @@ namespace Chronique.Services
 {
     public static class ConverterToViewObj
     {
-
         public static int GetAge(string begin)
         {
             DateTime born;
@@ -20,7 +19,6 @@ namespace Chronique.Services
             {
                 int age = (DateTime.Now.Year - born.Year);
                 return age;
-
             }
 
             return 0;
@@ -49,49 +47,58 @@ namespace Chronique.Services
                     var image = al?.Images?.Large?.AbsoluteUri ?? "resource://Chronique.Images.PlaceHolder.error.png";
 
                     albs.Add(new Album(al.Name, al.ReleaseDateUtc.ToString(), al.ArtistName, al.ArtistName,
-                        ConvertTracks(al.Tracks), ConvertTags(al.TopTags), image ,
+                        ConvertTracks(al.Tracks), ConvertTags(al.TopTags), image,
                         al.Mbid ?? al.Name));
                 }
             }
+
             return albs;
         }
 
         public static List<Album> ConvertMbAlbums(Release[] albums, List<string> images = null)
         {
             List<Album> albs = new List<Album>();
-            for(int i = 0; i < albums.Length; ++i)
+            for (int i = 0; i < albums.Length; ++i)
             {
                 var artist = albums[i].Credits.First();
                 var medium = albums[i].Media.First();
                 var image = "resource://Chronique.Images.PlaceHolder.error.png";
-                if(images != null && images[i] != null && i < images.Count)
+                if (images != null && images[i] != null && i < images.Count)
                     image = images[i];
                 albs.Add(new Album(albums[i].Title, albums[i].Date, artist.Artist.Name, artist.Artist.Id,
-                    ConvertMbTracks(albums[i].Title, medium.Tracks), ConvertMbLabel(albums[i].Labels), image, albums[i].Id));
+                    ConvertMbTracks(albums[i].Title, medium.Tracks), ConvertMbLabel(albums[i].Labels), image,
+                    albums[i].Id));
             }
+
             return albs;
         }
-        public static List<Track> ConvertMbTracks(string releaseName, IEnumerable<Hqub.MusicBrainz.API.Entities.Track> tracks)
+
+        public static List<Track> ConvertMbTracks(string releaseName,
+            IEnumerable<Hqub.MusicBrainz.API.Entities.Track> tracks)
         {
             List<Track> convertedTracks = new List<Track>();
             foreach (var track in tracks)
             {
                 var artist = track.Recording.Credits.First();
-                convertedTracks.Add(new Track(track.Recording.Title, releaseName, track.Position, artist.Artist.Name, artist.Artist.Id, track.Id));
+                convertedTracks.Add(new Track(track.Recording.Title, releaseName, track.Position, artist.Artist.Name,
+                    artist.Artist.Id, track.Id));
             }
 
             return convertedTracks;
         }
+
         public static List<Track> ConvertTracks(IEnumerable<LastTrack> tracks)
         {
             List<Track> convertedTracks = new List<Track>();
             foreach (var track in tracks)
             {
-                convertedTracks.Add(new Track(track.Name, track.AlbumName, track.Rank, track.ArtistName, track.ArtistMbid, track.Mbid ?? track.Id));
+                convertedTracks.Add(new Track(track.Name, track.AlbumName, track.Rank, track.ArtistName,
+                    track.ArtistMbid, track.Mbid ?? track.Id));
             }
 
             return convertedTracks;
         }
+
         public static string ConvertTags(IEnumerable<LastTag> tags)
         {
             if (tags == null)
@@ -104,6 +111,7 @@ namespace Chronique.Services
 
             return strBuilder.ToString();
         }
+
         public static string ConvertMbLabel(IEnumerable<LabelInfo> labels)
         {
             if (labels == null)
@@ -157,7 +165,6 @@ namespace Chronique.Services
                         continue;
                     }
                 }
-
             }
             catch (Exception e)
             {
@@ -166,6 +173,5 @@ namespace Chronique.Services
 
             return upEvents;
         }
-
     }
 }

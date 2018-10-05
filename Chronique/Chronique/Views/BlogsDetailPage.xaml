@@ -1,57 +1,72 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:xForms="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              x:Class="Chronique.Views.BlogsDetailPage"
              Title="{Binding Title}">
     <!-- NavigationPage.HasNavigationBar="False" -->
-    <ScrollView Padding="10">
-        <Grid RowSpacing="0" Padding="10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Label Text="{Binding Item.BlogTitle}" FontAttributes="Bold" FontSize="20" TextColor="#000000" />
-            <Grid Grid.Row="1" Padding="0,15,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Grid>
+    <AbsoluteLayout>
+        <ScrollView Padding="10">
+            <Grid RowSpacing="0" Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label Text="{Binding Item.BlogTitle}" FontAttributes="Bold" FontSize="20" TextColor="#000000" />
+                <Grid Grid.Row="1" Padding="0,15,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-<!--                    <Image HeightRequest="10" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="10" Source="{Binding Item.BlogAuthorIcon}" />-->
-                    <forms:CachedImage HeightRequest="10" WidthRequest="10"
-                                       VerticalOptions="Center" HorizontalOptions="Center"
-                                       DownsampleToViewSize="true"
-                                       LoadingPlaceholder = "loading.png"
-                                       ErrorPlaceholder = "error.png"
-                                       Source = "resource://Chronique.Images.BlogAuthor.png">
-                    </forms:CachedImage>
-                    <Label Text="{Binding Item.BlogAuthor}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1" Opacity=" 0.54" LineBreakMode="WordWrap" TextColor="#000000" FontSize="12"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <!--                    <Image HeightRequest="10" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="10" Source="{Binding Item.BlogAuthorIcon}" />-->
+                        <forms:CachedImage HeightRequest="10" WidthRequest="10"
+                                           VerticalOptions="Center" HorizontalOptions="Center"
+                                           DownsampleToViewSize="true"
+                                           LoadingPlaceholder="loading.png"
+                                           ErrorPlaceholder="error.png"
+                                           Source="resource://Chronique.Images.BlogAuthor.png" />
+                        <Label Text="{Binding Item.BlogAuthor}" VerticalOptions="Center" HorizontalOptions="Center"
+                               Grid.Column="1" Opacity=" 0.54" LineBreakMode="WordWrap" TextColor="#000000"
+                               FontSize="12" />
+                    </Grid>
+                    <Grid Grid.Column="1" Padding="15,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Image HeightRequest="10" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="10"
+                               Source="{Binding Item.BlogCategoryIcon}" />
+                        <forms:CachedImage HeightRequest="10" WidthRequest="10"
+                                           VerticalOptions="Center" HorizontalOptions="Center"
+                                           DownsampleToViewSize="true"
+                                           LoadingPlaceholder="loading.png"
+                                           ErrorPlaceholder="error.png"
+                                           Source="resource://Chronique.Images.BlogCategory.png" />
+                        <Label Text="{Binding Item.BlogCategory}" VerticalOptions="Center" HorizontalOptions="Center"
+                               Grid.Column="1" Opacity=" 0.54" LineBreakMode="WordWrap" TextColor="#000000"
+                               FontSize="12" />
+                    </Grid>
                 </Grid>
-                <Grid Grid.Column="1" Padding="15,0,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Image HeightRequest="10" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="10" Source="{Binding Item.BlogCategoryIcon}" />
-                    <forms:CachedImage HeightRequest="10" WidthRequest="10"
-                                       VerticalOptions="Center" HorizontalOptions="Center"
-                                       DownsampleToViewSize="true"
-                                       LoadingPlaceholder = "loading.png"
-                                       ErrorPlaceholder = "error.png"
-                                       Source = "resource://Chronique.Images.BlogCategory.png">
-                    </forms:CachedImage>
-                    <Label Text="{Binding Item.BlogCategory}"  VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1" Opacity=" 0.54" LineBreakMode="WordWrap" TextColor="#000000" FontSize="12"/>
+                <Grid Grid.Row="2" Padding="0,15,0,0">
+                    <Label Text="{Binding Item.ReadMoreContent}" FontSize="14" />
                 </Grid>
             </Grid>
-            <Grid Grid.Row="2" Padding="0,15,0,0">
-                <Label Text="{Binding Item.ReadMoreContent}" FontSize="14"/>
-            </Grid>
-        </Grid>
-    </ScrollView>
+        </ScrollView>
+        <Frame BackgroundColor="{StaticResource BusyBackground}" HasShadow="True"
+               AbsoluteLayout.LayoutBounds="0.5, 0.5, 1.0, 1.0" AbsoluteLayout.LayoutFlags="All"
+               IsEnabled="{Binding IsBusy}" IsVisible="{Binding IsBusy}">
+            <xForms:SfBusyIndicator x:Name="busyindicator" IsEnabled="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+
+                                    ViewBoxWidth="100" ViewBoxHeight="100" AnimationType="Ball" Title="Loading..."
+                                    TextColor="CornflowerBlue" VerticalOptions="Center" HorizontalOptions="Center" />
+        </Frame>
+    </AbsoluteLayout>
 </ContentPage>

@@ -27,9 +27,11 @@ namespace Chronique.Models
         private string gp_link;
         private string li_link;
 
-        private  List<Track> tracks;
+        private List<Track> tracks;
 
-        public Playlist(string name, string logoUrl, string playlist_link, string date, string kind, string shortDescription, List<Track> tracklist = null, string urlPlaySoundcloud = null, string urlPlaySoundgood = null, string urlPlayYoutube = null, 
+        public Playlist(string name, string logoUrl, string playlist_link, string date, string kind,
+            string shortDescription, List<Track> tracklist = null, string urlPlaySoundcloud = null,
+            string urlPlaySoundgood = null, string urlPlayYoutube = null,
             string fbLink = null, string twLink = null, string gpLink = null, string liLink = null)
         {
             this.Name = name;
@@ -54,13 +56,13 @@ namespace Chronique.Models
             this.GpLink = gpLink;
             this.LiLink = liLink;
             this.Tracks = tracklist;
-
         }
 
         public List<Track> Tracks
         {
             get => tracks;
-            set {
+            set
+            {
                 tracks = value;
                 this.OnPropertyChanged("Tracks");
             }
@@ -69,75 +71,131 @@ namespace Chronique.Models
         public string Name
         {
             get => name;
-            set { name = value; this.OnPropertyChanged("Name"); }
+            set
+            {
+                name = value;
+                this.OnPropertyChanged("Name");
+            }
         }
 
         public string LogoUrl
         {
             get => logoUrl;
-            set {logoUrl = value; this.OnPropertyChanged("LogoUrl"); }
+            set
+            {
+                logoUrl = value;
+                this.OnPropertyChanged("LogoUrl");
+            }
         }
 
         public ImageSource LogoIcon
         {
             get => logoIcon;
-            set { logoIcon = value; this.OnPropertyChanged("LogoIcon"); }
+            set
+            {
+                logoIcon = value;
+                this.OnPropertyChanged("LogoIcon");
+            }
         }
+
         public string Playlist_link
         {
             get => playlist_link;
-            set { playlist_link = value; this.OnPropertyChanged("Playlist_link"); }
+            set
+            {
+                playlist_link = value;
+                this.OnPropertyChanged("Playlist_link");
+            }
         }
+
         public string Date
         {
             get => date;
-            set { date = value; this.OnPropertyChanged("Date"); }
+            set
+            {
+                date = value;
+                this.OnPropertyChanged("Date");
+            }
         }
+
         public string Kind
         {
             get => kind;
-            set { kind = value; this.OnPropertyChanged("Kind"); }
+            set
+            {
+                kind = value;
+                this.OnPropertyChanged("Kind");
+            }
         }
+
         public string ShortDescription
         {
             get => shortDescription;
-            set { shortDescription = value; this.OnPropertyChanged("ShortDescription"); }
+            set
+            {
+                shortDescription = value;
+                this.OnPropertyChanged("ShortDescription");
+            }
         }
 
         public ImageSource SoundcloudIcon
         {
             get => soundcloudIcon;
-            set { soundcloudIcon = value; this.OnPropertyChanged("SoundcloudIcon"); }
+            set
+            {
+                soundcloudIcon = value;
+                this.OnPropertyChanged("SoundcloudIcon");
+            }
         }
 
         public ImageSource SoundsgoodIcon
         {
             get => soundsgoodIcon;
-            set { soundsgoodIcon = value; this.OnPropertyChanged("SoundsgoodIcon"); }
+            set
+            {
+                soundsgoodIcon = value;
+                this.OnPropertyChanged("SoundsgoodIcon");
+            }
         }
 
         public ImageSource YoutubeIcon
         {
             get => youtubeIcon;
-            set { youtubeIcon = value; this.OnPropertyChanged("YoutubeIcon"); }
+            set
+            {
+                youtubeIcon = value;
+                this.OnPropertyChanged("YoutubeIcon");
+            }
         }
 
         public string UrlPlaySoundcloud
         {
             get => url_play_soundcloud;
-            set { url_play_soundcloud = value; this.OnPropertyChanged("UrlPlaySoundcloud"); }
+            set
+            {
+                url_play_soundcloud = value;
+                this.OnPropertyChanged("UrlPlaySoundcloud");
+            }
         }
 
         public string UrlPlaySoundgood
         {
             get => url_play_soundgood;
-            set { url_play_soundgood = value; this.OnPropertyChanged("UrlPlaySoundsgood"); }
+            set
+            {
+                url_play_soundgood = value;
+                this.OnPropertyChanged("UrlPlaySoundsgood");
+            }
         }
 
         public string UrlPlayYoutube
         {
             get => url_play_youtube;
-            set { url_play_youtube = value; this.OnPropertyChanged("UrlPlayYoutube"); }
+            set
+            {
+                url_play_youtube = value;
+                this.OnPropertyChanged("UrlPlayYoutube");
+            }
         }
 
 //        public EmbeddedResourceImageSource BlogFacebookIcon
@@ -167,25 +225,41 @@ namespace Chronique.Models
         public string FbLink
         {
             get => fb_link;
-            set { fb_link = value; this.OnPropertyChanged("Fblink"); }
+            set
+            {
+                fb_link = value;
+                this.OnPropertyChanged("Fblink");
+            }
         }
 
         public string TwLink
         {
             get => tw_link;
-            set { tw_link = value; this.OnPropertyChanged("TwLink"); }
+            set
+            {
+                tw_link = value;
+                this.OnPropertyChanged("TwLink");
+            }
         }
 
         public string GpLink
         {
             get => gp_link;
-            set { gp_link = value; this.OnPropertyChanged("GpLink"); }
+            set
+            {
+                gp_link = value;
+                this.OnPropertyChanged("GpLink");
+            }
         }
 
         public string LiLink
         {
             get => li_link;
-            set { li_link = value; this.OnPropertyChanged("LiLink"); }
+            set
+            {
+                li_link = value;
+                this.OnPropertyChanged("LiLink");
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

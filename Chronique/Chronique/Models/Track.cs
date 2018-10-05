@@ -18,7 +18,8 @@ namespace Chronique.Models
         private string artistId;
         private string providerId;
 
-        public Track(string name = null, string albumName = null, int? position = 0, string artistName = null, string artistId = null, string providerId = null)
+        public Track(string name = null, string albumName = null, int? position = 0, string artistName = null,
+            string artistId = null, string providerId = null)
         {
             this.Name = name;
             this.AlbumName = albumName;
@@ -31,33 +32,61 @@ namespace Chronique.Models
         public string AlbumName
         {
             get => albumName;
-            set { albumName = value; this.OnPropertyChanged("AlbumName"); }
+            set
+            {
+                albumName = value;
+                this.OnPropertyChanged("AlbumName");
+            }
         }
+
         public string ArtistName
         {
             get => artistName;
-            set { artistName = value; this.OnPropertyChanged("ArtistName"); }
+            set
+            {
+                artistName = value;
+                this.OnPropertyChanged("ArtistName");
+            }
         }
+
         public int? Position
         {
             get => position;
-            set { position = value; this.OnPropertyChanged("Position"); }
+            set
+            {
+                position = value;
+                this.OnPropertyChanged("Position");
+            }
         }
 
         public string ArtistId
         {
             get => artistId;
-            set { artistId = value; this.OnPropertyChanged("ArtistId"); }
+            set
+            {
+                artistId = value;
+                this.OnPropertyChanged("ArtistId");
+            }
         }
+
         public string ProviderId
         {
             get => providerId;
-            set { providerId = value; this.OnPropertyChanged("ProviderId"); }
+            set
+            {
+                providerId = value;
+                this.OnPropertyChanged("ProviderId");
+            }
         }
+
         public string Name
         {
             get => name;
-            set { name = value; this.OnPropertyChanged("Name"); }
+            set
+            {
+                name = value;
+                this.OnPropertyChanged("Name");
+            }
         }
 
 

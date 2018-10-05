@@ -3,7 +3,7 @@ using Chronique.Models;
 using Chronique.Services;
 using Xamarin.Forms;
 
-namespace Chronique.ViewModels 
+namespace Chronique.ViewModels
 {
     public class PlaylistViewModel : BaseListViewModel<Playlist, Views.NewArtistePage, MockPlaylistStore>
     {
@@ -30,7 +30,6 @@ namespace Chronique.ViewModels
             linkedInCommand = new Command<object>(NavigateLinkedInLink);
             facebookCommand = new Command<object>(NavigateFacebookLink);
             googlePlusCommand = new Command<object>(NavigateGooglePlusLink);
-            
         }
 
         #endregion
@@ -42,6 +41,7 @@ namespace Chronique.ViewModels
             get { return openWebCommand; }
             set { openWebCommand = value; }
         }
+
         public Command<object> ReadMoreCommand
         {
             get { return readMoreCommand; }
@@ -72,11 +72,7 @@ namespace Chronique.ViewModels
             set { googlePlusCommand = value; }
         }
 
-        internal INavigation Navigation
-        {
-            get;
-            set;
-        }
+        internal INavigation Navigation { get; set; }
 
         #endregion
 
@@ -92,6 +88,7 @@ namespace Chronique.ViewModels
             var uri = (obj as Playlist).Playlist_link;
             Device.OpenUri(new Uri(uri));
         }
+
         private void NavigateTwitterLink(object obj)
         {
             var uri = (obj as Playlist).TwLink;

@@ -13,18 +13,14 @@ namespace Chronique.ViewModels
         public string TracksNumber { get; set; }
         public Command<object> OpenArtistAddCommand { get; set; }
 
-        internal INavigation Navigation
-        {
-            get;
-            set;
-        }
+        internal INavigation Navigation { get; set; }
+
         public PlaylistDetailViewModel(Playlist item = null)
         {
             Title = item?.Name;
             Item = item;
-            TracksNumber = Item.Tracks.Count+"";
+            TracksNumber = Item.Tracks.Count + "";
             OpenArtistAddCommand = new Command<object>(OnAlertYesNoClicked);
-
         }
 
         async void OnAlertYesNoClicked(object obj)
@@ -32,21 +28,24 @@ namespace Chronique.ViewModels
             if (Items.Count == 0)
                 LoadItemsCommand.Execute(null);
 
-            var answer = await App.Current.MainPage.DisplayAlert("Question?", "Would you like to add " + (obj as Artiste).Pseudo + " to your list ?", "Yes", "No");
+            var answer = await App.Current.MainPage.DisplayAlert("Question?",
+                "Would you like to add " + (obj as Artiste).Pseudo + " to your list ?", "Yes", "No");
             Debug.WriteLine("Answer: " + answer);
             if (answer)
             {
                 if (Items.Any(artiste => artiste.Pseudo.ToUpper() == (obj as Artiste).Pseudo.ToUpper()))
                 {
                     Debug.WriteLine("Your have already added" + (obj as Artiste).Pseudo + " to your list.");
-                    DependencyService.Get<IMessageToast>().ShortAlert("Your have already added " + (obj as Artiste).Pseudo + " to your list.");
+                    DependencyService.Get<IMessageToast>()
+                        .ShortAlert("Your have already added " + (obj as Artiste).Pseudo + " to your list.");
                 }
                 else
                 {
                     await DataStore.AddItemAsync((obj as Artiste));
                     Items.Add((obj as Artiste));
                     Debug.WriteLine("Successfully added " + (obj as Artiste).Pseudo + " to your list");
-                    DependencyService.Get<IMessageToast>().ShortAlert("Successfully added " + (obj as Artiste).Pseudo + " to your list");
+                    DependencyService.Get<IMessageToast>()
+                        .ShortAlert("Successfully added " + (obj as Artiste).Pseudo + " to your list");
                 }
             }
         }

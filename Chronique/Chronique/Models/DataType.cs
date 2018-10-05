@@ -2,6 +2,9 @@
 {
     public enum DataType
     {
-        Artiste, Track, Album, Unknown
+        Artiste,
+        Track,
+        Album,
+        Unknown
     }
 }

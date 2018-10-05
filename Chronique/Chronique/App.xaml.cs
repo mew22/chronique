@@ -1,22 +1,21 @@
 ﻿using System;
-
-
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Distribute;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Device = Xamarin.Forms.Device;
 
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+
 namespace Chronique
 {
     public partial class App : Application
     {
         public static readonly string SONGKICK_API_KEY = "AZjkNivxIbJtdy2l";
+
         public App()
         {
             Hqub.MusicBrainz.API.Configuration.UserAgent =

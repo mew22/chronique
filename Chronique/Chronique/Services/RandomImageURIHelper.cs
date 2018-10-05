@@ -14,6 +14,5 @@ namespace Chronique.Services
 //            return string.Format("https://picsum.photos/{0}/{1}/?random", width, height);
             return string.Format("http://lorempixel.com/{0}/{1}/people/", width, height);
         }
-        
     }
 }

@@ -5,13 +5,11 @@ using Newtonsoft.Json;
 
 namespace Chronique.Models
 {
-    public class ArtisteObject : IRealmObject//, RealmObject
+    public class ArtisteObject : IRealmObject //, RealmObject
     {
-        [JsonProperty("name")]
-        private string pseudo;
+        [JsonProperty("name")] private string pseudo;
 
-        [JsonProperty("mbid")]
-        private string mbid;
+        [JsonProperty("mbid")] private string mbid;
 
         private string name;
         private string otherName;
@@ -28,8 +26,7 @@ namespace Chronique.Models
         private List<string> futursProject;
         private string description;
 
-        [JsonProperty("image")]
-        private string photo_uri;
+        [JsonProperty("image")] private string photo_uri;
         public string Id { get; set; }
     }
 }

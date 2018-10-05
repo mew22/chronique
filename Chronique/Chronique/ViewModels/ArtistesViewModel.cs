@@ -7,8 +7,9 @@ using Xamarin.Forms;
 
 namespace Chronique.ViewModels
 {
-
-    public class ArtistesViewModel : BaseListViewModel<Artiste, Views.NewArtistePage, MockArtisteStore>  // INotifyPropertyChanged for ArtisteBaseViewModel
+    public class
+        ArtistesViewModel : BaseListViewModel<Artiste, Views.NewArtistePage, MockArtisteStore
+        > // INotifyPropertyChanged for ArtisteBaseViewModel
     {
         public ArtistesViewModel()
         {
@@ -18,11 +19,11 @@ namespace Chronique.ViewModels
 
         public async void PickerValidated(Artiste a)
         {
-
             if (Items.Any(artiste => artiste.Pseudo.ToUpper() == a.Pseudo.ToUpper()))
             {
                 Debug.WriteLine("Your have already added" + a.Pseudo + " to your list.");
-                DependencyService.Get<IMessageToast>().ShortAlert("Your have already added " + a.Pseudo + " to your list.");
+                DependencyService.Get<IMessageToast>()
+                    .ShortAlert("Your have already added " + a.Pseudo + " to your list.");
             }
             else
             {

@@ -22,7 +22,7 @@
     <AndroidKeyStore>true</AndroidKeyStore>
     <AndroidSigningKeyStore>C:\Users\Asus\AppData\Local\Xamarin\Mono for Android\Keystore\chronique_keystore\chronique_keystore.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>inopainkiba</AndroidSigningStorePass>
-    <AndroidSigningKeyAlias>ChroniqueNow</AndroidSigningKeyAlias>
+    <AndroidSigningKeyAlias>chronique_keystore</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>inopainkiba</AndroidSigningKeyPass>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

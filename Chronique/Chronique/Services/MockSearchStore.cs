@@ -8,6 +8,7 @@ using IF.Lastfm.Core.Api;
 using Plugin.Connectivity;
 
 [assembly: Xamarin.Forms.Dependency(typeof(MockSearchStore))]
+
 namespace Chronique.Services
 {
     public class MockSearchStore : IDataStoreImpl<GenericRequestObject>
@@ -29,6 +30,7 @@ namespace Chronique.Services
 //            Task<TrackRootObject> GetTracks(string query, string api_key, int limit);
 //        }
         private LastfmClient lastFm;
+
         public MockSearchStore()
         {
             items = new ObservableCollection<GenericRequestObject>();
@@ -55,7 +57,8 @@ namespace Chronique.Services
             lastFm = LastfmSingleton.Instance.LastFm;
         }
 
-        public override async Task<IEnumerable<GenericRequestObject>> GetItemsAsync(bool refresh = false, string query = null)
+        public override async Task<IEnumerable<GenericRequestObject>> GetItemsAsync(bool refresh = false,
+            string query = null)
         {
             try
             {

@@ -16,12 +16,12 @@ namespace Chronique
         /// Property bound to <see cref="ItemTemplate"/>.
         /// </summary>
         public static readonly BindableProperty ItemTemplateProperty =
-           BindableProperty.Create(
-               propertyName: nameof(ItemTemplate),
-               returnType: typeof(DataTemplate),
-               declaringType: typeof(BindableStackLayout),
-               defaultValue: default(DataTemplate),
-               propertyChanged: OnItemTemplateChanged);
+            BindableProperty.Create(
+                propertyName: nameof(ItemTemplate),
+                returnType: typeof(DataTemplate),
+                declaringType: typeof(BindableStackLayout),
+                defaultValue: default(DataTemplate),
+                propertyChanged: OnItemTemplateChanged);
 
         /// <summary>
         /// Property bound to <see cref="ItemsSource"/>.
@@ -42,7 +42,7 @@ namespace Chronique
         /// </summary>
         public DataTemplate ItemTemplate
         {
-            get { return (DataTemplate)GetValue(ItemTemplateProperty); }
+            get { return (DataTemplate) GetValue(ItemTemplateProperty); }
             set { SetValue(ItemTemplateProperty, value); }
         }
 
@@ -51,7 +51,7 @@ namespace Chronique
         /// </summary>
         public IEnumerable<object> ItemsSource
         {
-            get { return (IEnumerable<object>)GetValue(ItemsSourceProperty); }
+            get { return (IEnumerable<object>) GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
         }
 
@@ -67,7 +67,7 @@ namespace Chronique
         /// <param name="newValue">The new value.</param>
         private static void OnItemTemplateChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var layout = (BindableStackLayout)bindable;
+            var layout = (BindableStackLayout) bindable;
             if (newValue == null)
             {
                 return;
@@ -84,7 +84,7 @@ namespace Chronique
         /// <param name="newValue">The new value.</param>
         private static void OnItemsSourceChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var layout = (BindableStackLayout)bindable;
+            var layout = (BindableStackLayout) bindable;
             if (newValue == null)
             {
                 return;
@@ -124,7 +124,7 @@ namespace Chronique
         /// <returns>The new view with the view model as its binding context.</returns>
         private View InflateView(object viewModel)
         {
-            var view = (View)CreateContent(ItemTemplate, viewModel, this);
+            var view = (View) CreateContent(ItemTemplate, viewModel, this);
             view.BindingContext = viewModel;
             return view;
         }
