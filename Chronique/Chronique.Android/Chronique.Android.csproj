@@ -39,7 +39,7 @@
     <AndroidTlsProvider>btls</AndroidTlsProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>false</DebugSymbols>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
@@ -50,11 +50,12 @@
     <AndroidLinkMode>None</AndroidLinkMode>
     <AndroidSupportedAbis />
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
-    <AotAssemblies>false</AotAssemblies>
-    <EnableLLVM>false</EnableLLVM>
+    <AotAssemblies>true</AotAssemblies>
+    <EnableLLVM>true</EnableLLVM>
     <EnableProguard>true</EnableProguard>
     <BundleAssemblies>true</BundleAssemblies>
-    <AndroidEnableSGenConcurrent>false</AndroidEnableSGenConcurrent>
+    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
