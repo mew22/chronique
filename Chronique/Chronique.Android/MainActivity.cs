@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using FFImageLoading.Forms.Droid;
+using Xamarin.Forms.Platform.Android;
 
 //using FFImageLoading.Svg.Forms;
 
@@ -14,7 +15,7 @@ namespace Chronique.Droid
 {
     [Activity(Label = "Chronique.Android", Icon = "@mipmap/ic_launcher", Theme = "@style/MyTheme",
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    public class MainActivity : FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
         {

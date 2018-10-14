@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.V7.App;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Com.Syncfusion.Sfbusyindicator;
+using Com.Syncfusion.Sfbusyindicator.Enums;
 
 namespace Chronique.Droid
 {
@@ -19,11 +17,33 @@ namespace Chronique.Droid
     {
         static readonly string TAG = "X:" + typeof(SplashActivity).Name;
 
-        public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
+        protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(savedInstanceState, persistentState);
-            Log.Debug(TAG, "SplashActivity.OnCreate");
-//            SetContentView(Resource.Layout.SplashLayout);
+            base.OnCreate(bundle);
+//            Log.Debug(TAG, "SplashActivity.OnCreate");
+//
+//            // creating LinearLayout
+//            LinearLayout linLayout = new LinearLayout(this);
+//            // specifying vertical orientation
+//            linLayout.Orientation = Orientation.Vertical;
+//            // creating LayoutParams  
+//            ViewGroup.LayoutParams linLayoutParam = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
+//
+//            LinearLayout.LayoutParams parameters = new LinearLayout.LayoutParams(100, 100);
+//            parameters.Gravity = GravityFlags.Bottom | GravityFlags.CenterHorizontal;
+//
+            // Hack to remove licence message
+            SfBusyIndicator busyIndicator = new SfBusyIndicator(this);
+//            busyIndicator.AnimationType = AnimationTypes.Ball;
+//            busyIndicator.TextColor = Color.Azure;
+//            busyIndicator.Title = "Loading...";
+//            busyIndicator.ViewBoxHeight = 100;
+//            busyIndicator.ViewBoxWidth = 100;
+//            busyIndicator.IsBusy = true;
+//            busyIndicator.LayoutParameters = parameters;
+//
+//            linLayout.AddView(busyIndicator);
+//            SetContentView(linLayout, linLayoutParam);
         }
 
         // Launches the startup task
@@ -35,12 +55,13 @@ namespace Chronique.Droid
         }
 
         // Simulates background work that happens behind the splash screen
-        async void SimulateStartup()
+        void SimulateStartup()
         {
             Log.Debug(TAG, "Performing some startup work that takes a bit of time.");
-            //await Task.Delay(2000); // Simulate a bit of startup work.
+//            await Task.Delay(200); // Simulate a bit of startup work.
             Log.Debug(TAG, "Startup work is finished - starting MainActivity.");
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+            Finish();
         }
     }
 }

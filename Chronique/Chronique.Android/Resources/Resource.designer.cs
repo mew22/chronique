@@ -3401,8 +3401,8 @@ namespace Chronique.Droid
 			// aapt resource value: 0x7f090037
 			public const int SYM = 2131296311;
 			
-			// aapt resource value: 0x7f0900dc
-			public const int ShadowEffectShape = 2131296476;
+			// aapt resource value: 0x7f0900dd
+			public const int ShadowEffectShape = 2131296477;
 			
 			// aapt resource value: 0x7f0900c7
 			public const int action0 = 2131296455;
@@ -3656,6 +3656,9 @@ namespace Chronique.Droid
 			// aapt resource value: 0x7f09009d
 			public const int largeLabel = 2131296413;
 			
+			// aapt resource value: 0x7f0900d7
+			public const int layout_splash = 2131296471;
+			
 			// aapt resource value: 0x7f090049
 			public const int left = 2131296329;
 			
@@ -3671,14 +3674,14 @@ namespace Chronique.Droid
 			// aapt resource value: 0x7f090072
 			public const int list_item = 2131296370;
 			
-			// aapt resource value: 0x7f0900db
-			public const int masked = 2131296475;
+			// aapt resource value: 0x7f0900dc
+			public const int masked = 2131296476;
 			
 			// aapt resource value: 0x7f0900ca
 			public const int media_actions = 2131296458;
 			
-			// aapt resource value: 0x7f0900d9
-			public const int message = 2131296473;
+			// aapt resource value: 0x7f0900da
+			public const int message = 2131296474;
 			
 			// aapt resource value: 0x7f090031
 			public const int middle = 2131296305;
@@ -3905,8 +3908,8 @@ namespace Chronique.Droid
 			// aapt resource value: 0x7f090069
 			public const int slicedCircle = 2131296361;
 			
-			// aapt resource value: 0x7f0900d7
-			public const int sliding_tabs = 2131296471;
+			// aapt resource value: 0x7f0900d8
+			public const int sliding_tabs = 2131296472;
 			
 			// aapt resource value: 0x7f09009c
 			public const int smallLabel = 2131296412;
@@ -3986,8 +3989,8 @@ namespace Chronique.Droid
 			// aapt resource value: 0x7f090080
 			public const int title_template = 2131296384;
 			
-			// aapt resource value: 0x7f0900d8
-			public const int toolbar = 2131296472;
+			// aapt resource value: 0x7f0900d9
+			public const int toolbar = 2131296473;
 			
 			// aapt resource value: 0x7f09003e
 			public const int top = 2131296318;
@@ -4025,8 +4028,8 @@ namespace Chronique.Droid
 			// aapt resource value: 0x7f090016
 			public const int view_offset_helper = 2131296278;
 			
-			// aapt resource value: 0x7f0900da
-			public const int visible = 2131296474;
+			// aapt resource value: 0x7f0900db
+			public const int visible = 2131296475;
 			
 			// aapt resource value: 0x7f0900bc
 			public const int volume_item_container = 2131296444;
