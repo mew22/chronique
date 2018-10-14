@@ -15,7 +15,7 @@
              Title="{Binding Title}">
     <!-- NavigationPage.HasNavigationBar="False" -->
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="Add" Order="Primary" Priority="0" Icon="ic_action_add.png" Clicked="AddItem_Clicked" />
+        <ToolbarItem Name="Search" Order="Primary" Priority="0" Icon="ic_search.png" Clicked="Search_Clicked" />
         <ToolbarItem Name="Info" Order="Secondary" Priority="1" Icon="ic_action_info.png" Clicked="About_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.BindingContext>
@@ -157,9 +157,11 @@
                                              ItemTemplate="{StaticResource ItemTemplate}"
                                              GroupHeaderTemplate="{StaticResource GroupHeaderTemplate}"
                                              ItemsSource="{Binding Items}" ItemSpacing="0,0,5,0"
+                                             IsStickyGroupHeader="True"
                                              AllowGroupExpandCollapse="True" IsScrollBarVisible="True"
                                              GroupCollapsing="ListView_GroupCollapsing"
                                              GroupExpanding="ListView_GroupExpanding"
+                                             VerticalOptions="FillAndExpand"
                                              ItemHolding="ListView_ItemHolding" ItemTapped="ListView_ItemTapped"
                                              ItemDoubleTapped="ListView_ItemDoubleTapped" />
                     </StackLayout>
@@ -170,7 +172,6 @@
                    IsEnabled="{Binding IsBusy}" IsVisible="{Binding IsBusy}">
                 <xForms2:SfBusyIndicator x:Name="busyindicator" IsEnabled="{Binding IsBusy}"
                                          IsVisible="{Binding IsBusy}"
-
                                          ViewBoxWidth="100" ViewBoxHeight="100" AnimationType="Ball" Title="Loading..."
                                          TextColor="CornflowerBlue" VerticalOptions="Center" HorizontalOptions="Center" />
             </Frame>

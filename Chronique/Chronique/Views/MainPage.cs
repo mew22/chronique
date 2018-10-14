@@ -19,18 +19,18 @@ namespace Chronique.Views
                     };
                     sortiesPage = new NavigationPage(new CalendarPage())
                     {
-                        Title = "Sorties"
+                        Title = "Upcoming"
                     };
-//                    artistePage = new NavigationPage(new PeoplePage())
-//                    {
-//                        Title = "Artiste"
-//
-//                    };
-                    playlistPage = new NavigationPage(new Views.PlaylistPage())
+                    artistePage = new NavigationPage(new PeoplePage())
                     {
-                        Title = "Playlist"
+                        Title = "Tracking"
+
                     };
-                    searchPage = new NavigationPage(new Views.SearchPage())
+                    playlistPage = new NavigationPage(new PlaylistPage())
+                    {
+                        Title = "Playlists"
+                    };
+                    searchPage = new NavigationPage(new SearchPage())
                     {
                         Title = "Search"
                     };
@@ -38,7 +38,7 @@ namespace Chronique.Views
                     newsPage.Icon = "ic_action_notifications_active.png";
                     sortiesPage.Icon = "ic_action_today.png";
                     playlistPage.Icon = "ic_action_audiotrack.png";
-//                    artistePage.Icon = "ic_action_person.png";
+                    artistePage.Icon = "ic_action_person.png";
                     searchPage.Icon = "ic_search.png";
 
                     break;
@@ -49,17 +49,17 @@ namespace Chronique.Views
                     };
                     sortiesPage = new CalendarPage()
                     {
-                        Title = "Sorties"
+                        Title = "Upcoming"
                     };
-//                    artistePage = new PeoplePage()
-//                    {
-//                        Title = "Artiste"
-//                    };
-                    playlistPage = new Views.PlaylistPage()
+                    artistePage = new PeoplePage()
                     {
-                        Title = "Playlist"
+                        Title = "Tracking"
                     };
-                    searchPage = new Views.SearchPage()
+                    playlistPage = new PlaylistPage()
+                    {
+                        Title = "Playlists"
+                    };
+                    searchPage = new SearchPage()
                     {
                         Title = "Search"
                     };
@@ -67,15 +67,15 @@ namespace Chronique.Views
                     newsPage.Icon = "ic_action_notifications_active.png";
                     sortiesPage.Icon = "ic_action_today.png";
                     playlistPage.Icon = "ic_action_audiotrack.png";
-//                    artistePage.Icon = "ic_action_person.png";
+                    artistePage.Icon = "ic_action_person.png";
                     searchPage.Icon = "ic_search.png";
                     break;
             }
 
             Children.Add(newsPage);
             Children.Add(playlistPage);
-            Children.Add(searchPage);
-//            Children.Add(artistePage);
+//            Children.Add(searchPage);
+            Children.Add(artistePage);
             Children.Add(sortiesPage);
 
 

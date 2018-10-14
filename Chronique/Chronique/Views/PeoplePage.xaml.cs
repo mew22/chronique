@@ -177,8 +177,9 @@ namespace Chronique.Views
             await Navigation.PushAsync(new AboutPage());
         }
 
-        void AddItem_Clicked(object sender, EventArgs e)
+        async void Search_Clicked(object sender, EventArgs e)
         {
+            await Navigation.PushAsync(new SearchPage());
         }
 
         // uncomment to get custom picker layout

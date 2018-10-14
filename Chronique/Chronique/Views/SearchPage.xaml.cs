@@ -22,7 +22,8 @@ namespace Chronique.Views
 
         public SearchPage()
         {
-            Title = "La Chronique";
+            //            Title = "La Chronique";
+            Title = "Search";
             InitializeComponent();
 
             //TODO:Unlock to test
