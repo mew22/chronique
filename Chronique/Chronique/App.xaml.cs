@@ -1,4 +1,5 @@
 ﻿using System;
+using Chronique.Views;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -22,15 +23,15 @@ namespace Chronique
                 "LaChronique/1.0.0 (sebastien.delaherche@gmail.com)";
             InitializeComponent();
 
-//            if (Device.RuntimePlatform == Device.iOS)
-//                MainPage = new MainPage();
-//            else
-//                MainPage = new NavigationPage(new MainPage());
-
             if (Device.RuntimePlatform == Device.iOS)
-                MainPage = new NavigationPage(new Views.ExtendedSplashPage());
+                MainPage = new MainPage();
             else
-                MainPage = new NavigationPage(new Views.ExtendedSplashPage());
+                MainPage = new NavigationPage(new MainPage());
+
+//            if (Device.RuntimePlatform == Device.iOS)
+//                MainPage = new NavigationPage(new Views.ExtendedSplashPage());
+//            else
+//                MainPage = new NavigationPage(new Views.ExtendedSplashPage());
         }
 
 

@@ -26,7 +26,7 @@
 
             <!--            <ActivityIndicator VerticalOptions="End" HorizontalOptions="Center" IsVisible="True" IsRunning="True" Color="Blue" />-->
             <!--            <Label Text="Loading" VerticalOptions="End" HorizontalOptions="Center" />-->
-            <xForms:SfBusyIndicator x:Name="busyindicator" AnimationType="Ball" Title="Loading..."
+            <xForms:SfBusyIndicator x:Name="busyindicator" AnimationType="Ball" Title="Loading..." IsBusy="True"
                                     TextColor="CornflowerBlue" VerticalOptions="End" HorizontalOptions="Center" />
         </StackLayout>
     </Grid>
