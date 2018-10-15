@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chronique.Services
+namespace Chronique.Helpers
 {
     public static class RandomImageURIHelper
     {

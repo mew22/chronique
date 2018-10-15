@@ -16,18 +16,15 @@
             <DataTemplate x:Name="ItemTemplateRels" x:Key="ItemTemplateRels">
                 <ViewCell>
                     <!--                    <ViewCell.View>-->
-                    <Frame HasShadow="true" OutlineColor="BlueViolet">
-                        <forms:CachedImage
+                    <Frame HasShadow="true" Margin="2" Padding="2"> <!--  OutlineColor="BlueViolet" -->
+                        <forms:CachedImage 
                             CacheDuration="30" RetryCount="3" RetryDelay="250"
                             DownsampleToViewSize="true"
+                            Margin="2"
+                            HeightRequest="60" WidthRequest="60"
                             LoadingPlaceholder="loading.png"
                             ErrorPlaceholder="error.png"
                             Source="{Binding}">
-                            <!--                            <forms:CachedImage.GestureRecognizers>-->
-                            <!--                                <TapGestureRecognizer-->
-                            <!--                                            Tapped="OnTapRelations"-->
-                            <!--                                            NumberOfTapsRequired="1" />-->
-                            <!--                            </forms:CachedImage.GestureRecognizers>-->
                         </forms:CachedImage>
                     </Frame>
                     <!--                    </ViewCell.View>-->
@@ -36,16 +33,61 @@
             <DataTemplate x:Name="ItemTemplateAlbums" x:Key="ItemTemplateAlbums">
                 <ViewCell>
                     <!--                    <ViewCell.View>-->
-                    <Frame HasShadow="true" OutlineColor="CornflowerBlue" VerticalOptions="FillAndExpand">
-                        <StackLayout HeightRequest="120" WidthRequest="120">
-                            <forms:CachedImage HeightRequest="100" WidthRequest="100"
-                                               CacheDuration="30" RetryCount="3" RetryDelay="250"
-                                               DownsampleToViewSize="true"
-                                               LoadingPlaceholder="loading.png"
-                                               ErrorPlaceholder="error.png"
-                                               Source="{Binding Photo_uri}" />
-                            <Label Text="{Binding Name}" FontSize="Small" LineBreakMode="TailTruncation" />
-                        </StackLayout>
+                    <Frame HasShadow="True" Margin="2">
+                        <!--  OutlineColor="CornflowerBlue" -->
+                        <!-- <StackLayout HeightRequest="120" WidthRequest="120"> -->
+                        <!--     <forms:CachedImage HeightRequest="100" WidthRequest="100" -->
+                        <!--                        CacheDuration="30" RetryCount="3" RetryDelay="250" -->
+                        <!--                        DownsampleToViewSize="true" -->
+                        <!--                        HorizontalOptions="FillAndExpand" -->
+                        <!--                        VerticalOptions="FillAndExpand" -->
+                        <!--                        LoadingPlaceholder="loading.png" -->
+                        <!--                        ErrorPlaceholder="error.png" -->
+                        <!--                        Source="{Binding Photo_uri}" /> -->
+                        <!--     <Label Text="{Binding Name}" FontSize="Small" LineBreakMode="TailTruncation" /> -->
+                        <!-- </StackLayout> -->
+                        <Grid RowSpacing="0" ColumnSpacing="0" Padding="0" Margin="0">
+                            <forms:CachedImage Aspect="AspectFill"
+                                                   HorizontalOptions="FillAndExpand"
+                                                   VerticalOptions="FillAndExpand"
+                                                   CacheDuration="30" RetryCount="3"
+                                                   RetryDelay="250"
+                                                   DownsampleToViewSize="true"
+                                                   LoadingPlaceholder="loading.png"
+                                                   ErrorPlaceholder="error.png"
+                                                   Source="{Binding Photo_uri}">
+                            </forms:CachedImage>
+                            <Grid VerticalOptions="End" ColumnSpacing="0"  RowSpacing="0" Padding="0" Margin="0" Opacity="0.75" BackgroundColor="{StaticResource MediumGrayTextColor}">
+                                <Grid.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <OnPlatform.WinPhone>
+                                            <OnIdiom x:TypeArguments="x:Double" Phone="30" Tablet="40" />
+                                        </OnPlatform.WinPhone>
+                                        <OnPlatform.Android>
+                                            <OnIdiom x:TypeArguments="x:Double" Phone="30" Tablet="40" />
+                                        </OnPlatform.Android>
+                                        <OnPlatform.iOS>
+                                            <OnIdiom x:TypeArguments="x:Double" Phone="30" Tablet="40" />
+                                        </OnPlatform.iOS>
+                                    </OnPlatform>
+                                </Grid.HeightRequest>
+                                <Label Text="{Binding Name}" WidthRequest="90" LineBreakMode="TailTruncation" TextColor="White" VerticalTextAlignment="Center" Margin="20,0,0,0" HorizontalTextAlignment="Start">
+                                    <Label.FontSize>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <OnPlatform.WinPhone>
+                                                <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="18" />
+                                            </OnPlatform.WinPhone>
+                                            <OnPlatform.Android>
+                                                <OnIdiom x:TypeArguments="x:Double" Phone="10" Tablet="15" />
+                                            </OnPlatform.Android>
+                                            <OnPlatform.iOS>
+                                                <OnIdiom x:TypeArguments="x:Double" Phone="10" Tablet="15" />
+                                            </OnPlatform.iOS>
+                                        </OnPlatform>
+                                    </Label.FontSize>
+                                </Label>
+                            </Grid>
+                        </Grid>
                     </Frame>
                     <!--                    </ViewCell.View>-->
                 </ViewCell>
@@ -54,7 +96,8 @@
             <DataTemplate x:Name="ItemTemplateUpEvents" x:Key="ItemTemplateUpEvents">
                 <ViewCell>
                     <ViewCell.View>
-                        <Frame HasShadow="true" OutlineColor="PaleVioletRed" VerticalOptions="FillAndExpand">
+                        <Frame HasShadow="True" Margin="2" Padding="2" VerticalOptions="FillAndExpand">
+                            <!--  OutlineColor="PaleVioletRed" -->
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="80" />
@@ -67,10 +110,10 @@
                                        HorizontalTextAlignment="Center" />
                                 <BoxView HeightRequest="1" Grid.Row="1" BackgroundColor="DarkGray" />
                                 <StackLayout Grid.Row="2" Orientation="Horizontal">
-                                    <Label FontSize="10" Text="{Binding Date, StringFormat='{}{0:MMMM, yyyy}' }" />
+                                    <Label FontSize="10" LineBreakMode="TailTruncation" Text="{Binding Date, StringFormat='{}{0:MMMM, yyyy}' }" />
                                     <!--                                    <Label Text="{Binding Date, StringFormat='{}{0:yyyy}' }" />-->
                                 </StackLayout>
-                                <Label Grid.Row="3" FontSize="10" Text="{Binding Location}" />
+                                <Label Grid.Row="3" LineBreakMode="TailTruncation" FontSize="10" Text="{Binding Location}" />
                             </Grid>
                         </Frame>
                     </ViewCell.View>
@@ -79,16 +122,61 @@
             <DataTemplate x:Name="ItemTemplateSimilars" x:Key="ItemTemplateSimilars">
                 <ViewCell>
                     <ViewCell.View>
-                        <Frame HasShadow="true" OutlineColor="Aquamarine" VerticalOptions="FillAndExpand">
-                            <StackLayout HeightRequest="120" WidthRequest="120">
-                                <forms:CachedImage HeightRequest="100" WidthRequest="100"
-                                                   CacheDuration="30" RetryCount="3" RetryDelay="250"
+                        <Frame HasShadow="True" Margin="2">
+                            <!--  OutlineColor="Aquamarine" -->
+                            <!-- <StackLayout HeightRequest="120" WidthRequest="120"> -->
+                            <!--     <forms:CachedImage HeightRequest="100" WidthRequest="100" -->
+                            <!--                        CacheDuration="30" RetryCount="3" RetryDelay="250" -->
+                            <!--                        DownsampleToViewSize="true" -->
+                            <!--                        LoadingPlaceholder="loading.png" -->
+                            <!--                        ErrorPlaceholder="error.png" -->
+                            <!--                        Source="{Binding Photo_uri}" /> -->
+                            <!--     <Label Text="{Binding Pseudo}" FontSize="Small" LineBreakMode="TailTruncation" /> -->
+                            <!-- </StackLayout> -->
+
+
+                            <Grid RowSpacing="0" ColumnSpacing="0" Padding="0" Margin="0">
+                                <forms:CachedImage Aspect="AspectFill"
+                                                   HorizontalOptions="FillAndExpand"
+                                                   VerticalOptions="FillAndExpand"
+                                                   CacheDuration="30" RetryCount="3"
+                                                   RetryDelay="250"
                                                    DownsampleToViewSize="true"
                                                    LoadingPlaceholder="loading.png"
                                                    ErrorPlaceholder="error.png"
-                                                   Source="{Binding Photo_uri}" />
-                                <Label Text="{Binding Pseudo}" FontSize="Small" LineBreakMode="TailTruncation" />
-                            </StackLayout>
+                                                   Source="{Binding Photo_uri}">
+                                </forms:CachedImage>
+                                <Grid VerticalOptions="End" ColumnSpacing="0" RowSpacing="0" Padding="0" Margin="0" Opacity="0.75" BackgroundColor="{StaticResource MediumGrayTextColor}">
+                                    <Grid.HeightRequest>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <OnPlatform.WinPhone>
+                                                <OnIdiom x:TypeArguments="x:Double" Phone="30" Tablet="40" />
+                                            </OnPlatform.WinPhone>
+                                            <OnPlatform.Android>
+                                                <OnIdiom x:TypeArguments="x:Double" Phone="30" Tablet="40" />
+                                            </OnPlatform.Android>
+                                            <OnPlatform.iOS>
+                                                <OnIdiom x:TypeArguments="x:Double" Phone="30" Tablet="40" />
+                                            </OnPlatform.iOS>
+                                        </OnPlatform>
+                                    </Grid.HeightRequest>
+                                    <Label Text="{Binding Pseudo}"  WidthRequest="90" LineBreakMode="TailTruncation" TextColor="White" VerticalTextAlignment="Center" Margin="20,0,0,0" HorizontalTextAlignment="Start">
+                                        <Label.FontSize>
+                                            <OnPlatform x:TypeArguments="x:Double">
+                                                <OnPlatform.WinPhone>
+                                                    <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="18" />
+                                                </OnPlatform.WinPhone>
+                                                <OnPlatform.Android>
+                                                    <OnIdiom x:TypeArguments="x:Double" Phone="10" Tablet="15" />
+                                                </OnPlatform.Android>
+                                                <OnPlatform.iOS>
+                                                    <OnIdiom x:TypeArguments="x:Double" Phone="10" Tablet="15" />
+                                                </OnPlatform.iOS>
+                                            </OnPlatform>
+                                        </Label.FontSize>
+                                    </Label>
+                                </Grid>
+                            </Grid>
                         </Frame>
                     </ViewCell.View>
                 </ViewCell>
@@ -118,8 +206,8 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Frame HorizontalOptions="FillAndExpand" Grid.Row="0" HasShadow="True"
-                               OutlineColor="CornflowerBlue" BackgroundColor="{StaticResource LogoBackground}">
+                        <Frame HorizontalOptions="FillAndExpand" Grid.Row="0" HasShadow="True" Margin="2" Padding="2"
+                               BackgroundColor="{StaticResource LogoBackground}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
@@ -186,18 +274,18 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="0">
+                                <Frame HasShadow="True" Margin="2" Padding="2"  Grid.Row="0">
                                     <StackLayout>
-                                        <Label Text="Biographie" FontAttributes="Bold" FontSize="14"
+                                        <Label Text="Biographie" FontAttributes="Bold" FontSize="20"
                                                TextColor="#474747" />
                                         <Label Text="{Binding Item.Description}" FontSize="Small"
                                                LineBreakMode="WordWrap" />
                                     </StackLayout>
                                 </Frame>
-                                <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="1" HeightRequest="110">
+                                <Frame HasShadow="True" Margin="2" Padding="2" Grid.Row="1" HeightRequest="110">
                                     <StackLayout>
-                                        <Label Text="Liens" FontAttributes="Bold" FontSize="14" TextColor="#474747" />
-                                        <xForms:SfListView x:Name="listViewRels" ItemsSource="{Binding Links}"
+                                        <Label Text="Liens" FontAttributes="Bold" FontSize="20" TextColor="#474747" />
+                                        <xForms:SfListView x:Name="listViewRels" ItemsSource="{Binding Links}" ItemSize="60"
                                                            ItemTapped="OnTapRelationsList"
                                                            ItemTemplate="{StaticResource ItemTemplateRels}"
                                                            Orientation="Horizontal"
@@ -205,11 +293,11 @@
                                                            AutoFitMode="Height" SelectionMode="None" />
                                     </StackLayout>
                                 </Frame>
-                                <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="2" HeightRequest="180">
+                                <Frame HasShadow="True" Margin="2" Padding="2" Grid.Row="2" HeightRequest="180">
                                     <StackLayout>
-                                        <Label Text="Projets Sorties" FontAttributes="Bold" FontSize="14"
+                                        <Label Text="Projets Sorties" FontAttributes="Bold" FontSize="20"
                                                TextColor="#474747" />
-                                        <xForms:SfListView x:Name="listViewAlbums" ItemSize="120"
+                                        <xForms:SfListView x:Name="listViewAlbums" ItemSize="90"
                                                            ItemTapped="OnTapAlbumsList"
                                                            ItemsSource="{Binding Item.Projects}"
                                                            ItemTemplate="{StaticResource ItemTemplateAlbums}"
@@ -218,9 +306,9 @@
                                                            AutoFitMode="Height" SelectionMode="None" />
                                     </StackLayout>
                                 </Frame>
-                                <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="3" HeightRequest="180">
+                                <Frame HasShadow="True" Margin="2" Padding="2" Grid.Row="3" HeightRequest="180">
                                     <StackLayout>
-                                        <Label Text="Evenements futurs" FontAttributes="Bold" FontSize="14"
+                                        <Label Text="Evenements futurs" FontAttributes="Bold" FontSize="20"
                                                TextColor="#474747" />
                                         <xForms:SfListView x:Name="listViewUpEvents" ItemSize="120"
                                                            ItemsSource="{Binding Item.UpEvents}"
@@ -230,15 +318,15 @@
                                                            AutoFitMode="Height" SelectionMode="None" />
                                     </StackLayout>
                                 </Frame>
-                                <Frame HasShadow="True" OutlineColor="Gray" Grid.Row="4" HeightRequest="180">
+                                <Frame HasShadow="True" Margin="2" Padding="2" Grid.Row="4" HeightRequest="180">
                                     <StackLayout>
-                                        <Label Text="Artistes similaires" FontAttributes="Bold" FontSize="14"
+                                        <Label Text="Artistes similaires" FontAttributes="Bold" FontSize="20"
                                                TextColor="#474747" />
-                                        <xForms:SfListView x:Name="listViewSimilars" ItemSize="120"
+                                        <xForms:SfListView x:Name="listViewSimilars" ItemSize="100"
                                                            ItemsSource="{Binding Item.Similars}"
                                                            ItemTemplate="{StaticResource ItemTemplateSimilars}"
                                                            Orientation="Horizontal" ItemTapped="OnTapSimilarsList"
-                                                           ItemSpacing="0,0,5,0" IsScrollBarVisible="True"
+                                                            IsScrollBarVisible="True"
                                                            AutoFitMode="Height" SelectionMode="None" />
                                     </StackLayout>
                                 </Frame>

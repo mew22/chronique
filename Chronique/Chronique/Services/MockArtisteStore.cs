@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Chronique.Helpers;
 using Chronique.Models;
 using Chronique.Services;
 

@@ -22,12 +22,8 @@
             <DataTemplate x:Name="ItemTemplate" x:Key="ItemTemplate">
                 <ViewCell>
                     <ViewCell.View>
-                        <Grid RowSpacing="0" ColumnSpacing="0" Margin="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="1" />
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0" Padding="0,2,0,0">
+                        <Frame Padding="6" Margin="6" HasShadow="True">
+                            <Grid Padding="0,2,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="100" />
                                     <ColumnDefinition Width="*" />
@@ -134,8 +130,7 @@
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <BoxView Grid.Row="1" HeightRequest="1" Opacity="0.75" BackgroundColor="#DFDEE3" />
-                        </Grid>
+                        </Frame>
                     </ViewCell.View>
                 </ViewCell>
             </DataTemplate>

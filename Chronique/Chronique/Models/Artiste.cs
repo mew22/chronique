@@ -10,7 +10,7 @@ namespace Chronique.Models
             string birthPlace = null, string job = null,
             string activityDates = null, List<KeyValuePair<string, string>> relations = null, string musicKind = null,
             List<Artiste> similars = null, List<Album> projects = null,
-            List<Event> upEvents = null, string description = null, string photo_uri = null, string providerId = null)
+            List<Event> upEvents = null, string description = null, string photo_uri = null, string providerId = null, bool isSelected = false)
         {
             Pseudo = pseudo;
             Name = name;
@@ -28,6 +28,7 @@ namespace Chronique.Models
             Description = description;
             Photo_uri = photo_uri;
             ProviderId = providerId;
+            IsSelected = isSelected;
         }
 
         public string Pseudo
@@ -189,6 +190,15 @@ namespace Chronique.Models
                 this.OnPropertyChanged("ProviderId");
             }
         }
+        public bool IsSelected
+        {
+            get { return isSelected; }
+            set
+            {
+                isSelected = value;
+                this.OnPropertyChanged("IsSelected");
+            }
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -214,5 +224,6 @@ namespace Chronique.Models
         private string description;
         private string photo_uri;
         private string providerId;
+        private bool isSelected;
     }
 }

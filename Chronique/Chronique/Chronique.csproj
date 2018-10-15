@@ -11,8 +11,10 @@
     <None Remove="Images\DataProviders\last_fm.png" />
     <None Remove="Images\DataProviders\musicbrainz.png" />
     <None Remove="Images\DataProviders\songkick.png" />
+    <None Remove="Images\delete.png" />
     <None Remove="Images\GroupCollapse.png" />
     <None Remove="Images\GroupExpand.png" />
+    <None Remove="Images\notSelected.png" />
     <None Remove="Images\People\Image0.png" />
     <None Remove="Images\People\Image1.png" />
     <None Remove="Images\People\Image10.png" />
@@ -47,6 +49,7 @@
     <None Remove="Images\PlaceHolder\loader.gif" />
     <None Remove="Images\PlaceHolder\loading.gif" />
     <None Remove="Images\PlaceHolder\loading.svg" />
+    <None Remove="Images\selected.png" />
     <None Remove="Images\SocialNetwork\apple.png" />
     <None Remove="Images\SocialNetwork\apple.svg" />
     <None Remove="Images\SocialNetwork\Blog_Facebook.png" />
@@ -100,8 +103,10 @@
     <EmbeddedResource Include="Images\DataProviders\last_fm.png" />
     <EmbeddedResource Include="Images\DataProviders\musicbrainz.png" />
     <EmbeddedResource Include="Images\DataProviders\songkick.png" />
+    <EmbeddedResource Include="Images\delete.png" />
     <EmbeddedResource Include="Images\GroupCollapse.png" />
     <EmbeddedResource Include="Images\GroupExpand.png" />
+    <EmbeddedResource Include="Images\notSelected.png" />
     <EmbeddedResource Include="Images\People\Image0.png" />
     <EmbeddedResource Include="Images\People\Image1.png" />
     <EmbeddedResource Include="Images\People\Image10.png" />
@@ -136,6 +141,7 @@
     <EmbeddedResource Include="Images\PlaceHolder\loader.gif" />
     <EmbeddedResource Include="Images\PlaceHolder\loading.gif" />
     <EmbeddedResource Include="Images\PlaceHolder\loading.svg" />
+    <EmbeddedResource Include="Images\selected.png" />
     <EmbeddedResource Include="Images\SocialNetwork\apple.png" />
     <EmbeddedResource Include="Images\SocialNetwork\apple.svg" />
     <EmbeddedResource Include="Images\SocialNetwork\Blog_Facebook.png" />

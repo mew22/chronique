@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Chronique.Layout;
 using Chronique.Models;
@@ -11,11 +13,80 @@ namespace Chronique.ViewModels
         ArtistesViewModel : BaseListViewModel<Artiste, Views.NewArtistePage, MockArtisteStore
         > // INotifyPropertyChanged for ArtisteBaseViewModel
     {
+        private ImageSource delete;
+        private string headerInfo;
+        private string titleInfo;
+        private bool isVisible;
+
+        public ImageSource Delete
+        {
+            get
+            {
+                return delete;
+            }
+            set
+            {
+                if (delete != value)
+                {
+                    delete = value;
+                    OnPropertyChanged("Delete");
+                }
+            }
+        }
+
+        public bool IsVisible
+        {
+            get { return isVisible; }
+            set
+            {
+                if (isVisible != value)
+                {
+                    isVisible = value;
+                    OnPropertyChanged("IsVisible");
+                }
+            }
+        }
+
+        public string HeaderInfo
+        {
+            get { return headerInfo; }
+            set
+            {
+                if (headerInfo != value)
+                {
+                    headerInfo = value;
+                    OnPropertyChanged("HeaderInfo");
+                }
+            }
+        }
+
+        public string TitleInfo
+        {
+            get { return titleInfo; }
+            set
+            {
+                if (titleInfo != value)
+                {
+                    titleInfo = value;
+                    OnPropertyChanged("TitleInfo");
+                }
+            }
+        }
         public ArtistesViewModel()
         {
             Title = "La Chronique";
+            titleInfo = "Photos";
+            headerInfo = "";
+            delete = ImageSource.FromResource("Chronique.Images.delete.png");
         }
 
+        public void RemoveItem(Artiste item)
+        {
+            if (Items.Contains(item))
+            {
+                Items.Remove(item);
+            }
+        }
 
         public async void PickerValidated(Artiste a)
         {

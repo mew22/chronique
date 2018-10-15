@@ -8,9 +8,9 @@
              xmlns:xForms="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
              xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             xmlns:services="clr-namespace:Chronique.Services;assembly=Chronique"
              xmlns:viewModels="clr-namespace:Chronique.ViewModels;assembly=Chronique"
              xmlns:xForms1="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:helpers="clr-namespace:Chronique.Helpers;assembly=Chronique"
              Title="{Binding Title}">
     <!-- NavigationPage.HasNavigationBar="False" -->
     <ContentPage.ToolbarItems>
@@ -23,7 +23,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <services:BoolToImageConverter x:Key="BoolToImageConverter" />
+            <helpers:BoolToImageConverter x:Key="BoolToImageConverter" />
             <DataTemplate x:Name="ItemTemplate" x:Key="ItemTemplate">
                 <ViewCell>
                     <ViewCell.View>

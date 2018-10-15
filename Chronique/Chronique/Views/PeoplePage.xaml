@@ -10,8 +10,8 @@
              xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:viewModels="clr-namespace:Chronique.ViewModels;assembly=Chronique"
-             xmlns:services="clr-namespace:Chronique.Services;assembly=Chronique"
              xmlns:xForms2="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:helpers="clr-namespace:Chronique.Helpers;assembly=Chronique"
              Title="{Binding Title}">
     <!-- NavigationPage.HasNavigationBar="False" -->
     <ContentPage.ToolbarItems>
@@ -25,88 +25,98 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <services:BoolToImageConverter x:Key="BoolToImageConverter" />
+            <helpers:BoolToImageConverter x:Key="BoolToImageConverter" />
+            <helpers:SelectionImageConverter x:Key="SelectionImageConverter"/>
             <DataTemplate x:Name="ItemTemplate" x:Key="ItemTemplate">
                 <ViewCell>
                     <ViewCell.View>
-                        <Grid x:Name="grid" RowSpacing="1">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="1" />
-                            </Grid.RowDefinitions>
-                            <Grid RowSpacing="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="50" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="70" />
-                                </Grid.ColumnDefinitions>
-
-                                <!--                                <Image Source="{Binding Photo}"-->
-                                <!--                       VerticalOptions="Center"-->
-                                <!--                       HorizontalOptions="Center"-->
-                                <!--                       HeightRequest="50"/>-->
-                                <forms:CachedImage HorizontalOptions="Center" VerticalOptions="Center"
-                                                   HeightRequest="50" CacheDuration="30" RetryCount="3"
+                        <Frame Padding="4" Margin="4" HasShadow="True">
+                            <!-- <AbsoluteLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"> -->
+                            <!-- -->
+                            <!--     <forms:CachedImage HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" -->
+                            <!--                        Aspect="AspectFill" CacheDuration="30" RetryCount="3" -->
+                            <!--                        RetryDelay="250" -->
+                            <!--                        DownsampleToViewSize="true" -->
+                            <!--                        LoadingPlaceholder="loading.png" -->
+                            <!--                        ErrorPlaceholder="error.png" -->
+                            <!--                        AbsoluteLayout.LayoutBounds="0, 0, 1.0, 1.0" AbsoluteLayout.LayoutFlags="All" -->
+                            <!--                        Source="{Binding Photo_uri}"> -->
+                            <!--     </forms:CachedImage> -->
+                            <!--     <Image -->
+                            <!--             x:Name="selectionImage" -->
+                            <!--             Opacity="1" -->
+                            <!--             HeightRequest="25" -->
+                            <!--             WidthRequest="25" -->
+                            <!--             VerticalOptions="Start" -->
+                            <!--             HorizontalOptions="End" -->
+                            <!--             AbsoluteLayout.LayoutBounds="0, 0.8, 0.1, 0.1" AbsoluteLayout.LayoutFlags="All" -->
+                            <!--             IsVisible="{Binding Path=IsSelected}" -->
+                            <!--             Source="{Binding Path=IsSelected, Converter={StaticResource SelectionImageConverter}}" -->
+                            <!--         /> -->
+                            <!--     <StackLayout VerticalOptions="End" HorizontalOptions="FillAndExpand" Opacity="0.75" BackgroundColor="{StaticResource MediumGrayTextColor}" -->
+                            <!--                  AbsoluteLayout.LayoutBounds="0.75, 0, 1.0, 1.0" AbsoluteLayout.LayoutFlags="All"> -->
+                            <!--         <Label Text="{Binding Pseudo}" TextColor="White" -->
+                            <!--                VerticalTextAlignment="Center" -->
+                            <!--                Margin="20,0,0,0" -->
+                            <!--                HorizontalTextAlignment="Center"/> -->
+                            <!--     </StackLayout> -->
+                            <!-- </AbsoluteLayout> -->
+                            <Grid RowSpacing="0" ColumnSpacing="0">
+                                <forms:CachedImage MinimumHeightRequest="40" MinimumWidthRequest="40"
+                                                   Aspect="AspectFill" CacheDuration="30" RetryCount="3"
                                                    RetryDelay="250"
                                                    DownsampleToViewSize="true"
                                                    LoadingPlaceholder="loading.png"
                                                    ErrorPlaceholder="error.png"
                                                    Source="{Binding Photo_uri}">
-                                    <forms:CachedImage.Transformations>
-                                        <transformations:CircleTransformation />
-                                    </forms:CachedImage.Transformations>
                                 </forms:CachedImage>
-                                <Grid Grid.Column="1"
-                                      RowSpacing="1"
-                                      Padding="10,0,0,0"
-                                      VerticalOptions="Center">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-
-                                    <Label LineBreakMode="NoWrap"
-                                           TextColor="#474747"
-                                           Text="{Binding Pseudo}">
+                           
+                                <Grid ColumnSpacing="0" RowSpacing="0" Opacity="1" HorizontalOptions="End" VerticalOptions="Start">
+                                    <Image
+                                       x:Name="selectionImage"
+                                       HeightRequest="25"
+                                       WidthRequest="25"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="End"
+                                       IsVisible="{Binding Path=IsSelected}"
+                                                 Source="{Binding Path=IsSelected, Converter={StaticResource SelectionImageConverter}}"
+                                       />
+                                </Grid>
+                                <Grid VerticalOptions="End" ColumnSpacing="0" Opacity="0.75" BackgroundColor="{StaticResource MediumGrayTextColor}">
+                                    <Grid.HeightRequest>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <OnPlatform.WinPhone>
+                                                <OnIdiom x:TypeArguments="x:Double" Phone="30" Tablet="40" />
+                                            </OnPlatform.WinPhone>
+                                            <OnPlatform.Android>
+                                                <OnIdiom x:TypeArguments="x:Double" Phone="30" Tablet="40" />
+                                            </OnPlatform.Android>
+                                            <OnPlatform.iOS>
+                                                <OnIdiom x:TypeArguments="x:Double" Phone="30" Tablet="40" />
+                                            </OnPlatform.iOS>
+                                        </OnPlatform>
+                                    </Grid.HeightRequest>
+                                    <Label Text="{Binding Pseudo}" TextColor="White"
+                     VerticalTextAlignment="Center"
+                     Margin="20,0,0,0"
+                     HorizontalTextAlignment="Start">
                                         <Label.FontSize>
                                             <OnPlatform x:TypeArguments="x:Double">
-                                                <On Platform="Android">
-                                                    <OnIdiom x:TypeArguments="x:Double"
-                                                             Phone="16"
-                                                             Tablet="18" />
-                                                </On>
-                                                <!--                                                <On Platform="iOS">-->
-                                                <!--                                                    <OnIdiom x:TypeArguments="x:Double"-->
-                                                <!--                                   Phone="16"-->
-                                                <!--                                   Tablet="18" />-->
-                                                <!--                                                </On>-->
-                                            </OnPlatform>
-                                        </Label.FontSize>
-                                    </Label>
-                                    <Label Grid.Row="1"
-                                           Grid.Column="0"
-                                           TextColor="#474747"
-                                           LineBreakMode="NoWrap"
-                                           Text="{Binding Job}">
-                                        <Label.FontSize>
-                                            <OnPlatform x:TypeArguments="x:Double">
-                                                <On Platform="Android">
-                                                    <OnIdiom x:TypeArguments="x:Double"
-                                                             Phone="12"
-                                                             Tablet="14" />
-                                                </On>
-                                                <!--                                                <On Platform="iOS">-->
-                                                <!--                                                    <OnIdiom x:TypeArguments="x:Double"-->
-                                                <!--                                   Phone="12"-->
-                                                <!--                                   Tablet="14" />-->
-                                                <!--                                                </On>-->
+                                                <OnPlatform.WinPhone>
+                                                    <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="18" />
+                                                </OnPlatform.WinPhone>
+                                                <OnPlatform.Android>
+                                                    <OnIdiom x:TypeArguments="x:Double" Phone="10" Tablet="15" />
+                                                </OnPlatform.Android>
+                                                <OnPlatform.iOS>
+                                                    <OnIdiom x:TypeArguments="x:Double" Phone="10" Tablet="15" />
+                                                </OnPlatform.iOS>
                                             </OnPlatform>
                                         </Label.FontSize>
                                     </Label>
                                 </Grid>
                             </Grid>
-                            <BoxView Grid.Row="1" BackgroundColor="Gray" HeightRequest="1" />
-                        </Grid>
+                        </Frame>
                     </ViewCell.View>
                 </ViewCell>
             </DataTemplate>
@@ -151,19 +161,56 @@
                 <xForms:SfPullToRefresh.PullableContent>
 
                     <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label LineBreakMode="NoWrap"
+                                   Text="{Binding TitleInfo}" FontAttributes="Bold"
+                                   FontSize="16" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label LineBreakMode="NoWrap" Grid.Column="0"
+                                   Margin="10,0,0,0" Text="{Binding HeaderInfo}"
+                                   FontSize="16" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"/>
+                            <Image Source="{Binding Delete}"
+                                   x:Name="deleteImage"
+                                   Grid.Column="1"
+                                   HeightRequest="30"
+                                   WidthRequest="30"
+                                   Margin="5,5,10,5"
+                                   IsVisible="{Binding IsVisible}"
+                                   HorizontalOptions="End"
+                                   VerticalOptions="Center"/>
+                        </StackLayout>
                         <SearchBar x:Name="searchBar" Placeholder="Search here to filter"
                                    TextChanged="OnFilterTextChanged" />
-                        <listView:SfListView x:Name="listView" ItemSize="70" GroupHeaderSize="60"
+                        <listView:SfListView x:Name="listView" ItemSize="150" GroupHeaderSize="60"
                                              ItemTemplate="{StaticResource ItemTemplate}"
                                              GroupHeaderTemplate="{StaticResource GroupHeaderTemplate}"
-                                             ItemsSource="{Binding Items}" ItemSpacing="0,0,5,0"
+                                             ItemsSource="{Binding Items}" ItemSpacing="3"
                                              IsStickyGroupHeader="True"
+                                             SelectionMode="Multiple"
+                                             SelectionGesture="Hold"
                                              AllowGroupExpandCollapse="True" IsScrollBarVisible="True"
                                              GroupCollapsing="ListView_GroupCollapsing"
                                              GroupExpanding="ListView_GroupExpanding"
                                              VerticalOptions="FillAndExpand"
                                              ItemHolding="ListView_ItemHolding" ItemTapped="ListView_ItemTapped"
-                                             ItemDoubleTapped="ListView_ItemDoubleTapped" />
+                                             ItemDoubleTapped="ListView_ItemDoubleTapped">
+                            <listView:SfListView.LayoutManager>
+                                <listView:GridLayout>
+                                    <listView:GridLayout.SpanCount>
+                                        <OnPlatform x:TypeArguments="x:Int32">
+                                            <OnPlatform.WinPhone>
+                                                <OnIdiom x:TypeArguments="x:Int32" Phone="2" Tablet="4" Desktop="4"/>
+                                            </OnPlatform.WinPhone>
+                                            <OnPlatform.Android>
+                                                <OnIdiom x:TypeArguments="x:Int32" Phone="2" Tablet="4" />
+                                            </OnPlatform.Android>
+                                            <OnPlatform.iOS>
+                                                <OnIdiom x:TypeArguments="x:Int32" Phone="2" Tablet="4" />
+                                            </OnPlatform.iOS>
+                                        </OnPlatform>
+                                    </listView:GridLayout.SpanCount>
+                                </listView:GridLayout>
+                            </listView:SfListView.LayoutManager>
+                        </listView:SfListView>
                     </StackLayout>
                 </xForms:SfPullToRefresh.PullableContent>
             </xForms:SfPullToRefresh>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Specialized;
+using System.Linq;
 using Chronique.Layout;
 using Chronique.Models;
 using Chronique.ViewModels;
@@ -167,7 +168,47 @@ namespace Chronique.Views
 //            });
 //            listView.RefreshView();
         }
+        private void ListView_SelectionChanged(object sender, ItemSelectionChangedEventArgs e)
+        {
+            for (int i = 0; i < e.AddedItems.Count; i++)
+            {
+                var item = e.AddedItems[i];
+                (item as Artiste).IsSelected = true;
+            }
+            for (int i = 0; i < e.RemovedItems.Count; i++)
+            {
+                var item = e.RemovedItems[i];
+                (item as Artiste).IsSelected = false;
+            }
+            RefreshSelection();
+        }
 
+        private void DeleteImageTapped()
+        {
+            var artists = listView.SelectedItems.ToList();
+
+            foreach (Artiste item in artists)
+            {
+                viewModel.RemoveItem(item);
+            }
+            RefreshSelection();
+        }
+
+        private void RefreshSelection()
+        {
+            if (listView.SelectedItems.Count > 0)
+            {
+                viewModel.TitleInfo = "";
+                viewModel.HeaderInfo = listView.SelectedItems.Count == 1 ? listView.SelectedItems.Count + " Artist Selected" : listView.SelectedItems.Count + " Artists Selected";
+                viewModel.IsVisible = true;
+            }
+            else
+            {
+                viewModel.TitleInfo = "Artists";
+                viewModel.HeaderInfo = "";
+                viewModel.IsVisible = false;
+            }
+        }
         #endregion
 
         #region Menu

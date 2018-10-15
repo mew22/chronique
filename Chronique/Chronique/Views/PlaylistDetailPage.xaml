@@ -37,11 +37,7 @@
             <DataTemplate x:Name="ItemTemplate" x:Key="ItemTemplate">
                 <ViewCell>
                     <ViewCell.View>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="1" />
-                            </Grid.RowDefinitions>
+                        <Frame Margin="4" Padding="4" HasShadow="True">
                             <!--                            <Grid Grid.Row="0">-->
                             <!--                            <Grid.ColumnDefinitions>-->
                             <!--                                <ColumnDefinition>10</ColumnDefinition>-->
@@ -62,8 +58,7 @@
 
                             </StackLayout>
                             <!--                        </Grid>-->
-                            <StackLayout Grid.Row="1" BackgroundColor="Gray" HeightRequest="1" />
-                        </Grid>
+                        </Frame>
                     </ViewCell.View>
                 </ViewCell>
             </DataTemplate>
@@ -204,6 +199,8 @@
                                                ItemTemplate="{StaticResource ItemTemplate}"
                                                IsStickyFooter="True"
                                                FooterTemplate="{StaticResource FooterTemplate}"
+                                               VerticalOptions="FillAndExpand"
+                                               HorizontalOptions="FillAndExpand"
                                                AutoFitMode="Height" SelectionMode="None" />
                         </Frame>
                     </Grid>

@@ -49,7 +49,7 @@ namespace Chronique.Views
                     };
                     sortiesPage = new CalendarPage()
                     {
-                        Title = "Upcoming"
+                        Title = "Events"
                     };
                     artistePage = new PeoplePage()
                     {

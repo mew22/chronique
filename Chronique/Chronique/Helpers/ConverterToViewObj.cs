@@ -8,7 +8,7 @@ using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Track = Chronique.Models.Track;
 
-namespace Chronique.Services
+namespace Chronique.Helpers
 {
     public static class ConverterToViewObj
     {

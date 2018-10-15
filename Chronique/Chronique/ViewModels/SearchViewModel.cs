@@ -9,7 +9,7 @@ namespace Chronique.ViewModels
 
         public SearchViewModel()
         {
-            Title = "La Chronique";
+            Title = "Search";
         }
 
         //        public override async Task ExecuteLoadItemsCommand()
