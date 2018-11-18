@@ -161,7 +161,7 @@
                 <xForms:SfPullToRefresh.PullableContent>
 
                     <StackLayout>
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" IsVisible="{Binding IsNotEmpty}">
                             <Label LineBreakMode="NoWrap"
                                    Text="{Binding TitleInfo}" FontAttributes="Bold"
                                    FontSize="16" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
@@ -178,9 +178,9 @@
                                    HorizontalOptions="End"
                                    VerticalOptions="Center"/>
                         </StackLayout>
-                        <SearchBar x:Name="searchBar" Placeholder="Search here to filter"
+                        <SearchBar x:Name="searchBar" Placeholder="Search here to filter" IsVisible="{Binding IsNotEmpty}"
                                    TextChanged="OnFilterTextChanged" />
-                        <listView:SfListView x:Name="listView" ItemSize="150" GroupHeaderSize="60"
+                        <listView:SfListView x:Name="listView" ItemSize="150" GroupHeaderSize="60" IsVisible="{Binding IsNotEmpty}"
                                              ItemTemplate="{StaticResource ItemTemplate}"
                                              GroupHeaderTemplate="{StaticResource GroupHeaderTemplate}"
                                              ItemsSource="{Binding Items}" ItemSpacing="3"
@@ -222,6 +222,7 @@
                                          ViewBoxWidth="100" ViewBoxHeight="100" AnimationType="Ball" Title="Loading..."
                                          TextColor="CornflowerBlue" VerticalOptions="Center" HorizontalOptions="Center" />
             </Frame>
-        </AbsoluteLayout>
+            <Label Text="No tracked artists" IsVisible="{Binding IsEmpty}" IsEnabled="{Binding IsEmpty}" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1.0, 1.0" AbsoluteLayout.LayoutFlags="All" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="64" TextColor="Gray"/>
+</AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

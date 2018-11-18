@@ -149,7 +149,7 @@
                 <xForms:SfPullToRefresh.PullableContent>
 
                     <StackLayout>
-                        <SearchBar x:Name="searchBar" Placeholder="Search artists, albums, tracks..."
+                        <SearchBar x:Name="searchBar" Placeholder="Search artists, albums, tracks..." 
                                    TextChanged="OnFilterTextChanged" SearchButtonPressed="OnSearchButtonPressed" />
                         <listView:SfListView x:Name="listView" ItemSize="70" GroupHeaderSize="60"
                                              ItemTemplate="{StaticResource ItemTemplate}"

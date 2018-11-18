@@ -167,9 +167,10 @@
                     </OnPlatform>
                 </pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
                 <pulltoRefresh:SfPullToRefresh.PullableContent>
-                    <syncfusion:SfListView x:Name="listView" ItemSize="120" ItemsSource="{Binding Items}"
-                                           ItemTemplate="{StaticResource ItemTemplate}"
-                                           AutoFitMode="Height" SelectionMode="None" />
+                    <syncfusion:SfListView x:Name="listView" ItemSize="120" ItemsSource="{Binding Items}" IsVisible="{Binding IsNotEmpty}"
+                                               ItemTemplate="{StaticResource ItemTemplate}"
+                                               AutoFitMode="Height" SelectionMode="None" />
+
                 </pulltoRefresh:SfPullToRefresh.PullableContent>
             </pulltoRefresh:SfPullToRefresh>
             <Frame BackgroundColor="{StaticResource BusyBackground}" HasShadow="True"
@@ -181,6 +182,7 @@
                                         ViewBoxWidth="100" ViewBoxHeight="100" AnimationType="Ball" Title="Loading..."
                                         TextColor="CornflowerBlue" VerticalOptions="Center" HorizontalOptions="Center" />
             </Frame>
+            <Label Text="No blog posts found" IsVisible="{Binding IsEmpty}" IsEnabled="{Binding IsEmpty}" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1.0, 1.0" AbsoluteLayout.LayoutFlags="All" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="64" TextColor="Gray"/>
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

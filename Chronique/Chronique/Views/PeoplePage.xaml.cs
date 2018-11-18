@@ -18,9 +18,7 @@ namespace Chronique.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            if (viewModel.Items.Count == 0)
-                viewModel.LoadItemsCommand.Execute(null);
+            viewModel.LoadItemsCommand.Execute(null);
         }
 
         public PeoplePage()
@@ -132,7 +130,7 @@ namespace Chronique.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ArtisteDetailPage(new ArtisteDetailViewModel(item)));
+            await Navigation.PushAsync(new MyArtisteDetailPage(new MyArtistDetailsViewModel(item)));
 
             // Manually deselect item
             listView.SelectedItem = null;
