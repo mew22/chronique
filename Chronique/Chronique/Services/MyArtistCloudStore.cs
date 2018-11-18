@@ -13,16 +13,16 @@ using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
 
-[assembly: Xamarin.Forms.Dependency(typeof(MyArtistMockStore))]
+[assembly: Xamarin.Forms.Dependency(typeof(MyArtistCloudStore))]
 
 namespace Chronique.Services
 {
-    public class MyArtistMockStore : IDataStore<Artiste>
+    public class MyArtistCloudStore : ICloudStore<Artiste>
     {
         private LastfmClient lastFm;
         private Artiste lastArtist;
 
-        public MyArtistMockStore()
+        public MyArtistCloudStore()
         {
             lastFm = LastfmSingleton.Instance.LastFm;
         }
@@ -47,11 +47,19 @@ namespace Chronique.Services
             Artiste tmpArtist = null;
             try
             {
-                if (lastArtist != null && lastArtist.ProviderId == id)
+                try
                 {
-                    return await Task.FromResult(lastArtist);
+                    if (lastArtist != null && lastArtist.ProviderId == id)
+                    {
+                        return await Task.FromResult(lastArtist);
+                    }
                 }
-                else if (id != null && id != "" && CrossConnectivity.Current.IsConnected)
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+                if (id != null && id != "" && CrossConnectivity.Current.IsConnected)
                 {
                     HttpClient client = new HttpClient();
                     //If mbid
@@ -89,16 +97,16 @@ namespace Chronique.Services
                         tmpArtist = new Artiste(lastfmArtis.Content.Name, lastfmArtis.Content.Name, "",
                             artist.LifeSpan.Begin,
                             ConverterToViewObj.GetAge(artist.LifeSpan.Begin), artist.Country, artist.Type, "",
-                            ConverterToViewObj.ConvertRelToMap(artist.Relations), artist.Disambiguation,
+                            ConverterToViewObj.ConvertRelToMap(artist.Relations, id), artist.Disambiguation,
                             new List<Artiste>(), null,
                             new List<Event>(), lastfmArtis.Content.Bio.Summary,
                             lastfmArtis.Content.MainImage.Large.AbsoluteUri, id);
 
-                        tmpArtist.Projects = ConverterToViewObj.ConvertAlbums(lastfmArtisTopAlbums.Content);
-                        tmpArtist.Similars = ConverterToViewObj.ConvertArtistes(lastfmArtistSimilars.Content);
+                        IListHelper.AddRange(tmpArtist.Projects, ConverterToViewObj.ConvertAlbums(lastfmArtisTopAlbums.Content));
+                        IListHelper.AddRange(tmpArtist.Similars, ConverterToViewObj.ConvertArtistes(lastfmArtistSimilars.Content));
 
                         var songKickUpEvt = await songKickUpEvent.Content.ReadAsStringAsync();
-                        tmpArtist.UpEvents = ConverterToViewObj.ConvertSkEvents(songKickUpEvt);
+                        IListHelper.AddRange(tmpArtist.UpEvents, ConverterToViewObj.ConvertSkEvents(songKickUpEvt));
 
                         // If no album loaded with last.fm, try with Musicbrainz
                         if (tmpArtist.Projects?.Count == 0)
@@ -144,7 +152,7 @@ namespace Chronique.Services
                                 urlList.Add(url);
                             }
 
-                            tmpArtist.Projects = ConverterToViewObj.ConvertMbAlbums(loadedReleases, urlList);
+                            IListHelper.AddRange(tmpArtist.Projects, ConverterToViewObj.ConvertMbAlbums(loadedReleases, urlList));
                         }
 
                         lastArtist = tmpArtist;
@@ -163,7 +171,7 @@ namespace Chronique.Services
                         var lastfmArtisSimilars = await syncSimilars;
 
                         tmpArtist = new Artiste(lastfmArtis.Content.Name, lastfmArtis.Content.Name, "", "",
-                            0, "", "", "", new List<KeyValuePair<string, string>>(), "",
+                            0, "", "", "", new List<MyKeyValuePair>(), "",
                             new List<Artiste>(),
                             ConverterToViewObj.ConvertAlbums(lastfmArtisTopAlbums.Content),
                             new List<Event>(), lastfmArtis.Content.Bio.Summary,
@@ -185,7 +193,7 @@ namespace Chronique.Services
 
         public async Task<IEnumerable<Artiste>> GetItemsAsync(bool forceRefresh = false, string query = null)
         {
-            MockArtisteStore mock = new MockArtisteStore();
+            MockArtistCloudStore mock = new MockArtistCloudStore();
             return mock.Items;
         }
     }

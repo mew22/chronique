@@ -5,16 +5,19 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Chronique.Layout;
 using Chronique.Models;
 using Chronique.Services;
+using Plugin.Connectivity;
+using Realms;
 using Xamarin.Forms;
 
 namespace Chronique.ViewModels
 {
     public class BaseListViewModel<T, U, V> : BaseViewModel<T>
-        where T : BaseModel
+        where T : RealmObject
         where U : ContentPage
-        where V : IDataStore<T>, new()
+        where V : ICloudStore<T>, new()
     {
         public Command LoadItemsCommand { get; set; }
 
@@ -29,8 +32,11 @@ namespace Chronique.ViewModels
                 OnPropertyChanged("items");
             }
         }
+        public bool IsEmpty => this.Items.Count <= 0;
+        public bool IsNotEmpty => this.Items.Count > 0;
 
-        public IDataStore<T> DataStore => DependencyService.Get<IDataStore<T>>() ?? new V();
+
+        public ICloudStore<T> DataStore => DependencyService.Get<ICloudStore<T>>() ?? new V();
 
         public BaseListViewModel()
         {
@@ -52,12 +58,21 @@ namespace Chronique.ViewModels
 
             try
             {
+                if (!CrossConnectivity.Current.IsConnected)
+                {
+                    this.OnPropertyChanged("IsEmpty");
+                    this.OnPropertyChanged("IsNotEmpty");
+                    DependencyService.Get<IMessageToast>().LongAlert("No internet connexion");
+                    return;
+                }
                 var loaded_items = await DataStore.GetItemsAsync(true, query);
                 Items.Clear();
                 foreach (var item in loaded_items)
                 {
                     Items.Add(item);
                 }
+                this.OnPropertyChanged("IsEmpty");
+                this.OnPropertyChanged("IsNotEmpty");
             }
             catch (Exception ex)
             {

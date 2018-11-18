@@ -1,13 +1,10 @@
-﻿namespace Chronique.Models
-{
-    public abstract class BaseModel
-    {
-        public BaseModel()
-        {
-            Id = ++pId + "";
-        }
+﻿using Realms;
 
-        private static int pId = 0;
-        public string Id { get; set; }
+namespace Chronique.Models
+{
+    public interface BaseModel
+    {
+        //RealmInteger<int> Id { get; set; }
+        int Id { get; set; }
     }
 }

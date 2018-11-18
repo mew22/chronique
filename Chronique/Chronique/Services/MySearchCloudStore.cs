@@ -7,11 +7,11 @@ using Chronique.Services;
 using IF.Lastfm.Core.Api;
 using Plugin.Connectivity;
 
-[assembly: Xamarin.Forms.Dependency(typeof(MockSearchStore))]
+[assembly: Xamarin.Forms.Dependency(typeof(MySearchCloudStore))]
 
 namespace Chronique.Services
 {
-    public class MockSearchStore : IDataStoreImpl<GenericRequestObject>
+    public class MySearchCloudStore : ICloudStoreImpl<GenericRequestObject>
     {
         //        List<Item> items;
 //        private ISearchAPI searchApi;
@@ -31,7 +31,7 @@ namespace Chronique.Services
 //        }
         private LastfmClient lastFm;
 
-        public MockSearchStore()
+        public MySearchCloudStore()
         {
             items = new ObservableCollection<GenericRequestObject>();
 

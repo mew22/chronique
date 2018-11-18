@@ -4,8 +4,10 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Chronique.Layout;
 using Chronique.Models;
 using Chronique.Services;
+using Plugin.Connectivity;
 using Xamarin.Forms;
 
 namespace Chronique.ViewModels
@@ -38,7 +40,7 @@ namespace Chronique.ViewModels
 
         public GenericRequestObject Id { get; set; }
         public Album DataFromArtistPage { get; set; }
-        public IDataStore<Album> DataStore => DependencyService.Get<IDataStore<Album>>() ?? new MyAlbumMockStore();
+        public ICloudStore<Album> DataStore => DependencyService.Get<ICloudStore<Album>>() ?? new MyAlbumCloudStore();
         public Command LoadItemsCommand { get; set; }
 
         public MyAlbumDetailsViewModel(GenericRequestObject id)
@@ -64,21 +66,34 @@ namespace Chronique.ViewModels
 
             try
             {
+                String arg1 = null, arg2 = null;
                 if (DataFromArtistPage != null && DataFromArtistPage.TrackList.Count != 0)
                 {
                     Item = DataFromArtistPage;
+                    IsBusy = false;
+                    TracksNumber = Item.TrackList.Count + "";
+                    Title = Item?.Name;
+                    return;
                 }
                 else if (DataFromArtistPage != null && DataFromArtistPage.ProviderId != null)
                 {
-                    Item = await DataStore.GetItemAsync(DataFromArtistPage.ProviderId ?? DataFromArtistPage.Name,
-                        DataFromArtistPage.MainArtist);
+                    arg1 = DataFromArtistPage.ProviderId ?? DataFromArtistPage.Name;
+                    arg2 = DataFromArtistPage.MainArtist;
                 }
                 else if (Id?.ProviderId != null)
                 {
                     //Id.Subtitle temp fix to get artist if mbid not exist (pass album name and artist name...)
-                    Item = await DataStore.GetItemAsync(Id.ProviderId, Id.Subtitle);
+                    arg1 = Id.ProviderId;
+                    arg2 = Id.Subtitle;
                 }
 
+                if (!CrossConnectivity.Current.IsConnected)
+                {
+                    DependencyService.Get<IMessageToast>().LongAlert("No internet connexion");
+                    return;
+                }
+
+                Item = await DataStore.GetItemAsync(arg1, arg2);
                 TracksNumber = Item.TrackList.Count + "";
                 Title = Item?.Name;
             }

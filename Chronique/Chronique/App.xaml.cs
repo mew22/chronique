@@ -4,6 +4,7 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Distribute;
+using Realms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Device = Xamarin.Forms.Device;
@@ -16,6 +17,7 @@ namespace Chronique
     public partial class App : Application
     {
         public static readonly string SONGKICK_API_KEY = "AZjkNivxIbJtdy2l";
+        public static int Counter { get; set; }
 
         public App()
         {

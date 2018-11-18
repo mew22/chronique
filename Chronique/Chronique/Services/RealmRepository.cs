@@ -2,65 +2,129 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
+using Chronique.Services;
+using Realms;
 
 //using Realms;
-
+//[assembly: Xamarin.Forms.Dependency(typeof(RealmRepository<>))]
 namespace Chronique.Services
 {
-    public class RealmRepository<TEntity> //: IRepository<TEntity>  where TEntity : RealmObject, new()
+    public class RealmRepository<TEntity> : ICacheStore<TEntity>  where TEntity : RealmObject, new()
     {
-//        private Realm realmInstance;
+        private readonly Realm realmInstance;
         public RealmRepository()
         {
-//            realmInstance = Realm.GetInstance();
+            //realmInstance = RealmSingleton.Instance.RealmInstance;
+            realmInstance = Realm.GetInstance();
         }
 
-        public virtual IEnumerable<TEntity> GetAll()
+        public virtual async Task<IQueryable<TEntity>> GetAllAsync()
         {
-            throw new NotImplementedException();
-            //            return realmInstance.All<TEntity>();
+//            throw new NotImplementedException();
+            return await Task.FromResult(realmInstance.All<TEntity>());
         }
 
-        public virtual TEntity GetSingleById(int Id)
+        public virtual async Task<TEntity> GetSingleByIdAsync(string Id)
         {
-            throw new NotImplementedException();
-            //            return realmInstance.Find<TEntity>(Id);
+//            throw new NotImplementedException();
+            return await Task.FromResult(realmInstance.Find<TEntity>(Id));
         }
 
-        public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> expression)
+        public virtual async Task<IQueryable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> expression)
         {
-            throw new NotImplementedException();
-//            return realmInstance.All<TEntity>().Where(expression);
+//            throw new NotImplementedException();
+            return await Task.FromResult(realmInstance.All<TEntity>().Where(expression));
+        }
+
+        public virtual async void InsertAsync(TEntity obj)
+        {
+            await realmInstance.WriteAsync(tmpRealm =>
+            {
+                tmpRealm.Add(obj);
+
+            });
+
+        }
+
+        public virtual async void UpdateAsync(TEntity obj)
+        {
+            //            realmInstance.Write(() => { realmInstance.Add(obj, true); });
+            await realmInstance.WriteAsync(tmpRealm =>
+            {
+                tmpRealm.Add(obj, true);
+            });
+        }
+
+        public virtual async void DeleteAsync(string Id)
+        {
+            var entity = await GetSingleByIdAsync(Id);
+            DeleteAsync(entity);
+        }
+
+        public virtual async void DeleteAsync(TEntity obj)
+        {
+             await realmInstance.WriteAsync(tmpRealm =>
+             {
+                 tmpRealm.Remove(obj);
+             });
+        }
+
+        public IQueryable<TEntity> GetAll()
+        {
+            return realmInstance.All<TEntity>();
+        }
+
+        public TEntity GetSingleById(string Id)
+        {
+            return realmInstance.Find<TEntity>(Id);
+        }
+
+        public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> expression)
+        {
+            return realmInstance.All<TEntity>().Where(expression);
         }
 
         public virtual void Insert(TEntity obj)
         {
-//            realmInstance.Write(() =>
-//            {
-//                realmInstance.Add(obj);
-//            });
+            realmInstance.Write(() =>
+            {
+                realmInstance.Add(obj);
+            });
+        }
+        public virtual void Insert(Action action)
+        {
+            realmInstance.Write(action);
         }
 
-        public virtual void Update(TEntity obj)
+        public void Update(TEntity obj)
         {
-//            realmInstance.Write(() =>
-//            {
-//                realmInstance.Add(obj, true);
-//            });
+           realmInstance.Write(() =>
+            {
+                realmInstance.Add(obj, true);
+            });
         }
 
-        public virtual void Delete(int Id)
+        public void Delete(string Id)
         {
-            var entity = GetSingleById(Id);
+            var entity =  GetSingleById(Id);
             Delete(entity);
         }
 
-        public virtual void Delete(TEntity obj)
+        public void Delete(TEntity obj)
         {
-//            realmInstance.Write(() =>
-//            {
-//                realmInstance.Remove(obj);
-//            });
+            realmInstance.Write(() =>
+            {
+                realmInstance.Remove(obj);
+            });
+        }
+
+        public TEntity DetachObject(TEntity Model)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<TEntity>(
+                Newtonsoft.Json.JsonConvert.SerializeObject(Model)
+                    .Replace(",\"IsManaged\":true", ",\"IsManaged\":false")
+            );
         }
     }
 }

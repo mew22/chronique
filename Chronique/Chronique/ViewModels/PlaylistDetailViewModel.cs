@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace Chronique.ViewModels
 {
-    public class PlaylistDetailViewModel : BaseListViewModel<Artiste, Views.NewItemPage, MockArtisteStore>
+    public class PlaylistDetailViewModel : BaseListViewModel<Artiste, Views.NewItemPage, MockArtistCloudStore>
     {
         public Playlist Item { get; set; }
         public string TracksNumber { get; set; }

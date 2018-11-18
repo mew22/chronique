@@ -232,6 +232,7 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
@@ -254,6 +255,9 @@
                                     <Label Text="Genre: " Grid.Row="4" Grid.Column="0" />
                                     <Label Text="{Binding Item.MusicKind}" Grid.Row="4" Grid.Column="1"
                                            FontSize="Small" LineBreakMode="TailTruncation" />
+                                    <Label Text="Tracked: " Grid.Row="5" Grid.Column="0"
+                                           FontSize="Small" LineBreakMode="TailTruncation" />
+                                    <Switch IsToggled="{Binding Tracked}" Grid.Row="5" Grid.Column="1" Toggled="Switch_OnToggled" />
                                 </Grid>
                                 <!--                        <StackLayout Grid.Column="1" Orientation="Vertical">-->
                                 <!--                                <Label HorizontalTextAlignment="Start" Text="{Binding Item.Pseudo, StringFormat='Pseudo: {0}'}"/>-->

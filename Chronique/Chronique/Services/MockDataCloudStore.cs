@@ -4,15 +4,15 @@ using System.Collections.ObjectModel;
 using Chronique.Models;
 using Chronique.Services;
 
-[assembly: Xamarin.Forms.Dependency(typeof(MockDataStore))]
+[assembly: Xamarin.Forms.Dependency(typeof(MockDataCloudStore))]
 
 namespace Chronique.Services
 {
-    public class MockDataStore : IDataStoreImpl<Item>
+    public class MockDataCloudStore : ICloudStoreImpl<Item>
     {
 //        List<Item> items;
 
-        public MockDataStore()
+        public MockDataCloudStore()
         {
             items = new ObservableCollection<Item>();
             var mockItems = new List<Item>

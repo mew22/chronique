@@ -24,16 +24,17 @@ namespace Chronique.Helpers
             return 0;
         }
 
-        public static List<KeyValuePair<string, string>> ConvertRelToMap(IEnumerable<Relation> rels)
+        public static List<MyKeyValuePair> ConvertRelToMap(IEnumerable<Relation> rels, string artistId)
         {
-            List<KeyValuePair<string, string>> dico = new List<KeyValuePair<string, string>>();
-
+            List<MyKeyValuePair> dico = null;
+            HashSet<MyKeyValuePair> unique = new HashSet<MyKeyValuePair>();
             foreach (var item in rels)
             {
                 if (item.Type != null && item.Url != null && item.Url.Resource != null)
-                    dico.Add(new KeyValuePair<string, string>(item.Type, item.Url.Resource));
+                    unique.Add(new MyKeyValuePair(artistId,item.Type, item.Url.Resource));
             }
 
+            dico = unique.ToList();
             return dico;
         }
 

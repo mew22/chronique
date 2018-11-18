@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Realms;
 
 namespace Chronique.Models
 {
-    public class Artiste : BaseModel, INotifyPropertyChanged
+    public class Artiste : RealmObject, BaseModel
     {
         public Artiste(string pseudo, string name = null, string otherName = null, string birthDate = null, int age = 0,
             string birthPlace = null, string job = null,
-            string activityDates = null, List<KeyValuePair<string, string>> relations = null, string musicKind = null,
+            string activityDates = null, List<MyKeyValuePair> relations = null, string musicKind = null,
             List<Artiste> similars = null, List<Album> projects = null,
             List<Event> upEvents = null, string description = null, string photo_uri = null, string providerId = null, bool isSelected = false)
         {
@@ -29,201 +30,54 @@ namespace Chronique.Models
             Photo_uri = photo_uri;
             ProviderId = providerId;
             IsSelected = isSelected;
+            Id = ++App.Counter;
         }
 
-        public string Pseudo
+        public Artiste()
         {
-            get { return pseudo; }
-            set
-            {
-                pseudo = value;
-                this.OnPropertyChanged("Pseudo");
-            }
+//            Relations = new List<MyKeyValuePair>();
+//            Similars = new List<Artiste>();
+//            Projects = new List<Album>();
+//            UpEvents = new List<Event>();
         }
+        [Indexed]
+        public string Pseudo { get; set; }
 
-        public string Name
-        {
-            get { return name; }
-            set
-            {
-                name = value;
-                this.OnPropertyChanged("Name");
-            }
-        }
+        public string Name { get; set; }
 
-        public string OtherName
-        {
-            get { return otherName; }
-            set
-            {
-                otherName = value;
-                this.OnPropertyChanged("OtherName");
-            }
-        }
+        public string OtherName { get; set; }
 
-        public string BirthDate
-        {
-            get { return birthDate; }
-            set
-            {
-                birthDate = value;
-                this.OnPropertyChanged("BirthDate");
-            }
-        }
+        public string BirthDate { get; set; }
 
-        public int Age
-        {
-            get { return age; }
-            set
-            {
-                age = value;
-                this.OnPropertyChanged("Age");
-            }
-        }
+        public int Age { get; set; }
 
-        public string BirthPlace
-        {
-            get { return birthPlace; }
-            set
-            {
-                birthPlace = value;
-                this.OnPropertyChanged("BirthPlace");
-            }
-        }
+        public string BirthPlace { get; set; }
 
-        public string Job
-        {
-            get { return job; }
-            set
-            {
-                job = value;
-                this.OnPropertyChanged("Job");
-            }
-        }
+        public string Job { get; set; }
 
-        public string ActivityDates
-        {
-            get { return activityDates; }
-            set
-            {
-                activityDates = value;
-                this.OnPropertyChanged("ActivityDates");
-            }
-        }
+        public string ActivityDates { get; set; }
 
-        public List<KeyValuePair<string, string>> Relations
-        {
-            get { return relations; }
-            set
-            {
-                relations = value;
-                this.OnPropertyChanged("Relations");
-            }
-        }
+        public IList<MyKeyValuePair> Relations { get;}
 
-        public string MusicKind
-        {
-            get { return musicKind; }
-            set
-            {
-                musicKind = value;
-                this.OnPropertyChanged("MusicKind");
-            }
-        }
+        public string MusicKind { get; set; }
 
-        public List<Artiste> Similars
-        {
-            get { return similars; }
-            set
-            {
-                similars = value;
-                this.OnPropertyChanged("Similars");
-            }
-        }
+        public IList<Artiste> Similars { get; }
 
-        public List<Album> Projects
-        {
-            get { return projects; }
-            set
-            {
-                projects = value;
-                this.OnPropertyChanged("Projects");
-            }
-        }
+        public IList<Album> Projects { get;}
 
-        public List<Event> UpEvents
-        {
-            get { return upEvents; }
-            set
-            {
-                upEvents = value;
-                this.OnPropertyChanged("UpEvents");
-            }
-        }
+        public IList<Event> UpEvents { get;}
 
-        public string Description
-        {
-            get { return description; }
-            set
-            {
-                description = value;
-                this.OnPropertyChanged("Description");
-            }
-        }
-
-        public string Photo_uri
-        {
-            get { return photo_uri; }
-            set
-            {
-                photo_uri = value;
-                this.OnPropertyChanged("Photo_uri");
-            }
-        }
-
-        public string ProviderId
-        {
-            get { return providerId; }
-            set
-            {
-                providerId = value;
-                this.OnPropertyChanged("ProviderId");
-            }
-        }
-        public bool IsSelected
-        {
-            get { return isSelected; }
-            set
-            {
-                isSelected = value;
-                this.OnPropertyChanged("IsSelected");
-            }
-        }
+        public string Description { get; set; }
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public string Photo_uri { get; set; }
+        [PrimaryKey]
+        public string ProviderId { get; set; }
+        public bool IsSelected { get; set; }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        [Indexed]
+        public bool IsTracked { get; set; }
 
-        private string pseudo;
-        private string name;
-        private string otherName;
-        private string birthDate;
-        private int age;
-        private string birthPlace;
-        private string job;
-        private string activityDates;
-        private List<KeyValuePair<string, string>> relations;
-        private string musicKind;
-        private List<Artiste> similars;
-        private List<Album> projects;
-        private List<Event> upEvents;
-        private string description;
-        private string photo_uri;
-        private string providerId;
-        private bool isSelected;
+        public int Id { get; set; }
     }
 }

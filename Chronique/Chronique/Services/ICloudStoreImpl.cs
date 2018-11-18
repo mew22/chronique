@@ -3,15 +3,16 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Chronique.Models;
+using Realms;
 
 namespace Chronique.Services
 {
-    public class IDataStoreImpl<T> : IDataStore<T>
-        where T : BaseModel
+    public class ICloudStoreImpl<T> : ICloudStore<T>
+        where T : RealmObject
     {
         protected ObservableCollection<T> items;
 
-        public IDataStoreImpl()
+        public ICloudStoreImpl()
         {
         }
 
@@ -33,7 +34,7 @@ namespace Chronique.Services
 
         public virtual async Task<bool> DeleteItemAsync(string id)
         {
-            var _item = items.Where((T arg) => (arg as BaseModel).Id == id).FirstOrDefault();
+            var _item = items.Where((T arg) => (arg as BaseModel).Id.ToString() == id).FirstOrDefault();
             items.Remove(_item);
 
             return await Task.FromResult(true);
@@ -41,7 +42,7 @@ namespace Chronique.Services
 
         public virtual async Task<T> GetItemAsync(string id, string additionnalInfos = null)
         {
-            return await Task.FromResult(items.FirstOrDefault(s => (s as BaseModel).Id == id));
+            return await Task.FromResult(items.FirstOrDefault(s => (s as BaseModel).Id.ToString() == id));
         }
 
         public virtual async Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false, string query = null)

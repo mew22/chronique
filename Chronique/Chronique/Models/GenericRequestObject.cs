@@ -1,11 +1,13 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Chronique.Models;
+using Realms;
 
 
 namespace Chronique.Models
 {
-    public class GenericRequestObject : BaseModel, INotifyPropertyChanged
+    public class GenericRequestObject : RealmObject
     {
         public GenericRequestObject(string providerId, string title, string subtitle = null,
             string additionalInfos = null, DataType type = DataType.Artiste, string photo_uri = null)
@@ -18,79 +20,32 @@ namespace Chronique.Models
             Photo_uri = photo_uri;
         }
 
-        public string ProviderId
+        public GenericRequestObject()
         {
-            get { return providerId; }
-            set
-            {
-                providerId = value;
-                this.OnPropertyChanged("ProviderId");
-            }
+
         }
 
-        public string Title
-        {
-            get { return title; }
-            set
-            {
-                title = value;
-                this.OnPropertyChanged("Title");
-            }
-        }
+        public string ProviderId { get; set; }
 
+        public string Title { get; set; }
+
+        public string Type_Raw { get; set; }
+        [Ignored]
         public DataType Type
         {
-            get { return type; }
-            set
+            get
             {
-                type = value;
-                this.OnPropertyChanged("Type");
+                Enum.TryParse(Type_Raw, out DataType type);
+                return type;
+
             }
+            set { Type_Raw = value.ToString(); }
         }
 
-        public string Subtitle
-        {
-            get { return subtitle; }
-            set
-            {
-                subtitle = value;
-                this.OnPropertyChanged("Subtitle");
-            }
-        }
+        public string Subtitle { get; set; }
 
-        public string AdditionalInfos
-        {
-            get { return additionalInfos; }
-            set
-            {
-                additionalInfos = value;
-                this.OnPropertyChanged("AdditionalInfos");
-            }
-        }
+        public string AdditionalInfos { get; set; }
 
-        public string Photo_uri
-        {
-            get { return photo_uri; }
-            set
-            {
-                photo_uri = value;
-                this.OnPropertyChanged("Photo_uri");
-            }
-        }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private string providerId;
-        private string title;
-        private string subtitle;
-        private string additionalInfos;
-        private DataType type;
-        private string photo_uri;
+        public string Photo_uri { get; set; }
     }
 }

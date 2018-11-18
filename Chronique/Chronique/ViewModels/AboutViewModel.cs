@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Windows.Input;
 using Chronique.Models;
+using Realms;
 using Xamarin.Forms;
 
 namespace Chronique.ViewModels
 {
-    public class AboutViewModel : BaseViewModel<BaseModel>
+    public class AboutViewModel : BaseViewModel<RealmObject>
     {
         public AboutViewModel()
         {

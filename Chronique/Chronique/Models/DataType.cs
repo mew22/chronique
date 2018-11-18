@@ -1,10 +1,12 @@
-﻿namespace Chronique.Models
+﻿using Realms;
+
+namespace Chronique.Models
 {
     public enum DataType
     {
         Artiste,
         Track,
-        Album,
+        Album ,
         Unknown
     }
 }

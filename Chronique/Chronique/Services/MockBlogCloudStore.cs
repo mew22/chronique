@@ -3,15 +3,15 @@ using System.Linq;
 using Chronique.Models;
 using Chronique.Services;
 
-[assembly: Xamarin.Forms.Dependency(typeof(MockBlogStore))]
+[assembly: Xamarin.Forms.Dependency(typeof(MockBlogCloudStore))]
 
 namespace Chronique.Services
 {
-    public class MockBlogStore : IDataStoreImpl<BlogInfo>
+    public class MockBlogCloudStore : ICloudStoreImpl<BlogInfo>
     {
 //        List<BlogInfo> items;
 
-        public MockBlogStore()
+        public MockBlogCloudStore()
         {
             items = new ObservableCollection<BlogInfo>();
             var blogsTitleCount = BlogsTitle.Count() - 1;

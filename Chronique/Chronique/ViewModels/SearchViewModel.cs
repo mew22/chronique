@@ -3,7 +3,7 @@ using Chronique.Services;
 
 namespace Chronique.ViewModels
 {
-    public class SearchViewModel : BaseListViewModel<GenericRequestObject, Views.NewArtistePage, MockSearchStore>
+    public class SearchViewModel : BaseListViewModel<GenericRequestObject, Views.NewArtistePage, MySearchCloudStore>
     {
         public string query;
 

@@ -4,13 +4,13 @@ using System.Collections.ObjectModel;
 using Chronique.Models;
 using Chronique.Services;
 
-[assembly: Xamarin.Forms.Dependency(typeof(MockPlaylistStore))]
+[assembly: Xamarin.Forms.Dependency(typeof(MyPlaylistCloudStore))]
 
 namespace Chronique.Services
 {
-    public class MockPlaylistStore : IDataStoreImpl<Playlist>
+    public class MyPlaylistCloudStore : ICloudStoreImpl<Playlist>
     {
-        public MockPlaylistStore()
+        public MyPlaylistCloudStore()
         {
             Random r = new Random();
             items = new ObservableCollection<Playlist>

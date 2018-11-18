@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Realms;
 
 namespace Chronique.Models
 {
-    public class Album : BaseModel, INotifyPropertyChanged
+    public class Album : RealmObject
     {
         public Album(string name = null, string date = null, string mainArtist = null, string mainArtistId = null,
             List<Track> trackList = null, string description = null, string photo_uri = null, string providerId = null,
@@ -21,111 +22,27 @@ namespace Chronique.Models
             ShortDescription = shortDescription;
         }
 
-        public string Name
+        public Album()
         {
-            get { return name; }
-            set
-            {
-                name = value;
-                this.OnPropertyChanged("Name");
-            }
+            TrackList = new List<Track>();
         }
+        [Indexed]
+        public string Name { get; set; }
+        [Indexed]
+        public string Date { get; set; }
+       
+        public string MainArtist { get; set; }
+        [Indexed]
+        public string MainArtistId { get; set; }
 
-        public string Date
-        {
-            get { return date; }
-            set
-            {
-                date = value;
-                this.OnPropertyChanged("BirthDate");
-            }
-        }
+        public IList<Track> TrackList { get; }
 
-        public string MainArtist
-        {
-            get { return mainArtist; }
-            set
-            {
-                mainArtist = value;
-                this.OnPropertyChanged("MainArtist");
-            }
-        }
+        public string Description { get; set; }
 
-        public string MainArtistId
-        {
-            get { return mainArtistId; }
-            set
-            {
-                mainArtistId = value;
-                this.OnPropertyChanged("MainArtistId");
-            }
-        }
+        public string Photo_uri { get; set; }
+        [PrimaryKey]
+        public string ProviderId { get; set; }
 
-        public List<Track> TrackList
-        {
-            get { return trackList; }
-            set
-            {
-                trackList = value;
-                this.OnPropertyChanged("TrackList");
-            }
-        }
-
-        public string Description
-        {
-            get { return description; }
-            set
-            {
-                description = value;
-                this.OnPropertyChanged("Description");
-            }
-        }
-
-        public string Photo_uri
-        {
-            get { return photo_uri; }
-            set
-            {
-                photo_uri = value;
-                this.OnPropertyChanged("Photo_uri");
-            }
-        }
-
-        public string ProviderId
-        {
-            get { return providerId; }
-            set
-            {
-                providerId = value;
-                this.OnPropertyChanged("ProviderId");
-            }
-        }
-
-        public string ShortDescription
-        {
-            get { return shortDescription; }
-            set
-            {
-                shortDescription = value;
-                this.OnPropertyChanged("ShortDescription");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private string name;
-        private string date;
-        private string mainArtist;
-        private string mainArtistId;
-        private List<Track> trackList;
-        private string description;
-        private string photo_uri;
-        private string providerId;
-        private string shortDescription;
+        public string ShortDescription { get; set; }
     }
 }

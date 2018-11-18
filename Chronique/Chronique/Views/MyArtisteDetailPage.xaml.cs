@@ -23,6 +23,12 @@ namespace Chronique.Views
                 viewModel.LoadItemsCommand.Execute(null);
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            viewModel.OnDisappearing();
+        }
+
         public MyArtisteDetailPage(MyArtistDetailsViewModel vm)
         {
             InitializeComponent();
@@ -91,6 +97,10 @@ namespace Chronique.Views
             }
 
             //pullToRefresh.IsRefreshing = false;
+        }
+        private void Switch_OnToggled(object sender, ToggledEventArgs e)
+        {
+            viewModel.SwitchPersistedArtist(e.Value);
         }
     }
 }

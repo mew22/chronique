@@ -11,16 +11,16 @@ using IF.Lastfm.Core.Objects;
 using Plugin.Connectivity;
 using Track = Chronique.Models.Track;
 
-[assembly: Xamarin.Forms.Dependency(typeof(MyAlbumMockStore))]
+[assembly: Xamarin.Forms.Dependency(typeof(MyAlbumCloudStore))]
 
 namespace Chronique.Services
 {
-    public class MyAlbumMockStore : IDataStore<Album>
+    public class MyAlbumCloudStore : ICloudStore<Album>
     {
         private LastfmClient lastFm;
         private Album lastAlbum;
 
-        public MyAlbumMockStore()
+        public MyAlbumCloudStore()
         {
             lastFm = LastfmSingleton.Instance.LastFm;
         }

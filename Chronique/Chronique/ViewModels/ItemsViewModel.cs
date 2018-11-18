@@ -10,7 +10,7 @@ namespace Chronique.ViewModels
 {
     public class ItemsViewModel : BaseViewModel<Item>
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
+        public ICloudStore<Item> DataStore => DependencyService.Get<ICloudStore<Item>>() ?? new MockDataCloudStore();
         public ObservableCollection<Item> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Chronique.Models;
+using Realms;
 
 namespace Chronique.Services
 {
-    public interface IDataStore<T> where T : BaseModel
+    public interface ICloudStore<T> where T : RealmObject
     {
         Task<bool> AddItemAsync(T item);
         Task<bool> UpdateItemAsync(T item);

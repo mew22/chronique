@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace Chronique.ViewModels
 {
-    public class PlaylistViewModel : BaseListViewModel<Playlist, Views.NewArtistePage, MockPlaylistStore>
+    public class PlaylistViewModel : BaseListViewModel<Playlist, Views.NewArtistePage, MyPlaylistCloudStore>
     {
         #region Fields
 
