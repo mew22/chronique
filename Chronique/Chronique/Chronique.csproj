@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+  <PropertyGroup>
+    <SolutionDir>..\</SolutionDir>
+</PropertyGroup>
 
   <ItemGroup>
     <None Remove="Images\about.png" />
@@ -215,6 +218,9 @@
   <ItemGroup>
     <Compile Update="Views\MyAlbumDetailPage.xaml.cs">
       <DependentUpon>MyAlbumDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MyEventDetailPage.xaml.cs">
+      <DependentUpon>MyEventDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\MyArtisteDetailPage.xaml.cs">
       <DependentUpon>MyArtisteDetailPage.xaml</DependentUpon>
