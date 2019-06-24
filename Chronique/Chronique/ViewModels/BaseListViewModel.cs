@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Chronique.Customs;
 using Chronique.Layout;
 using Chronique.Models;
 using Chronique.Services;
@@ -14,6 +15,7 @@ using Xamarin.Forms;
 
 namespace Chronique.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class BaseListViewModel<T, U, V> : BaseViewModel<T>
         where T : RealmObject
         where U : ContentPage
@@ -32,6 +34,7 @@ namespace Chronique.ViewModels
                 OnPropertyChanged("items");
             }
         }
+
         public bool IsEmpty => this.Items.Count <= 0;
         public bool IsNotEmpty => this.Items.Count > 0;
 
@@ -65,12 +68,14 @@ namespace Chronique.ViewModels
                     DependencyService.Get<IMessageToast>().LongAlert("No internet connexion");
                     return;
                 }
+
                 var loaded_items = await DataStore.GetItemsAsync(true, query);
                 Items.Clear();
                 foreach (var item in loaded_items)
                 {
                     Items.Add(item);
                 }
+
                 this.OnPropertyChanged("IsEmpty");
                 this.OnPropertyChanged("IsNotEmpty");
             }

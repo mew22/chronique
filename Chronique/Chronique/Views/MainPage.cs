@@ -24,7 +24,6 @@ namespace Chronique.Views
                     artistePage = new NavigationPage(new PeoplePage())
                     {
                         Title = "Tracking"
-
                     };
                     playlistPage = new NavigationPage(new PlaylistPage())
                     {

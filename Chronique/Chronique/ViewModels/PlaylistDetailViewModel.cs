@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Linq;
+using Chronique.Customs;
 using Chronique.Layout;
 using Chronique.Models;
 using Chronique.Services;
@@ -7,6 +8,7 @@ using Xamarin.Forms;
 
 namespace Chronique.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class PlaylistDetailViewModel : BaseListViewModel<Artiste, Views.NewItemPage, MockArtistCloudStore>
     {
         public Playlist Item { get; set; }

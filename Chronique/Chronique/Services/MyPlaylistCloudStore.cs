@@ -8,6 +8,7 @@ using Chronique.Services;
 
 namespace Chronique.Services
 {
+    [Preserve(AllMembers = true)]
     public class MyPlaylistCloudStore : ICloudStoreImpl<Playlist>
     {
         public MyPlaylistCloudStore()

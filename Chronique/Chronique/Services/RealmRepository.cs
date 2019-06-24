@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -10,9 +9,11 @@ using Realms;
 //[assembly: Xamarin.Forms.Dependency(typeof(RealmRepository<>))]
 namespace Chronique.Services
 {
-    public class RealmRepository<TEntity> : ICacheStore<TEntity>  where TEntity : RealmObject, new()
+    [Preserve(AllMembers = true)]
+    public class RealmRepository<TEntity> : ICacheStore<TEntity> where TEntity : RealmObject, new()
     {
         private readonly Realm realmInstance;
+
         public RealmRepository()
         {
             //realmInstance = RealmSingleton.Instance.RealmInstance;
@@ -39,21 +40,13 @@ namespace Chronique.Services
 
         public virtual async void InsertAsync(TEntity obj)
         {
-            await realmInstance.WriteAsync(tmpRealm =>
-            {
-                tmpRealm.Add(obj);
-
-            });
-
+            await realmInstance.WriteAsync(tmpRealm => { tmpRealm.Add(obj); });
         }
 
         public virtual async void UpdateAsync(TEntity obj)
         {
             //            realmInstance.Write(() => { realmInstance.Add(obj, true); });
-            await realmInstance.WriteAsync(tmpRealm =>
-            {
-                tmpRealm.Add(obj, true);
-            });
+            await realmInstance.WriteAsync(tmpRealm => { tmpRealm.Add(obj, true); });
         }
 
         public virtual async void DeleteAsync(string Id)
@@ -64,10 +57,7 @@ namespace Chronique.Services
 
         public virtual async void DeleteAsync(TEntity obj)
         {
-             await realmInstance.WriteAsync(tmpRealm =>
-             {
-                 tmpRealm.Remove(obj);
-             });
+            await realmInstance.WriteAsync(tmpRealm => { tmpRealm.Remove(obj); });
         }
 
         public IQueryable<TEntity> GetAll()
@@ -87,11 +77,9 @@ namespace Chronique.Services
 
         public virtual void Insert(TEntity obj)
         {
-            realmInstance.Write(() =>
-            {
-                realmInstance.Add(obj);
-            });
+            realmInstance.Write(() => { realmInstance.Add(obj); });
         }
+
         public virtual void Insert(Action action)
         {
             realmInstance.Write(action);
@@ -99,24 +87,18 @@ namespace Chronique.Services
 
         public void Update(TEntity obj)
         {
-           realmInstance.Write(() =>
-            {
-                realmInstance.Add(obj, true);
-            });
+            realmInstance.Write(() => { realmInstance.Add(obj, true); });
         }
 
         public void Delete(string Id)
         {
-            var entity =  GetSingleById(Id);
+            var entity = GetSingleById(Id);
             Delete(entity);
         }
 
         public void Delete(TEntity obj)
         {
-            realmInstance.Write(() =>
-            {
-                realmInstance.Remove(obj);
-            });
+            realmInstance.Write(() => { realmInstance.Remove(obj); });
         }
 
         public TEntity DetachObject(TEntity Model)

@@ -50,10 +50,10 @@ namespace Chronique.Views
 //                pullToRefresh.TransitionMode = TransitionType.Push;
 //            }
 //        }
-        private async void NavigateToReadMoreContent(object obj)
+        /*private async void NavigateToReadMoreContent(object obj)
         {
             await Navigation.PushAsync(new BlogsDetailPage(new BlogDetailViewModel(obj as BlogInfo)));
-        }
+        }*/
 
         async void About_Clicked(object sender, EventArgs e)
         {

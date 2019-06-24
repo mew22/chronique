@@ -1,12 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
   </PropertyGroup>
   <PropertyGroup>
     <SolutionDir>..\</SolutionDir>
-</PropertyGroup>
-
+  </PropertyGroup>
   <ItemGroup>
     <None Remove="Images\about.png" />
     <None Remove="Images\BlogAuthor.png" />
@@ -99,7 +102,6 @@
     <None Remove="Images\SocialNetwork\youtube_page.png" />
     <None Remove="Views\PlaylistPage.xaml~RFb76d46.TMP" />
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Include="Images\about.png" />
     <EmbeddedResource Include="Images\BlogAuthor.png" />
@@ -181,28 +183,30 @@
     <EmbeddedResource Include="Images\SocialNetwork\youtube.png" />
     <EmbeddedResource Include="Images\SocialNetwork\youtube.svg" />
   </ItemGroup>
-
   <ItemGroup>
+    <PackageReference Include="Fody" Version="5.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Inflatable.Lastfm" Version="1.1.0.339" />
-    <PackageReference Include="Microsoft.AppCenter" Version="1.9.0" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.9.0" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.9.0" />
-    <PackageReference Include="Microsoft.AppCenter.Distribute" Version="1.9.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="Realm" Version="3.2.1" />
-    <PackageReference Include="Refit" Version="4.6.30" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="16.3.0.21" />
-    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="16.3.0.21" />
-    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="16.3.0.21" />
-    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="16.3.0.21" />
-    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="16.3.0.21" />
-    <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="16.3.0.21" />
+    <PackageReference Include="Microsoft.AppCenter" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AppCenter.Distribute" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Realm" Version="4.0.0" />
+    <PackageReference Include="Refit" Version="4.7.9" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.1.0.52" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="17.1.0.52" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="17.1.0.52" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.1.0.52" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="17.1.0.52" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="17.1.0.52" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
-    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.3.840" />
-    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.3.840" />
-    <PackageReference Include="Xamarin.Forms" Version="3.2.0.839982" />  
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
   </ItemGroup>
-
   <ItemGroup>
     <Reference Include="Hqub.MusicBrainz.API">
       <HintPath>..\..\lib\Hqub.MusicBrainz.API.dll</HintPath>
@@ -213,7 +217,6 @@
       <Private>true</Private>
     </Reference>
   </ItemGroup>
-
   <ItemGroup>
     <Compile Update="Views\MyAlbumDetailPage.xaml.cs">
       <DependentUpon>MyAlbumDetailPage.xaml</DependentUpon>

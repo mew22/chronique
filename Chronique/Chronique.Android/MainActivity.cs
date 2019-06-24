@@ -6,7 +6,6 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using FFImageLoading.Forms.Droid;
 using Xamarin.Forms.Platform.Android;
 
 //using FFImageLoading.Svg.Forms;

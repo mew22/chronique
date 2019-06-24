@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -149,7 +149,7 @@
                 <xForms:SfPullToRefresh.PullableContent>
 
                     <StackLayout>
-                        <SearchBar x:Name="searchBar" Placeholder="Search artists, albums, tracks..." 
+                        <SearchBar x:Name="searchBar" Placeholder="Search artists, albums, tracks..."
                                    TextChanged="OnFilterTextChanged" SearchButtonPressed="OnSearchButtonPressed" />
                         <listView:SfListView x:Name="listView" ItemSize="70" GroupHeaderSize="60"
                                              ItemTemplate="{StaticResource ItemTemplate}"

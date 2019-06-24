@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Chronique.Helpers
 {
-    public static class  IListHelper
+    public static class IListHelper
     {
         public static void AddRange<T>(this IList<T> list, IEnumerable<T> items)
         {
@@ -13,7 +13,7 @@ namespace Chronique.Helpers
 
             if (list is List<T>)
             {
-                ((List<T>)list).AddRange(items);
+                ((List<T>) list).AddRange(items);
             }
             else
             {

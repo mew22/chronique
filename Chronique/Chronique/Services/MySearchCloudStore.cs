@@ -11,6 +11,7 @@ using Plugin.Connectivity;
 
 namespace Chronique.Services
 {
+    [Preserve(AllMembers = true)]
     public class MySearchCloudStore : ICloudStoreImpl<GenericRequestObject>
     {
         //        List<Item> items;

@@ -98,6 +98,7 @@ namespace Chronique.Views
 
             //pullToRefresh.IsRefreshing = false;
         }
+
         private void Switch_OnToggled(object sender, ToggledEventArgs e)
         {
             viewModel.SwitchPersistedArtist(e.Value);

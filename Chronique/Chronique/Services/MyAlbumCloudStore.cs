@@ -15,6 +15,7 @@ using Track = Chronique.Models.Track;
 
 namespace Chronique.Services
 {
+    [Preserve(AllMembers = true)]
     public class MyAlbumCloudStore : ICloudStore<Album>
     {
         private LastfmClient lastFm;

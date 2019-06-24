@@ -1,6 +1,4 @@
-﻿using Realms;
-
-namespace Chronique.Models
+﻿namespace Chronique.Models
 {
     public interface BaseModel
     {

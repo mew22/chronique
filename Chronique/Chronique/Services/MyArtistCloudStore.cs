@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Chronique.Customs;
 using Chronique.Helpers;
 using Chronique.Models;
 using Chronique.Services;
@@ -12,11 +13,13 @@ using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
+using Xamarin.Forms;
 
 [assembly: Xamarin.Forms.Dependency(typeof(MyArtistCloudStore))]
 
 namespace Chronique.Services
 {
+    [Preserve(AllMembers = true)]
     public class MyArtistCloudStore : ICloudStore<Artiste>
     {
         private LastfmClient lastFm;
@@ -102,8 +105,10 @@ namespace Chronique.Services
                             new List<Event>(), lastfmArtis.Content.Bio.Summary,
                             lastfmArtis.Content.MainImage.Large.AbsoluteUri, id);
 
-                        IListHelper.AddRange(tmpArtist.Projects, ConverterToViewObj.ConvertAlbums(lastfmArtisTopAlbums.Content));
-                        IListHelper.AddRange(tmpArtist.Similars, ConverterToViewObj.ConvertArtistes(lastfmArtistSimilars.Content));
+                        IListHelper.AddRange(tmpArtist.Projects,
+                            ConverterToViewObj.ConvertAlbums(lastfmArtisTopAlbums.Content));
+                        IListHelper.AddRange(tmpArtist.Similars,
+                            ConverterToViewObj.ConvertArtistes(lastfmArtistSimilars.Content));
 
                         var songKickUpEvt = await songKickUpEvent.Content.ReadAsStringAsync();
                         IListHelper.AddRange(tmpArtist.UpEvents, ConverterToViewObj.ConvertSkEvents(songKickUpEvt));
@@ -152,7 +157,8 @@ namespace Chronique.Services
                                 urlList.Add(url);
                             }
 
-                            IListHelper.AddRange(tmpArtist.Projects, ConverterToViewObj.ConvertMbAlbums(loadedReleases, urlList));
+                            IListHelper.AddRange(tmpArtist.Projects,
+                                ConverterToViewObj.ConvertMbAlbums(loadedReleases, urlList));
                         }
 
                         lastArtist = tmpArtist;

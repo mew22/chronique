@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Chronique.Customs;
 using Chronique.Layout;
 using Chronique.Models;
 using Chronique.Services;
@@ -11,8 +12,10 @@ using Xamarin.Forms;
 
 namespace Chronique.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class
-        ArtistesViewModel : BaseListViewModel<Artiste, Views.NewArtistePage, MyArtistCloudStore> // INotifyPropertyChanged for ArtisteBaseViewModel
+        ArtistesViewModel : BaseListViewModel<Artiste, Views.NewArtistePage, MyArtistCloudStore
+        > // INotifyPropertyChanged for ArtisteBaseViewModel
     {
         private ImageSource delete;
         private string headerInfo;
@@ -31,12 +34,13 @@ namespace Chronique.ViewModels
 
             try
             {
-                var loaded_items = await CacheStore.GetAsync(artiste =>  artiste.IsTracked);
+                var loaded_items = await CacheStore.GetAsync(artiste => artiste.IsTracked);
                 Items.Clear();
                 foreach (var item in loaded_items)
                 {
                     Items.Add(item);
                 }
+
                 this.OnPropertyChanged("IsEmpty");
                 this.OnPropertyChanged("IsNotEmpty");
             }
@@ -50,12 +54,9 @@ namespace Chronique.ViewModels
             }
         }
 
-    public ImageSource Delete
+        public ImageSource Delete
         {
-            get
-            {
-                return delete;
-            }
+            get { return delete; }
             set
             {
                 if (delete != value)
@@ -104,6 +105,7 @@ namespace Chronique.ViewModels
                 }
             }
         }
+
         public ArtistesViewModel()
         {
             Title = "La Chronique";

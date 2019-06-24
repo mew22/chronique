@@ -6,7 +6,7 @@ namespace Chronique.Models
     {
         Artiste,
         Track,
-        Album ,
+        Album,
         Unknown
     }
 }

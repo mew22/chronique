@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chronique.Services
 {
+    [Preserve(AllMembers = true)]
     public interface ICacheStore<TEntity> where TEntity : class
     {
         Task<IQueryable<TEntity>> GetAllAsync();

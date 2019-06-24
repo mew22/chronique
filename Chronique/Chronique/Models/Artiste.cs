@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using Realms;
 
 namespace Chronique.Models
@@ -11,7 +9,8 @@ namespace Chronique.Models
             string birthPlace = null, string job = null,
             string activityDates = null, List<MyKeyValuePair> relations = null, string musicKind = null,
             List<Artiste> similars = null, List<Album> projects = null,
-            List<Event> upEvents = null, string description = null, string photo_uri = null, string providerId = null, bool isSelected = false)
+            List<Event> upEvents = null, string description = null, string photo_uri = null, string providerId = null,
+            bool isSelected = false)
         {
             Pseudo = pseudo;
             Name = name;
@@ -40,8 +39,8 @@ namespace Chronique.Models
 //            Projects = new List<Album>();
 //            UpEvents = new List<Event>();
         }
-        [Indexed]
-        public string Pseudo { get; set; }
+
+        [Indexed] public string Pseudo { get; set; }
 
         public string Name { get; set; }
 
@@ -57,26 +56,24 @@ namespace Chronique.Models
 
         public string ActivityDates { get; set; }
 
-        public IList<MyKeyValuePair> Relations { get;}
+        public IList<MyKeyValuePair> Relations { get; }
 
         public string MusicKind { get; set; }
 
         public IList<Artiste> Similars { get; }
 
-        public IList<Album> Projects { get;}
+        public IList<Album> Projects { get; }
 
-        public IList<Event> UpEvents { get;}
+        public IList<Event> UpEvents { get; }
 
         public string Description { get; set; }
 
 
         public string Photo_uri { get; set; }
-        [PrimaryKey]
-        public string ProviderId { get; set; }
+        [PrimaryKey] public string ProviderId { get; set; }
         public bool IsSelected { get; set; }
 
-        [Indexed]
-        public bool IsTracked { get; set; }
+        [Indexed] public bool IsTracked { get; set; }
 
         public int Id { get; set; }
     }

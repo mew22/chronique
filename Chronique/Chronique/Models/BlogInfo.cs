@@ -1,16 +1,14 @@
-using System.ComponentModel;
 using Realms;
 
 namespace Chronique.Models
 {
     public class BlogInfo : RealmObject
     {
-
         public BlogInfo()
         {
         }
-        [PrimaryKey]
-        public string BlogTitle { get; set; }
+
+        [PrimaryKey] public string BlogTitle { get; set; }
 
         public string BlogCategory { get; set; }
 

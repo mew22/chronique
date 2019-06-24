@@ -166,6 +166,7 @@ namespace Chronique.Views
 //            });
 //            listView.RefreshView();
         }
+
         private void ListView_SelectionChanged(object sender, ItemSelectionChangedEventArgs e)
         {
             for (int i = 0; i < e.AddedItems.Count; i++)
@@ -173,11 +174,13 @@ namespace Chronique.Views
                 var item = e.AddedItems[i];
                 (item as Artiste).IsSelected = true;
             }
+
             for (int i = 0; i < e.RemovedItems.Count; i++)
             {
                 var item = e.RemovedItems[i];
                 (item as Artiste).IsSelected = false;
             }
+
             RefreshSelection();
         }
 
@@ -189,6 +192,7 @@ namespace Chronique.Views
             {
                 viewModel.RemoveItem(item);
             }
+
             RefreshSelection();
         }
 
@@ -197,7 +201,9 @@ namespace Chronique.Views
             if (listView.SelectedItems.Count > 0)
             {
                 viewModel.TitleInfo = "";
-                viewModel.HeaderInfo = listView.SelectedItems.Count == 1 ? listView.SelectedItems.Count + " Artist Selected" : listView.SelectedItems.Count + " Artists Selected";
+                viewModel.HeaderInfo = listView.SelectedItems.Count == 1
+                    ? listView.SelectedItems.Count + " Artist Selected"
+                    : listView.SelectedItems.Count + " Artists Selected";
                 viewModel.IsVisible = true;
             }
             else
@@ -207,6 +213,7 @@ namespace Chronique.Views
                 viewModel.IsVisible = false;
             }
         }
+
         #endregion
 
         #region Menu
@@ -225,14 +232,6 @@ namespace Chronique.Views
         private void picker_OnPickerItemLoaded(object sender, PickerViewEventArgs e)
         {
             e.View = new PeopleRowLayout((e.Item as Artiste));
-        }
-
-        private void Picker_OnOkButtonClicked(object sender, SelectionChangedEventArgs e)
-        {
-        }
-
-        private void Picker_OnCancelButtonClicked(object sender, SelectionChangedEventArgs e)
-        {
         }
 
         #endregion

@@ -7,6 +7,7 @@ using Realms;
 
 namespace Chronique.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class BaseViewModel<T> : INotifyPropertyChanged
         where T : RealmObject
     {

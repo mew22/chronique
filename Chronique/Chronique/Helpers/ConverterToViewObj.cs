@@ -31,7 +31,7 @@ namespace Chronique.Helpers
             foreach (var item in rels)
             {
                 if (item.Type != null && item.Url != null && item.Url.Resource != null)
-                    unique.Add(new MyKeyValuePair(artistId,item.Type, item.Url.Resource));
+                    unique.Add(new MyKeyValuePair(artistId, item.Type, item.Url.Resource));
             }
 
             dico = unique.ToList();

@@ -22,7 +22,6 @@ namespace Chronique.Models
 
         public GenericRequestObject()
         {
-
         }
 
         public string ProviderId { get; set; }
@@ -30,6 +29,7 @@ namespace Chronique.Models
         public string Title { get; set; }
 
         public string Type_Raw { get; set; }
+
         [Ignored]
         public DataType Type
         {
@@ -37,7 +37,6 @@ namespace Chronique.Models
             {
                 Enum.TryParse(Type_Raw, out DataType type);
                 return type;
-
             }
             set { Type_Raw = value.ToString(); }
         }

@@ -12,7 +12,6 @@ namespace Chronique.Models
 {
     public class Track : RealmObject
     {
-  
         public Track(string name = null, string albumName = null, int? position = 0, string artistName = null,
             string artistId = null, string providerId = null)
         {
@@ -26,20 +25,17 @@ namespace Chronique.Models
 
         public Track()
         {
-
         }
-        [Indexed]
-        public string AlbumName { get; set; }
+
+        [Indexed] public string AlbumName { get; set; }
 
         public string ArtistName { get; set; }
-    
+
 
         public int? Position { get; set; }
-        [Indexed]
-        public string ArtistId { get; set; }
+        [Indexed] public string ArtistId { get; set; }
 
-        [PrimaryKey]
-        public string ProviderId { get; set; }
+        [PrimaryKey] public string ProviderId { get; set; }
 
         public string Name { get; set; }
     }

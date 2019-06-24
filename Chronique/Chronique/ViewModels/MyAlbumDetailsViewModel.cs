@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Chronique.Customs;
 using Chronique.Layout;
 using Chronique.Models;
 using Chronique.Services;
@@ -12,6 +13,7 @@ using Xamarin.Forms;
 
 namespace Chronique.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class MyAlbumDetailsViewModel : BaseViewModel<Album>
     {
         private Album item;

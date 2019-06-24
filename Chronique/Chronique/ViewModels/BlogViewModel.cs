@@ -5,6 +5,7 @@ using Xamarin.Forms;
 
 namespace Chronique.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class BlogViewModel : BaseListViewModel<BlogInfo, Views.NewArtistePage, MockBlogCloudStore>
     {
         #region Fields
@@ -70,9 +71,9 @@ namespace Chronique.ViewModels
 
         #region Private Methods
 
-        private void NavigateToReadMoreContent(object obj)
+        private async void NavigateToReadMoreContent(object obj)
         {
-            Navigation.PushAsync(new Views.BlogsDetailPage(new BlogDetailViewModel(obj as BlogInfo)));
+            await Navigation.PushAsync(new Views.BlogsDetailPage(new BlogDetailViewModel(obj as BlogInfo)));
         }
 
         private void NavigateTwitterLink(object obj)

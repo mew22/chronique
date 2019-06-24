@@ -5,6 +5,7 @@ using Realms;
 
 namespace Chronique.Services
 {
+    [Preserve(AllMembers = true)]
     public interface ICloudStore<T> where T : RealmObject
     {
         Task<bool> AddItemAsync(T item);

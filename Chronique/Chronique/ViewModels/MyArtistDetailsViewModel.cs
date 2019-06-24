@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Chronique.Customs;
 using Chronique.Helpers;
 using Chronique.Layout;
 using Chronique.Models;
@@ -13,6 +14,7 @@ using Xamarin.Forms;
 
 namespace Chronique.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class MyArtistDetailsViewModel : BaseViewModel<Artiste>
     {
         private Artiste item;
@@ -32,12 +34,15 @@ namespace Chronique.ViewModels
 
         public GenericRequestObject Id { get; set; }
         public Artiste FromArtistPage { get; set; }
-        public ICloudStore<Artiste> DataStore => DependencyService.Get<ICloudStore<Artiste>>() ?? new MyArtistCloudStore();
+
+        public ICloudStore<Artiste> DataStore =>
+            DependencyService.Get<ICloudStore<Artiste>>() ?? new MyArtistCloudStore();
 
         //        public ICacheStore<Artiste> CacheStore => DependencyService.Get<ICacheStore<Artiste>>() ?? new RealmRepository<Artiste>();
         public ICacheStore<Artiste> CacheStore = new RealmRepository<Artiste>();
 
         private bool tracked = false;
+
         public bool Tracked
         {
             get => tracked;
@@ -72,9 +77,9 @@ namespace Chronique.ViewModels
 
         public void OnDisappearing()
         {
-            if(!Tracked && CacheStore.GetSingleById(Item.ProviderId) != null)
+            if (!Tracked && CacheStore.GetSingleById(Item.ProviderId) != null)
                 CacheStore.Delete(Item.ProviderId);
-            else if(CacheStore.GetSingleById(Item.ProviderId) == null)
+            else if (CacheStore.GetSingleById(Item.ProviderId) == null)
             {
                 Item.IsTracked = true;
                 CacheStore.Update(Item);
@@ -159,6 +164,7 @@ namespace Chronique.ViewModels
                             DependencyService.Get<IMessageToast>().LongAlert("No internet connexion");
                             return;
                         }
+
                         Item = await DataStore.GetItemAsync(FromArtistPage.ProviderId, FromArtistPage.Pseudo);
                     }
 
@@ -177,6 +183,7 @@ namespace Chronique.ViewModels
                             DependencyService.Get<IMessageToast>().LongAlert("No internet connexion");
                             return;
                         }
+
                         Item = await DataStore.GetItemAsync(Id.ProviderId, Id.Title);
                     }
                     else

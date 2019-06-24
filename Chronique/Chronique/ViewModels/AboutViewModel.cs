@@ -6,6 +6,7 @@ using Xamarin.Forms;
 
 namespace Chronique.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class AboutViewModel : BaseViewModel<RealmObject>
     {
         public AboutViewModel()

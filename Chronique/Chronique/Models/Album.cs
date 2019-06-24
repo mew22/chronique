@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using Realms;
 
 namespace Chronique.Models
@@ -26,22 +24,19 @@ namespace Chronique.Models
         {
             TrackList = new List<Track>();
         }
-        [Indexed]
-        public string Name { get; set; }
-        [Indexed]
-        public string Date { get; set; }
-       
+
+        [Indexed] public string Name { get; set; }
+        [Indexed] public string Date { get; set; }
+
         public string MainArtist { get; set; }
-        [Indexed]
-        public string MainArtistId { get; set; }
+        [Indexed] public string MainArtistId { get; set; }
 
         public IList<Track> TrackList { get; }
 
         public string Description { get; set; }
 
         public string Photo_uri { get; set; }
-        [PrimaryKey]
-        public string ProviderId { get; set; }
+        [PrimaryKey] public string ProviderId { get; set; }
 
         public string ShortDescription { get; set; }
     }

@@ -7,12 +7,9 @@ namespace Chronique.Models
 {
     public class MyKeyValuePair : RealmObject
     {
-        [PrimaryKey]
-        public string Id { get; set; }
-        [Indexed]
-        public string ArtistId { get; set; }
-        [Indexed]
-        public string Key { get; set; }
+        [PrimaryKey] public string Id { get; set; }
+        [Indexed] public string ArtistId { get; set; }
+        [Indexed] public string Key { get; set; }
         public string Value { get; set; }
 
         public MyKeyValuePair()

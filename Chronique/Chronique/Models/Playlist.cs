@@ -8,7 +8,6 @@ namespace Chronique.Models
 {
     public class Playlist : RealmObject
     {
-
         public Playlist(string name, string logoUrl, string playlist_link, string date, string kind,
             string shortDescription, List<Track> tracklist = null, string urlPlaySoundcloud = null,
             string urlPlaySoundgood = null, string urlPlayYoutube = null,
@@ -41,10 +40,9 @@ namespace Chronique.Models
             this.YoutubeIcon = ImageSource.FromResource("Chronique.Images.SocialNetwork.Blog_Youtube.png");
         }
 
-        public IList<Track> Tracks { get;}
+        public IList<Track> Tracks { get; }
 
-        [PrimaryKey]
-        public string Name { get; set; }
+        [PrimaryKey] public string Name { get; set; }
 
 
         public string LogoUrl { get; set; }
@@ -59,12 +57,9 @@ namespace Chronique.Models
 
         public string ShortDescription { get; set; }
 
-        [Ignored]
-        public ImageSource SoundcloudIcon { get; set; }
-        [Ignored]
-        public ImageSource SoundsgoodIcon { get; set; }
-        [Ignored]
-        public ImageSource YoutubeIcon { get; set; }
+        [Ignored] public ImageSource SoundcloudIcon { get; set; }
+        [Ignored] public ImageSource SoundsgoodIcon { get; set; }
+        [Ignored] public ImageSource YoutubeIcon { get; set; }
 
         public string UrlPlaySoundcloud { get; set; }
 

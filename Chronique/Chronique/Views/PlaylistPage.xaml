@@ -155,8 +155,12 @@
                 </pulltoRefresh:SfPullToRefresh.ProgressStrokeWidth>
                 <pulltoRefresh:SfPullToRefresh.PullableContent>
                     <Grid>
-                        <Label Text="No playlist found" IsVisible="{Binding IsEmpty}" IsEnabled="{Binding IsEmpty}" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1.0, 1.0" AbsoluteLayout.LayoutFlags="All" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="64" TextColor="Gray"/>
-                        <syncfusion:SfListView x:Name="listView" ItemSize="120" ItemsSource="{Binding Items}" IsVisible="{Binding IsNotEmpty}" 
+                        <Label Text="No playlist found" IsVisible="{Binding IsEmpty}" IsEnabled="{Binding IsEmpty}"
+                               AbsoluteLayout.LayoutBounds="0.5, 0.5, 1.0, 1.0" AbsoluteLayout.LayoutFlags="All"
+                               VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="64"
+                               TextColor="Gray" />
+                        <syncfusion:SfListView x:Name="listView" ItemSize="120" ItemsSource="{Binding Items}"
+                                               IsVisible="{Binding IsNotEmpty}"
                                                ItemTemplate="{StaticResource ItemTemplate}"
                                                AutoFitMode="Height" SelectionMode="None" />
                     </Grid>

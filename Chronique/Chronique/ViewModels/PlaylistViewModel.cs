@@ -5,6 +5,7 @@ using Xamarin.Forms;
 
 namespace Chronique.ViewModels
 {
+    [Preserve(AllMembers = true)]
     public class PlaylistViewModel : BaseListViewModel<Playlist, Views.NewArtistePage, MyPlaylistCloudStore>
     {
         #region Fields
