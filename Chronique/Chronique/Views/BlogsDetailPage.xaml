@@ -42,8 +42,6 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <Image HeightRequest="10" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="10"
-                               Source="{Binding Item.BlogCategoryIcon}" />
                         <forms:CachedImage HeightRequest="10" WidthRequest="10"
                                            VerticalOptions="Center" HorizontalOptions="Center"
                                            DownsampleToViewSize="true"

@@ -1,4 +1,5 @@
 ﻿using Chronique.ViewModels;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,8 +18,8 @@ namespace Chronique.Views
         public BlogsDetailPage(BlogDetailViewModel obj)
         {
             Title = "La Chronique";
-            BindingContext = obj;
             InitializeComponent();
+            BindingContext = obj;
         }
     }
 }
