@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 using Android.App;
-using Android.Content;
-using Android.OS;
 using Android.Runtime;
-using Android.Views;
 using Android.Widget;
+using Chronique.Customs;
 using Chronique.Droid;
 using Chronique.Layout;
 
@@ -16,8 +10,8 @@ using Chronique.Layout;
 namespace Chronique.Droid
 {
 
-
-        public class MessageAndroid : IMessageToast
+    [Preserve (AllMembers = true)]
+    public class MessageAndroid : IMessageToast
         {
             public void LongAlert(string message)
             {
